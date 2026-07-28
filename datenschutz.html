@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Datenschutzerklärung – Psychotherapie Wien</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <style>
+    :root {
+      --bg: #f6f3ed;
+      --card: rgba(255,255,255,0.72);
+      --text: #2f2c28;
+      --muted: #6c675f;
+      --line: #d7d0c4;
+      --accent: #9cad97;
+      --accent-dark: #7f927a;
+      --accent-soft: #dfe7dc;
+      --shadow: 0 10px 35px rgba(47, 44, 40, 0.08);
+      --radius: 24px;
+      --max-width: 780px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(156, 173, 151, 0.14), transparent 30%),
+        linear-gradient(180deg, #f8f6f1 0%, #f4f1ea 100%);
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    a { color: var(--accent-dark); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(14px);
+      background: rgba(246, 243, 237, 0.82);
+      border-bottom: 1px solid rgba(215, 208, 196, 0.8);
+    }
+
+    .header-inner {
+      width: min(calc(100% - 2rem), 1180px);
+      margin: 0 auto;
+      min-height: 84px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand-logo {
+      height: 52px;
+      width: auto;
+      border-radius: 10px;
+      object-fit: contain;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.6rem 1rem;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.7);
+      font-size: 0.9rem;
+      color: var(--text);
+      transition: 0.2s ease;
+    }
+
+    .back-link:hover {
+      background: var(--accent-soft);
+      text-decoration: none;
+      transform: translateX(-2px);
+    }
+
+    .page-wrap {
+      width: min(calc(100% - 2rem), var(--max-width));
+      margin: 3rem auto 5rem;
+    }
+
+    .page-label {
+      color: var(--accent-dark);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.78rem;
+      margin-bottom: 0.4rem;
+    }
+
+    h1 {
+      margin: 0 0 0.3rem;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.05;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      margin: 0 0 2.5rem;
+      font-size: 0.95rem;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,0.65);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 2rem 2.2rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .card h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.15rem;
+      margin: 0 0 1rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid var(--line);
+      color: var(--text);
+    }
+
+    .card h3 {
+      font-size: 0.98rem;
+      margin: 1.2rem 0 0.5rem;
+      color: var(--text);
+    }
+
+    .card p, .card li {
+      color: var(--muted);
+      margin: 0 0 0.6rem;
+      font-size: 0.97rem;
+    }
+
+    .card ul {
+      margin: 0 0 0.6rem;
+      padding-left: 1.4rem;
+    }
+
+    .card li { margin-bottom: 0.3rem; }
+
+    .placeholder {
+      background: rgba(156, 173, 151, 0.18);
+      border: 1px dashed var(--accent);
+      border-radius: 6px;
+      padding: 0.1rem 0.45rem;
+      font-style: italic;
+      color: var(--accent-dark);
+      font-size: 0.93em;
+    }
+
+    .notice {
+      background: rgba(156, 173, 151, 0.12);
+      border-left: 3px solid var(--accent);
+      border-radius: 12px;
+      padding: 1rem 1.2rem;
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-bottom: 2rem;
+    }
+
+    .footer {
+      border-top: 1px solid var(--line);
+      padding: 1.5rem 0 3rem;
+      color: var(--muted);
+      font-size: 0.88rem;
+      text-align: center;
+    }
+
+    @media (max-width: 640px) {
+      .header-inner {
+        min-height: 68px;
+        padding: 0.6rem 0;
+      }
+
+      .brand-logo {
+        height: 42px;
+      }
+
+      .back-link {
+        font-size: 0.82rem;
+        padding: 0.5rem 0.8rem;
+      }
+
+      .page-wrap {
+        margin: 1.8rem auto 4rem;
+      }
+
+      h1 {
+        font-size: clamp(1.6rem, 8vw, 2.2rem);
+      }
+
+      .subtitle {
+        font-size: 0.88rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .card {
+        padding: 1.2rem 1rem;
+        border-radius: 16px;
+      }
+
+      .card h2 {
+        font-size: 1.05rem;
+      }
+
+      .card p, .card li {
+        font-size: 0.93rem;
+      }
+
+      .notice {
+        font-size: 0.84rem;
+        padding: 0.8rem 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" aria-label="Zurück zur Startseite">
+        <img src="logo-header.svg" alt="Christian Lacina" class="brand-logo" />
+      </a>
+      <a href="index.html" class="back-link">
+        ← Zurück zur Website
+      </a>
+    </div>
+  </header>
+
+  <main class="page-wrap">
+
+    <div class="page-label">Rechtliches</div>
+    <h1>Datenschutzerklärung</h1>
+    <p class="subtitle">Informationen zur Verarbeitung personenbezogener Daten gemäß Art. 13 DSGVO</p>
+
+    <!-- VERANTWORTLICHER -->
+    <div class="card">
+      <h2>1. Verantwortlicher für die Datenverarbeitung</h2>
+      <p>
+        Verantwortlich im Sinne der Datenschutz-Grundverordnung (DSGVO) für die Datenverarbeitung
+        auf dieser Website ist:
+      </p>
+      <p>
+        <strong>Name:</strong> Christian Lacina<br />
+        <strong>Adresse:</strong> Dürergasse 19, 1060 Wien, Österreich (Praxisgemeinschaft Institut Hara)<br />
+        <strong>Telefon:</strong> <a href="tel:+436643845744">+43 664 3845744</a><br />
+        <strong>E-Mail:</strong> <a href="mailto:praxis@christian-lacina.at">praxis@christian-lacina.at</a>
+      </p>
+      <p>
+        Nähere Angaben finden Sie im <a href="impressum.html">Impressum</a>.
+      </p>
+    </div>
+
+    <!-- DATENSCHUTZBEAUFTRAGTER -->
+    <div class="card">
+      <h2>2. Datenschutzbeauftragte:r</h2>
+      <p>
+        Als Einzelpraxis besteht keine gesetzliche Pflicht zur Bestellung einer/eines
+        Datenschutzbeauftragten gemäß Art. 37 DSGVO. Anfragen zum Datenschutz richten Sie
+        bitte direkt an die oben genannte verantwortliche Person.
+      </p>
+    </div>
+
+    <!-- ZWECK UND RECHTSGRUNDLAGE -->
+    <div class="card">
+      <h2>3. Zweck und Rechtsgrundlage der Datenverarbeitung</h2>
+      <p>
+        Personenbezogene Daten werden im Zusammenhang mit dem Betrieb dieser Website
+        ausschließlich zu folgenden Zwecken verarbeitet:
+      </p>
+      <ul>
+        <li>Bereitstellung und technisch einwandfreie Auslieferung der Website (Art. 6 Abs. 1 lit. f DSGVO – berechtigtes Interesse an einem sicheren, funktionsfähigen Webauftritt)</li>
+        <li>Beantwortung von Kontaktanfragen per E-Mail oder Telefon (Art. 6 Abs. 1 lit. b DSGVO – vorvertragliche Maßnahmen bzw. Anbahnung eines Behandlungsverhältnisses)</li>
+      </ul>
+      <p>
+        Eine über diese Zwecke hinausgehende Verwendung findet nicht statt.
+      </p>
+      <p>
+        Diese Erklärung deckt die Nutzung dieser Website ab; für die Verarbeitung von
+        Klient:innendaten im Rahmen der Behandlung (z. B. Dokumentation, Terminvereinbarung)
+        gelten die berufsrechtlichen Verschwiegenheits- und Dokumentationspflichten nach dem
+        Psychotherapiegesetz.
+      </p>
+    </div>
+
+    <!-- HOSTING / SERVER-LOGFILES -->
+    <div class="card">
+      <h2>4. Bereitstellung der Website und Server-Logfiles</h2>
+      <p>
+        Diese Website wird gehostet bei: <strong>IONOS SE</strong>,
+        Elgendorfer Straße 57, 56410 Montabaur, Deutschland.
+      </p>
+      <p>
+        Beim Aufruf der Website erhebt der Hosting-Anbieter automatisch technische
+        Verbindungsdaten (Server-Logfiles), die Ihr Browser übermittelt. Dazu zählen
+        insbesondere IP-Adresse, Datum und Uhrzeit des Zugriffs, aufgerufene Seite,
+        verwendeter Browser und Betriebssystem sowie die zuvor besuchte Seite (Referrer-URL).
+        Diese Daten sind technisch notwendig, um die Website auszuliefern und die
+        Betriebssicherheit zu gewährleisten (Art. 6 Abs. 1 lit. f DSGVO), und werden nicht
+        mit anderen Datenquellen zusammengeführt.
+      </p>
+      <p>
+        IONOS SE ist ein deutsches Unternehmen mit Sitz in der EU; die Datenverarbeitung
+        erfolgt auf Servern innerhalb der EU/des EWR, sodass keine Datenübermittlung in
+        ein Drittland stattfindet. Mit IONOS besteht ein Auftragsverarbeitungsvertrag
+        (Data Processing Agreement) gemäß Art. 28 DSGVO.
+      </p>
+      <p>
+        <strong>Speicherdauer der Server-Logfiles:</strong> Laut Angaben von IONOS werden
+        Logfiles im Rahmen des Webhostings standardmäßig nach 8 Wochen automatisch gelöscht.
+      </p>
+    </div>
+
+    <!-- KONTAKTAUFNAHME -->
+    <div class="card">
+      <h2>5. Kontaktaufnahme per E-Mail oder Telefon</h2>
+      <p>
+        Wenn Sie per E-Mail oder Telefon mit uns Kontakt aufnehmen, werden die von Ihnen
+        mitgeteilten Daten (z. B. Name, Kontaktdaten, Inhalt Ihrer Anfrage) ausschließlich
+        zur Bearbeitung Ihres Anliegens gespeichert und verarbeitet. Diese Daten geben wir
+        ohne Ihre Einwilligung nicht an Dritte weiter.
+      </p>
+    </div>
+
+    <!-- COOKIES / LOCAL STORAGE -->
+    <div class="card">
+      <h2>6. Cookies und lokale Speicherung</h2>
+      <p>
+        Diese Website setzt keine Cookies zu Tracking-, Analyse- oder Marketingzwecken ein.
+      </p>
+      <p>
+        Ihre gewählte Sprachpräferenz wird über die sogenannte <em>lokale Speicherung</em>
+        (Local Storage) direkt in Ihrem Browser gespeichert, damit die Website bei einem
+        erneuten Besuch in der zuletzt gewählten Sprache angezeigt wird. Diese Information
+        verbleibt ausschließlich auf Ihrem Endgerät und wird nicht an uns oder Dritte
+        übertragen. Sie können diese Daten jederzeit über die Einstellungen Ihres Browsers
+        löschen.
+      </p>
+    </div>
+
+    <!-- TRACKING / DRITTANBIETER -->
+    <div class="card">
+      <h2>7. Analyse-Tools, Tracking und eingebundene Drittanbieter-Inhalte</h2>
+      <p>
+        Auf dieser Website werden derzeit keine Analyse- oder Trackingtools (z. B. Google
+        Analytics), keine Social-Media-Plugins und keine eingebetteten Karten- oder
+        Videodienste verwendet. Sollten künftig solche Dienste eingebunden werden, wird
+        diese Datenschutzerklärung entsprechend aktualisiert und – soweit erforderlich –
+        vorab Ihre Einwilligung eingeholt.
+      </p>
+    </div>
+
+    <!-- EMPFÄNGER -->
+    <div class="card">
+      <h2>8. Empfänger der Daten</h2>
+      <p>
+        Zugriff auf die im Rahmen des Website-Betriebs anfallenden Daten hat neben der
+        verantwortlichen Person nur der in Punkt 4 genannte Hosting-Anbieter im technisch
+        notwendigen Ausmaß. Eine Weitergabe an weitere Dritte erfolgt nicht, es sei denn,
+        wir sind gesetzlich dazu verpflichtet.
+      </p>
+    </div>
+
+    <!-- SPEICHERDAUER -->
+    <div class="card">
+      <h2>9. Speicherdauer</h2>
+      <p>
+        Server-Logfiles werden im Rahmen des Hostings bei IONOS standardmäßig nach
+        8 Wochen automatisch gelöscht bzw. rotiert (siehe Punkt 4). Daten aus
+        Kontaktanfragen werden gelöscht, sobald sie für die Bearbeitung Ihres Anliegens nicht
+        mehr erforderlich sind, spätestens jedoch nach Abschluss der damit verbundenen
+        Korrespondenz, sofern keine gesetzlichen Aufbewahrungspflichten entgegenstehen.
+      </p>
+    </div>
+
+    <!-- BETROFFENENRECHTE -->
+    <div class="card">
+      <h2>10. Ihre Rechte als betroffene Person</h2>
+      <p>Ihnen stehen hinsichtlich Ihrer personenbezogenen Daten folgende Rechte zu:</p>
+      <ul>
+        <li>Recht auf Auskunft (Art. 15 DSGVO)</li>
+        <li>Recht auf Berichtigung (Art. 16 DSGVO)</li>
+        <li>Recht auf Löschung (Art. 17 DSGVO)</li>
+        <li>Recht auf Einschränkung der Verarbeitung (Art. 18 DSGVO)</li>
+        <li>Recht auf Datenübertragbarkeit (Art. 20 DSGVO)</li>
+        <li>Recht auf Widerspruch gegen die Verarbeitung (Art. 21 DSGVO)</li>
+        <li>Recht auf Widerruf einer erteilten Einwilligung mit Wirkung für die Zukunft</li>
+      </ul>
+      <p>
+        Zur Ausübung dieser Rechte genügt eine formlose Mitteilung an:
+        <a href="mailto:praxis@christian-lacina.at">praxis@christian-lacina.at</a>
+      </p>
+    </div>
+
+    <!-- BESCHWERDERECHT -->
+    <div class="card">
+      <h2>11. Beschwerderecht bei der Aufsichtsbehörde</h2>
+      <p>
+        Sie haben unbeschadet anderweitiger verwaltungsrechtlicher oder gerichtlicher
+        Rechtsbehelfe das Recht auf Beschwerde bei einer Aufsichtsbehörde, insbesondere in
+        dem Mitgliedstaat Ihres Aufenthaltsorts, wenn Sie der Ansicht sind, dass die
+        Verarbeitung Sie betreffender personenbezogener Daten gegen die DSGVO verstößt.
+        In Österreich zuständig ist:
+      </p>
+      <p>
+        <strong>Österreichische Datenschutzbehörde</strong><br />
+        Barichgasse 40–42, 1030 Wien<br />
+        Telefon: +43 1 52 152-0<br />
+        E-Mail: dsb@dsb.gv.at<br />
+        Web: <a href="https://www.dsb.gv.at" target="_blank" rel="noopener">www.dsb.gv.at</a>
+      </p>
+    </div>
+
+    <!-- SICHERHEIT -->
+    <div class="card">
+      <h2>12. Datensicherheit</h2>
+      <p>
+        Diese Website nutzt aus Sicherheitsgründen und zum Schutz der Übertragung
+        vertraulicher Inhalte eine SSL/TLS-Verschlüsselung. Dennoch weisen wir darauf hin,
+        dass die Datenübertragung im Internet (z. B. bei der Kommunikation per E-Mail)
+        Sicherheitslücken aufweisen kann; ein lückenloser Schutz der Daten vor dem Zugriff
+        durch Dritte ist nicht möglich.
+      </p>
+    </div>
+
+    <!-- AKTUALITÄT -->
+    <div class="card">
+      <h2>13. Aktualität und Änderung dieser Datenschutzerklärung</h2>
+      <p>
+        Diese Datenschutzerklärung ist aktuell gültig (Stand: Juli 2026).
+        Durch die Weiterentwicklung der Website oder Änderungen der rechtlichen bzw.
+        behördlichen Vorgaben kann es notwendig werden, diese Datenschutzerklärung zu ändern.
+      </p>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <div style="width: min(calc(100% - 2rem), var(--max-width)); margin: 0 auto;">
+      © <span id="year"></span> Christian Lacina
+      &nbsp;·&nbsp;<a href="impressum.html">Impressum</a>
+      &nbsp;·&nbsp;<a href="index.html">Zurück zur Website</a>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

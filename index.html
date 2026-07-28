@@ -1,0 +1,2035 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Psychotherapie Wien</title>
+  <meta name="description" content="Integrative Gestalttherapie in Wien – Christian Lacina, Psychotherapeut in Ausbildung unter Supervision" />
+  <style>
+    :root {
+      --bg: #f6f3ed;
+      --bg-soft: #f1eee7;
+      --card: rgba(255,255,255,0.72);
+      --text: #2f2c28;
+      --muted: #6c675f;
+      --line: #d7d0c4;
+      --accent: #9cad97;
+      --accent-dark: #7f927a;
+      --accent-soft: #dfe7dc;
+      --hero-tint: #ebede3;
+      --shadow: 0 10px 35px rgba(47, 44, 40, 0.08);
+      --radius: 24px;
+      --max-width: 1180px;
+      --header-height: 84px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Inter", "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(156, 173, 151, 0.14), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(156, 173, 151, 0.10), transparent 25%),
+        linear-gradient(180deg, #f8f6f1 0%, #f4f1ea 100%);
+      line-height: 1.6;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(calc(100% - 2rem), var(--max-width));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      background: var(--accent-soft);
+      border-bottom: 1px solid rgba(215, 208, 196, 0.8);
+    }
+
+    .topbar-inner {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 1.4rem;
+      min-height: 2.6rem;
+      font-size: 0.88rem;
+    }
+
+    .topbar-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--text);
+      font-weight: 600;
+      transition: 0.2s ease;
+    }
+
+    .topbar-link:hover,
+    .topbar-link:focus-visible {
+      color: var(--accent-dark);
+      outline: none;
+    }
+
+    .topbar-link svg {
+      flex-shrink: 0;
+      color: var(--accent-dark);
+    }
+
+    @media (max-width: 640px) {
+      /* Anrufen ist am Handy der wichtigste Weg: Nummer und Symbole größer,
+         Trefferflächen auf ~44px – die Leiste wird dadurch etwas höher. */
+      .topbar-inner {
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 0.2rem 0.4rem;
+        min-height: 3.1rem;
+        padding: 0.35rem 0;
+        font-size: 1rem;
+      }
+
+      .topbar-link {
+        min-height: 44px;
+        padding: 0 0.25rem;
+      }
+
+      .topbar-link svg {
+        width: 22px;
+        height: 22px;
+      }
+
+      /* E-Mail links, Telefon rechts. */
+      .topbar-mail {
+        order: 1;
+        /* Basis = min-content (die Domain), damit die Adresse neben der
+           Nummer bleibt und dort zweizeilig umbricht statt umzuklappen.
+           Schmäler als die Domain wird sie nie – auf sehr engen Geräten
+           rutscht deshalb die Nummer in eine zweite Zeile. */
+        flex: 1 1 min-content;
+      }
+
+      .topbar-phone {
+        order: 2;
+        /* Nummer bleibt in voller Größe auf einer Zeile */
+        flex: 0 0 auto;
+        margin-left: auto;
+        white-space: nowrap;
+      }
+
+      /* Umbruch genau nach dem @: die Domain selbst bleibt zusammen,
+         sonst bräche der Browser lieber am Bindestrich um. */
+      .topbar-mail .mail-domain {
+        white-space: nowrap;
+      }
+
+      .topbar-mail span {
+        white-space: normal;
+        line-height: 1.2;
+        /* etwas kleiner, damit "christian-lacina.at" in eine Zeile passt
+           und die Adresse bei zwei Zeilen bleibt */
+        font-size: 0.82rem;
+      }
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(14px);
+      background: rgba(246, 243, 237, 0.82);
+      border-bottom: 1px solid rgba(215, 208, 196, 0.8);
+    }
+
+    .header-inner {
+      min-height: var(--header-height);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      min-width: 0;
+    }
+
+   .brand-logo {
+      width: auto;
+      height: 52px;
+      border-radius: 10px;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+
+    .brand-text {
+      min-width: 0;
+    }
+
+    .brand-title {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.25rem;
+      line-height: 1;
+      letter-spacing: 0.02em;
+    }
+
+    .brand-subtitle {
+      margin: 0.2rem 0 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .nav-wrap {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav a {
+      padding: 0.7rem 0.9rem;
+      border-radius: 999px;
+      color: var(--text);
+      font-size: 0.95rem;
+      transition: 0.25s ease;
+    }
+
+    .nav a:hover,
+    .nav a:focus-visible {
+      background: var(--accent-soft);
+      color: var(--text);
+      outline: none;
+    }
+
+    .lang-switch {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-left: 0.3rem;
+    }
+
+    .lang-sep {
+      color: var(--line);
+      font-size: 0.85rem;
+    }
+
+    .lang-btn {
+      border: none;
+      background: none;
+      color: var(--muted);
+      padding: 0.4rem 0.15rem;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 400;
+      text-decoration: none;
+      transition: 0.2s ease;
+    }
+
+    .lang-btn:hover,
+    .lang-btn:focus-visible {
+      color: var(--text);
+      outline: none;
+    }
+
+    .lang-btn.active {
+      color: var(--text);
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    /* ── Burger button (hidden on desktop) ── */
+    .burger-btn {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      background: rgba(255,255,255,0.7);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 0.5rem 0.6rem;
+      cursor: pointer;
+      transition: 0.25s ease;
+    }
+
+    .burger-btn:hover,
+    .burger-btn:focus-visible {
+      background: var(--accent-soft);
+      border-color: var(--accent);
+      outline: none;
+    }
+
+    .burger-line {
+      width: 20px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 1px;
+      transition: 0.25s ease;
+      display: block;
+    }
+
+    .burger-btn[aria-expanded="true"] .burger-line:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+    .burger-btn[aria-expanded="true"] .burger-line:nth-child(2) {
+      opacity: 0;
+    }
+    .burger-btn[aria-expanded="true"] .burger-line:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    /* ── Mobile dropdown menu ── */
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      background: rgba(246, 243, 237, 0.98);
+      border-top: 1px solid rgba(215, 208, 196, 0.6);
+      padding: 0.4rem 0 0.6rem;
+    }
+
+    .mobile-menu.open {
+      display: flex;
+    }
+
+    .mobile-menu a {
+      padding: 0.8rem 1.2rem;
+      font-size: 1rem;
+      color: var(--text);
+      border-bottom: 1px solid rgba(215, 208, 196, 0.4);
+      transition: background 0.2s ease;
+    }
+
+    .mobile-menu a:last-child {
+      border-bottom: none;
+    }
+
+    .mobile-menu a:hover,
+    .mobile-menu a:focus-visible {
+      background: var(--accent-soft);
+      outline: none;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background: var(--hero-tint);
+      min-height: clamp(360px, 38vw, 460px);
+      display: flex;
+      align-items: center;
+    }
+
+    .hero .container {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 0% 22%;
+      display: block;
+    }
+
+    .hero-bg::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      background: linear-gradient(to right,
+        transparent 0%,
+        transparent 25%,
+        rgba(235,237,227,0.017) 30%,
+        rgba(235,237,227,0.064) 35%,
+        rgba(235,237,227,0.135) 40%,
+        rgba(235,237,227,0.226) 45%,
+        rgba(235,237,227,0.330) 50%,
+        rgba(235,237,227,0.442) 55%,
+        rgba(235,237,227,0.558) 60%,
+        rgba(235,237,227,0.670) 65%,
+        rgba(235,237,227,0.775) 70%,
+        rgba(235,237,227,0.865) 75%,
+        rgba(235,237,227,0.936) 80%,
+        rgba(235,237,227,0.983) 85%,
+        var(--hero-tint) 90%);
+    }
+
+    .hero-copy {
+      padding: 1rem 0;
+      max-width: 560px;
+      margin-left: auto;
+    }
+
+
+    #heroLogo {
+      width: 680px;
+      max-width: 100%;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2.4rem, 5vw, 4.8rem);
+      line-height: 0.98;
+      letter-spacing: -0.03em;
+    }
+
+    .hero h1 span {
+      display: block;
+      color: var(--accent-dark);
+    }
+
+    .hero p {
+      font-size: 1.08rem;
+      color: var(--text);
+      max-width: 60ch;
+      margin: 1.2rem 0 1.6rem;
+    }
+
+    .hero-actions {
+    display: flex;
+    margin-top: 0.6rem;
+    }
+
+    /* Second call to action, only shown on phones (see 640px breakpoint). */
+    .section-cta {
+      display: none;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.9rem 1.4rem;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      transition: 0.25s ease;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: center;
+      text-wrap: balance;
+      line-height: 1.35;
+    }
+
+    .btn-primary {
+    background: rgba(255,255,255,0.7);
+    color: var(--text);
+    border-color: var(--line);
+    box-shadow: none;
+    }
+
+    .btn-primary:hover,
+    .btn-primary:focus-visible {
+    background: var(--accent-soft);
+    border-color: var(--accent);
+    outline: none;
+    transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.7);
+    }
+
+    .btn-secondary:hover,
+    .btn-secondary:focus-visible {
+      background: var(--accent-soft);
+      outline: none;
+      transform: translateY(-2px);
+    }
+
+    section {
+      scroll-margin-top: calc(var(--header-height) + 20px);
+      padding: 2rem 0 1.6rem;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .section-label {
+      color: var(--text);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.9rem, 3vw, 3rem);
+      line-height: 1.05;
+      margin-bottom: 0.75rem;
+    }
+
+    h2 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.9rem, 3vw, 3rem);
+      line-height: 1.05;
+    }
+
+    .lead {
+      color: var(--muted);
+      max-width: 65ch;
+      margin: 0.6rem 0 0;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,0.65);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1.4rem;
+    }
+
+    .praxisraum-gallery {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.2rem;
+      margin-top: 1.2rem;
+    }
+
+    .praxisraum-photo {
+      display: block;
+      margin: 0;
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,0.65);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .praxisraum-photo:hover,
+    .praxisraum-photo:focus-visible {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.16);
+    }
+
+    .praxisraum-photo img {
+      width: 100%;
+      /* beats the height="" attribute so aspect-ratio stays in control */
+      height: auto;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ── Mobile Kontaktleiste (nur ≤640px sichtbar, siehe Media Query) ── */
+    .mobile-contact-bar {
+      display: none;
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 900;
+      align-items: stretch;
+      background: rgba(255,255,255,0.94);
+      backdrop-filter: blur(8px);
+      border-top: 1px solid var(--line);
+      box-shadow: 0 -2px 12px rgba(20, 18, 15, 0.08);
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+
+    .mobile-contact-action {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      min-height: 56px;
+      color: var(--text);
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+    }
+
+    .mobile-contact-action svg {
+      color: var(--accent-dark);
+      flex-shrink: 0;
+    }
+
+    .mobile-contact-action:active {
+      background: var(--accent-soft);
+    }
+
+    .mobile-contact-divider {
+      width: 1px;
+      margin: 0.7rem 0;
+      background: var(--line);
+    }
+
+    .lightbox-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 1.5rem;
+      background: rgba(20, 18, 15, 0.92);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.25s ease;
+    }
+
+    .lightbox-overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .lightbox-overlay img {
+      display: block;
+      max-width: 100%;
+      max-height: 85vh;
+      border-radius: var(--radius);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+    }
+
+    .lightbox-close,
+    .lightbox-prev,
+    .lightbox-next {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255,255,255,0.12);
+      border: none;
+      color: #fff;
+      cursor: pointer;
+      border-radius: 50%;
+      transition: background 0.2s ease;
+    }
+
+    .lightbox-close:hover,
+    .lightbox-prev:hover,
+    .lightbox-next:hover {
+      background: rgba(255,255,255,0.24);
+    }
+
+    .lightbox-close {
+      top: 1.2rem;
+      right: 1.2rem;
+      width: 2.6rem;
+      height: 2.6rem;
+      font-size: 1.4rem;
+    }
+
+    .lightbox-prev,
+    .lightbox-next {
+      top: 50%;
+      transform: translateY(-50%);
+      width: 3rem;
+      height: 3rem;
+      font-size: 1.6rem;
+    }
+
+    .lightbox-prev {
+      left: 1rem;
+    }
+
+    .lightbox-next {
+      right: 1rem;
+    }
+
+    @media (max-width: 640px) {
+      .lightbox-prev,
+      .lightbox-next {
+        width: 2.4rem;
+        height: 2.4rem;
+        font-size: 1.3rem;
+      }
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.2rem;
+    }
+
+    .practice-map {
+      margin-top: 0.6rem;
+      height: 260px;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: var(--bg-soft);
+    }
+
+    .practice-map .leaflet-control-attribution {
+      font-size: 0.68rem;
+    }
+
+    .transit-map-icon {
+      background: transparent;
+      border: none;
+    }
+
+    .transit-map-icon > span {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      color: #fff;
+      font-size: 0.66rem;
+      font-weight: 700;
+      border: 2px solid #fff;
+      box-shadow: 0 2px 6px rgba(47, 44, 40, 0.3);
+    }
+
+    .transit-map-icon.landmark > span {
+      width: auto;
+      min-width: 26px;
+      height: 22px;
+      padding: 0 0.4rem;
+      border-radius: 999px;
+      font-size: 0.6rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .transit-map-icon.combo > span.pill-group {
+      display: flex;
+      width: auto;
+      height: 22px;
+      border-radius: 999px;
+      overflow: hidden;
+      border: 2px solid #fff;
+      box-shadow: 0 2px 6px rgba(47, 44, 40, 0.3);
+    }
+
+    .transit-map-icon.combo .pill-half {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      padding: 0 0.35rem;
+      color: #fff;
+      font-size: 0.58rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .about-layout {
+      display: grid;
+      grid-template-columns: 0.5fr 1fr;
+      gap: 2rem;
+      align-items: stretch;
+    }
+
+    .about-row-img {
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .about-row-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 50% 30%;
+      display: block;
+    }
+
+    .about-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+      .offer-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.2rem;
+    }
+
+    .offer-top {
+      display: grid;
+      grid-template-columns: 1fr 0.5fr;
+      gap: 2rem;
+      align-items: stretch;
+    }
+
+    .offer-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .offer-img {
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .offer-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+    }
+
+    .card h3 {
+      margin-top: 0;
+      margin-bottom: 0.65rem;
+      font-size: 1.1rem;
+    }
+
+        .card p {
+      margin: 0;
+      color: var(--muted);
+      text-align: justify;
+      -webkit-hyphens: auto;
+      -moz-hyphens: auto;
+      hyphens: auto;
+    }
+
+    .quote {
+      padding: 1.4rem 1.6rem;
+      border-left: 4px solid var(--accent);
+      background: rgba(156, 173, 151, 0.09);
+      border-radius: 18px;
+      margin-top: 1rem;
+      color: var(--text);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.15rem, 1rem + 0.6vw, 1.35rem);
+      line-height: 1.55;
+    }
+
+    .quote strong {
+      font-weight: 700;
+    }
+
+    .schwerpunkte-cols {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: 1.5rem;
+    }
+
+    .schwerpunkte-list {
+      margin: 0;
+      padding-left: 1.2rem;
+      color: var(--muted);
+    }
+
+    .schwerpunkte-list li {
+      margin: 0;
+    }
+
+    .ansatz-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.2rem;
+    }
+
+    .contact-card strong {
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    .contact-lines {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .contact-highlight {
+      display: grid;
+      gap: 0.9rem;
+      margin-left: -1rem;
+      border-left: 3px solid var(--accent);
+      padding-left: calc(1rem - 3px);
+    }
+
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      color: var(--text);
+      font-weight: 600;
+      font-size: 1.08rem;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: var(--line);
+      transition: 0.2s ease;
+    }
+
+    .contact-link svg {
+      flex-shrink: 0;
+      color: var(--accent-dark);
+    }
+
+    .contact-link:hover,
+    .contact-link:focus-visible {
+      color: var(--accent-dark);
+      text-decoration-color: var(--accent);
+      outline: none;
+    }
+
+    .transit-intro {
+      display: block;
+      margin: 0.35rem 0 0.15rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .transit-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 0.5rem 0 0.6rem;
+    }
+
+    .transit-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 0.85rem 0.4rem 0.4rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.75);
+      border: 1px solid var(--line);
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .transit-badge strong {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 1.9rem;
+      height: 1.7rem;
+      padding: 0 0.4rem;
+      border-radius: 999px;
+      color: #fff;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+    }
+
+    .transit-u3 strong,
+    .transit-u4 strong {
+      min-width: 2.15rem;
+      height: 1.95rem;
+      font-size: 0.86rem;
+    }
+
+    .transit-u3 strong {
+      background: #c9884a;
+    }
+
+    .transit-u4 strong {
+      background: var(--accent-dark);
+    }
+
+    .bus-line-group {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      height: 1.7rem;
+      padding: 0 0.65rem;
+      border-radius: 999px;
+      background: #b25a4a;
+      color: #fff;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+    }
+
+    .bus-line-sep {
+      width: 4px;
+      height: 4px;
+      border-radius: 999px;
+      background: #fff;
+      flex-shrink: 0;
+    }
+
+    .transit-maps-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      margin-top: 0.1rem;
+      color: var(--accent-dark);
+      font-weight: 600;
+      font-size: 0.92rem;
+      text-decoration: underline;
+    }
+
+    .transit-maps-link:hover,
+    .transit-maps-link:focus-visible {
+      color: var(--text);
+    }
+
+    .footer {
+      padding: 2rem 0 3rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .footer-box {
+      border-top: 1px solid var(--line);
+      padding-top: 1.4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .soft-note {
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+
+    @media (max-width: 980px) {
+      .nav {
+        display: none;
+      }
+
+      .burger-btn {
+        display: flex;
+      }
+
+      /* DE/EN enger zusammen, aber deutlich weiter weg vom Burger-Icon:
+         ein Fehlgriff auf EN statt Menü soll nicht passieren. */
+      .lang-switch {
+        gap: 0.15rem;
+        margin-right: 1.1rem;
+      }
+
+      .contact-grid,
+      .offer-grid,
+      .offer-top,
+      .ansatz-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .hero-actions {
+        justify-content: center;
+      }
+      
+      .about-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .about-row-img {
+        order: 1;
+      }
+
+      .about-cards {
+        order: 2;
+      }
+
+      .offer-img {
+        order: 1;
+      }
+
+      .offer-cards {
+        order: 2;
+      }
+
+      /* Stack the hero as: logo → photo → text → button.
+         display:contents flattens the wrappers so all four can be ordered. */
+      .hero {
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+      }
+
+      .hero > .container,
+      .hero-copy {
+        display: contents;
+      }
+
+      #heroLogo {
+        order: 1;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 1.8rem 1.1rem 1.3rem;
+        margin: 0;
+      }
+
+      .hero-bg {
+        order: 2;
+        position: relative;
+        inset: auto;
+        width: 100%;
+        aspect-ratio: 3 / 2;
+      }
+
+      .hero p {
+        order: 3;
+        max-width: none;
+        margin: 0;
+        padding: 1.5rem 1.3rem 0;
+        text-wrap: balance;
+      }
+
+      .hero-actions {
+        order: 4;
+        padding: 1.3rem 1.3rem 2rem;
+        margin-top: 0;
+      }
+
+      .hero-bg::after {
+        display: none;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        width: min(calc(100% - 1.2rem), var(--max-width));
+      }
+
+      .brand-logo {
+        width: auto;
+        height: 36px;
+      }
+
+      /* Kontaktleiste einblenden und unten Platz schaffen, damit sie
+         Footer bzw. Karte nicht dauerhaft verdeckt. */
+      .mobile-contact-bar {
+        display: flex;
+      }
+
+      .footer {
+        padding-bottom: calc(56px + 1.5rem + env(safe-area-inset-bottom));
+      }
+
+      /* Größere Trefferflächen, aber DE und EN dicht beieinander – der
+         nötige Abstand liegt zwischen Sprachwahl und Burger-Icon. */
+      .lang-switch {
+        gap: 0.15rem;
+        margin-right: 1.1rem;
+      }
+
+      .lang-btn {
+        min-height: 44px;
+        padding: 0.4rem 0.35rem;
+      }
+
+      /* Telefon- und E-Mail-Link im Kontaktblock bequem antippbar machen. */
+      .contact-link {
+        min-height: 44px;
+        padding: 0.3rem 0;
+      }
+
+      .brand-title {
+        font-size: 1.05rem;
+      }
+
+      .brand-subtitle {
+        font-size: 0.84rem;
+      }
+
+      .hero h1 {
+        font-size: clamp(2rem, 10vw, 3rem);
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .card {
+        padding: 1.15rem;
+      }
+
+      /* Justified text tears open rivers of whitespace in a ~30-character
+         column, so phones get plain left-aligned copy. */
+      .card p {
+        text-align: left;
+        -webkit-hyphens: manual;
+        -moz-hyphens: manual;
+        hyphens: manual;
+      }
+
+      .section-cta {
+        display: flex;
+        justify-content: center;
+        margin-top: 1.5rem;
+      }
+
+      .schwerpunkte-cols {
+        grid-template-columns: 1fr;
+      }
+
+      .praxisraum-gallery {
+        grid-template-columns: 1fr;
+      }
+
+      /* Portrait crops eat a whole phone screen each – show a landscape
+         window onto the seating area instead. Tap still opens the full photo. */
+      .praxisraum-photo img {
+        aspect-ratio: 4 / 3;
+        object-position: center 62%;
+      }
+
+      .praxisraum-photo:nth-child(3) {
+        display: none;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+</head>
+<body>
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <a class="topbar-link topbar-phone" href="tel:+436643845744" aria-label="+43 664 3845744">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+        <span>+43 664 3845744</span>
+      </a>
+      <a class="topbar-link topbar-mail" href="mailto:praxis@christian-lacina.at" aria-label="praxis@christian-lacina.at">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m2 7 10 6 10-6"></path></svg>
+        <span>praxis@<wbr /><span class="mail-domain">christian-lacina.at</span></span>
+      </a>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container header-inner">
+     <a href="#top" class="brand" aria-label="Psychotherapie Wien">
+        <img src="logo-header.svg" alt="Christian Lacina" class="brand-logo" />
+      </a>
+
+      <div class="nav-wrap">
+        <nav class="nav" aria-label="Main Navigation">
+          <a href="#about" data-i18n="navAbout">Willkommen</a>
+          <a href="#angebot" data-i18n="navOffer">Angebot</a>
+          <a href="#praxisraum" data-i18n="navPraxisraum">Praxisraum</a>
+          <a href="#ansatz" data-i18n="navAnsatz">Schwerpunkte</a>
+          <a href="#contact" data-i18n="navContact">Kontakt</a>
+        </nav>
+
+        <div class="lang-switch" aria-label="Language switcher">
+          <button class="lang-btn active" data-lang="de" aria-label="Deutsch">DE</button>
+          <span class="lang-sep" aria-hidden="true">|</span>
+          <button class="lang-btn" data-lang="en" aria-label="English">EN</button>
+        </div>
+
+        <button class="burger-btn" id="burgerBtn" aria-expanded="false" aria-controls="mobileMenu" aria-label="Navigation öffnen">
+          <span class="burger-line"></span>
+          <span class="burger-line"></span>
+          <span class="burger-line"></span>
+        </button>
+      </div>
+    </div>
+
+    <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile Navigation">
+      <a href="#about" data-i18n="navAbout">Willkommen</a>
+      <a href="#angebot" data-i18n="navOffer">Angebot</a>
+      <a href="#praxisraum" data-i18n="navPraxisraum">Praxisraum</a>
+      <a href="#ansatz" data-i18n="navAnsatz">Schwerpunkte</a>
+      <a href="#contact" data-i18n="navContact">Kontakt</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container">
+        <div class="hero-copy">
+          <svg id="heroLogo" viewBox="45 0 680 185" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="heroLogoTitle">
+            <title id="heroLogoTitle">Christian Lacina, Psychotherapeut in Ausbildung unter Supervision</title>
+            <path d="M179 20 H48 V150 H179" fill="none" stroke="#7f927a" stroke-width="6" stroke-linecap="butt" stroke-linejoin="miter"/>
+            <path d="M72 40 V170 H158" fill="none" stroke="#7f927a" stroke-width="6" stroke-linecap="butt" stroke-linejoin="miter"/>
+            <text x="96" y="89.5" font-family="Georgia, 'Times New Roman', serif" font-size="50" font-weight="700" fill="#2f2c28" letter-spacing="0.3">Christian Lacina</text>
+            <text id="heroJobTitle" x="96" y="120.5" font-family="Georgia, 'Times New Roman', serif" font-size="18" fill="#2f2c28">Psychotherapeut in Ausbildung unter Supervision</text>
+          </svg>
+          <p data-i18n="heroText">
+            Ich begleite Menschen in herausfordernden Lebensphasen, bei psychischen Belastungen
+            oder in Zeiten der Neuorientierung.
+          </p>
+          <div class="hero-actions">
+            <a href="#contact" class="btn btn-primary" data-i18n="heroBtnPrimary">Kostenloses Erstgespräch anfragen</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-bg">
+        <img src="new5-hero-superwide-improved.jpg" alt="Portraitfoto" width="2032" height="528" fetchpriority="high" decoding="async" />
+      </div>
+    </section>
+
+    <!-- ÜBER MICH -->
+    <section id="about">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <div class="section-label" data-i18n="aboutLabel">Willkommen</div>
+            <p class="lead" data-i18n="aboutLead">
+              Mein Name ist Christian Lacina, ich bin Psychotherapeut in Ausbildung unter
+              Supervision und biete Einzeltherapie in Wien in deutscher und englischer
+              Sprache an.
+            </p>
+          </div>
+        </div>
+
+        <div class="about-layout">
+          <div class="about-row-img">
+            <img src="practice_picture2-cropped.jpg" alt="Portraitfoto in der Praxis" width="805" height="633" loading="lazy" decoding="async" />
+          </div>
+          <div class="about-cards">
+            <div class="card">
+              <h3 data-i18n="aboutCard1Title">Begleitung in herausfordernden Zeiten</h3>
+              <p data-i18n="aboutCard1Text">
+                Sie befinden sich in einer herausfordernden Lebensphase, sind psychisch belastet
+                oder suchen nach Neuorientierung. Ich biete Ihnen Begleitung an: Gemeinsam suchen wir
+                nach Lösungen und neuen Perspektiven – ganz gleich, ob sich der Wunsch nach Veränderung
+                schon konkret zeigt oder eher als diffuses Gefühl, dass etwas nicht mehr stimmig ist.
+                Dabei ist mir eine Begegnung auf Augenhöhe wichtig: Ich begegne Ihnen mit Offenheit,
+                Wertschätzung und Interesse an Ihrer Lebensgeschichte.
+              </p>
+            </div>
+            <div class="card">
+              <h3 data-i18n="offerGoalsTitle">Mögliche Ziele</h3>
+              <p data-i18n="offerGoalsText">
+                Psychotherapie kann unterschiedliche Ziele haben: seelische Entlastung und
+                Stabilisierung, ein besseres Verständnis für sich selbst sowie der Umgang mit
+                Gefühlen wie Angst, Trauer oder Wut. Dazu gehören auch das Erkennen und
+                Verändern von Mustern, die Klärung von Beziehungen und Konflikten, die Bewältigung
+                von Krisen oder Übergängen sowie die Stärkung von Selbstwert und Selbstwirksamkeit.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="quote" data-i18n="aboutQuote">
+          Bei mir kann alles angesprochen werden. <strong>Muss es aber nicht.</strong>
+          Das Tempo bestimmen Sie.
+        </div>
+      </div>
+    </section>
+
+    <!-- ANGEBOT -->
+    <section id="angebot">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <div class="section-label" data-i18n="offerLabel">Angebot</div>
+            <p class="lead" data-i18n="offerLead">
+              Ich biete Einzeltherapie auf Deutsch und Englisch an. Die therapeutische
+              Arbeit orientiert sich an Ihrer individuellen Situation, Ihrem Tempo und
+              Ihren persönlichen Zielen.
+            </p>
+          </div>
+        </div>
+
+        <div class="offer-grid">
+          <div class="offer-top">
+            <div class="offer-cards">
+              <article class="card">
+                <h3 data-i18n="offerWorkTitle">Wie ich arbeite</h3>
+                <p data-i18n="offerWorkText">
+                  Ich arbeite auf Basis der Integrativen Gestalttherapie. Wir orientieren uns an
+                  dem, was sich im Moment zeigt, gehen in Ihrem Tempo vor und schaffen Raum für
+                  neue Erfahrungen. Neben dem Gespräch können auch Körperwahrnehmung, innere
+                  Bilder oder kleine Experimente Teil der Arbeit sein. Sprechen Sie etwa über
+                  einen ungelösten Konflikt mit einer wichtigen Person, kann ein kleines
+                  Experiment darin bestehen, ihr in der Vorstellung noch einmal zu begegnen.
+                  Wenn Sie von einer Situation erzählen, die Sie nicht loslässt, kann ein inneres
+                  Bild, etwa ein schwerer Rucksack, helfen zu erkunden, was Sie genau belastet.
+                </p>
+              </article>
+
+              <article class="card">
+                <h3 data-i18n="aboutCard3Title">Über mich</h3>
+                <p data-i18n="aboutCard3Text">
+                  Ich bin 1987 in Wien geboren, lebe in Partnerschaft und arbeite in Wien.
+                  Was mich zur Psychotherapie geführt hat: eigene Lebenserfahrungen und
+                  Herausforderungen und die Erkenntnis, dass Veränderung möglich ist. Diese Erfahrung
+                  prägt, wie ich Menschen begleite – mit Verständnis für die Schwierigkeiten und
+                  gleichzeitigem Interesse an der Entwicklung. An der Psychotherapie schätze ich den
+                  ehrlichen, unmittelbaren Austausch und das Erleben, als Mensch vollständig
+                  angenommen zu werden.
+                </p>
+              </article>
+            </div>
+
+            <div class="offer-img">
+              <img src="Portrait3-angebot.jpg" alt="Christian Lacina in der Praxis" width="1021" height="1169" loading="lazy" decoding="async" />
+            </div>
+          </div>
+
+          <div class="quote" data-i18n="offerConfidentialityQuote">
+            Vertrauen ist wesentlich für unsere Arbeit.
+            <strong>Was Sie bei mir ansprechen, bleibt vertraulich.</strong>
+          </div>
+
+          <!-- Nur mobil: der Hero-Button ist hier längst aus dem Blickfeld. -->
+          <div class="section-cta">
+            <a href="#contact" class="btn btn-primary" data-i18n="heroBtnPrimary">Kostenloses Erstgespräch anfragen</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRAXISRAUM -->
+    <section id="praxisraum">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <div class="section-label" data-i18n="praxisraumLabel">Praxisraum</div>
+            <p class="lead" data-i18n="praxisraumLead">
+              Die Gespräche finden in einem geschützten und vertraulichen Rahmen statt. Ein
+              sicherer Raum ist eine zentrale Voraussetzung dafür, dass persönliche Themen in
+              Ihrem eigenen Tempo entstehen und sich entfalten können. Die Praxis liegt in der
+              Dürergasse 19 im 6. Bezirk – nur wenige Gehminuten von U4 Kettenbrückengasse,
+              U3 Neubaugasse und dem Naschmarkt entfernt.
+            </p>
+          </div>
+        </div>
+
+        <div class="praxisraum-gallery">
+          <a href="Praxisfoto2.jpeg" class="praxisraum-photo" aria-label="Foto vergrößern">
+            <img src="Praxisfoto2.jpeg" width="1200" height="1600" loading="lazy" decoding="async" alt="Praxisraum mit Blick zum Fenster, Pflanzen und Bildern an der Wand" />
+          </a>
+          <a href="Praxisfoto1.jpeg" class="praxisraum-photo" aria-label="Foto vergrößern">
+            <img src="Praxisfoto1.jpeg" width="1200" height="1600" loading="lazy" decoding="async" alt="Praxisraum mit zwei Sesseln, rundem Tisch und Bild an der Wand" />
+          </a>
+          <a href="Praxisfoto3.jpeg" class="praxisraum-photo" aria-label="Foto vergrößern">
+            <img src="Praxisfoto3.jpeg" width="1200" height="1600" loading="lazy" decoding="async" alt="Praxisraum mit Sesseln, Stehlampe und Pflanze" />
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ANSATZ & SCHWERPUNKTE -->
+    <section id="ansatz">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <div class="section-label" data-i18n="ansatzLabel">Schwerpunkte &amp; Ansatz</div>
+            <p class="lead" data-i18n="ansatzLead">
+              Integrative Gestalttherapie als Grundlage – mit einem breiten Spektrum an Themen,
+              die Menschen in die Therapie mitbringen.
+            </p>
+          </div>
+        </div>
+
+        <div class="ansatz-grid">
+          <article class="card">
+            <h3 data-i18n="ansatzCard2Title">Meine Schwerpunkte</h3>
+            <div class="schwerpunkte-cols">
+              <ul class="schwerpunkte-list">
+                <li data-i18n="focus4">Belastungen, Überforderung und Stress</li>
+                <li data-i18n="focus3">Beziehung und Partnerschaft</li>
+                <li data-i18n="focus5">Depression</li>
+                <li data-i18n="focus7">Lebensentscheidungen und -veränderungen</li>
+                <li data-i18n="focus12">Zwang und Zwangsstörungen</li>
+                <li data-i18n="focus10">Sinn und Lebensorientierung</li>
+                <li data-i18n="focus13">Arbeit mit dem inneren Kind</li>
+              </ul>
+              <ul class="schwerpunkte-list">
+                <li data-i18n="focus1">Angst und Angststörungen</li>
+                <li data-i18n="focus8">Konflikte in Beziehungen, Familie und Freundschaften</li>
+                <li data-i18n="focus6">Krisen und Neuorientierung</li>
+                <li data-i18n="focus9">Selbsterfahrung und Persönlichkeitsentwicklung</li>
+                <li data-i18n="focus11">Trauer, Verlust und Abschied</li>
+                <li data-i18n="focus2">Arbeit und Beruf</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3 data-i18n="ansatzCard1Title">Psychotherapie</h3>
+            <p data-i18n="ansatzCard1Text">
+              Psychotherapie ist ein wissenschaftlich fundiertes Verfahren zur Behandlung
+              psychischen Leids. Sie unterstützt dabei, Belastungen zu verstehen, innere
+              Zusammenhänge zu erkennen und neue Handlungs- und Erlebensmöglichkeiten zu
+              entwickeln. Die Integrative Gestalttherapie ist ein humanistisches,
+              in Österreich anerkanntes Verfahren. Sie versteht den Menschen als Einheit aus
+              Körper, Geist und Seele und richtet den Blick auf das Erleben im Hier und Jetzt –
+              auf das Zusammenspiel von Gedanken, Gefühlen, Körperempfindungen, Beziehungen
+              und Lebensgeschichte.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- KONTAKT -->
+    <section id="contact">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <div class="section-label" data-i18n="contactLabel">Kontakt &amp; Anfahrt</div>
+            <p class="lead" data-i18n="contactLead">
+              Wenn Sie sich angesprochen fühlen, können Sie mich gerne kontaktieren.
+              Ich biete ein <strong>kostenloses, unverbindliches Erstgespräch</strong> an, in dem wir Ihr Anliegen besprechen
+              und klären können, ob eine Zusammenarbeit für Sie passend ist.
+            </p>
+          </div>
+        </div>
+
+        <div class="contact-grid">
+          <div class="card contact-card">
+            <div class="contact-lines">
+              <div class="contact-highlight">
+                <div>
+                  <strong data-i18n="contactPhoneTitle">Telefon</strong>
+                  <span>
+                    <a class="contact-link" href="tel:+436643845744">
+                      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                      +43 664 3845744
+                    </a>
+                  </span>
+                </div>
+                <div>
+                  <strong>E-Mail</strong>
+                  <span>
+                    <a class="contact-link" href="mailto:praxis@christian-lacina.at">
+                      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m2 7 10 6 10-6"></path></svg>
+                      praxis@christian-lacina.at
+                    </a>
+                  </span>
+                </div>
+              </div>
+              <div>
+                <strong data-i18n="contactAddressTitle">Adresse</strong>
+                <span data-i18n="contactAddressText">Praxisgemeinschaft Institut Hara<br>Dürergasse 19, 1060 Wien</span>
+              </div>
+              <div>
+                <strong data-i18n="contactHoursTitle">Termine</strong>
+                <span data-i18n="contactHoursText">
+                  Termine nach Vereinbarung. Kontaktaufnahme gerne per E-Mail oder Telefon.
+                  Ich freue mich darauf, Sie kennenzulernen.
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card contact-card">
+            <div class="contact-lines">
+              <div>
+                <strong data-i18n="contactDirectionsTitle">Anfahrt</strong>
+                <span class="transit-intro" data-i18n="contactDirectionsIntro">Die Praxis liegt zentral und ist öffentlich (U3, U4, 13A, 14A, 57A) gut erreichbar.</span>
+                <a class="transit-maps-link" href="https://maps.app.goo.gl/7yPJN5uzpjuTCEdAA" target="_blank" rel="noopener" data-i18n="contactMapsLink">In Google Maps öffnen ↗</a>
+                <div class="transit-badges">
+                  <span class="transit-badge transit-u3" data-i18n="contactTransitU3"><strong>U3</strong> Neubaugasse · ca. 5 Gehminuten</span>
+                  <span class="transit-badge transit-u4" data-i18n="contactTransitU4"><strong>U4</strong> Kettenbrückengasse · ca. 4 Gehminuten</span>
+                  <span class="transit-badge transit-bus57a" data-i18n="contactTransitBus57A"><span class="bus-line-group">13A<span class="bus-line-sep"></span>14A<span class="bus-line-sep"></span>57A</span> Haus des Meeres · ca. 2 Gehminuten</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card contact-card">
+            <strong data-i18n="contactMapTitle">Karte</strong>
+            <div id="practice-map" class="practice-map"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-box">
+      <div>© <span id="year"></span> Christian Lacina, Psychotherapeut in Ausbildung unter Supervision<span data-i18n="footerTitleEn"></span> &nbsp;·&nbsp; <a href="impressum.html" style="color: var(--muted); text-decoration: underline;">Impressum</a> &nbsp;·&nbsp; <a href="datenschutz.html" style="color: var(--muted); text-decoration: underline;">Datenschutz</a></div>
+    </div>
+  </footer>
+
+  <!-- Nur mobil: dauerhaft erreichbare Kontaktleiste am unteren Displayrand. -->
+  <div class="mobile-contact-bar" aria-label="Kontakt">
+    <a class="mobile-contact-action" href="tel:+436643845744">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+      <span data-i18n="mobileBarCall">Anrufen</span>
+    </a>
+    <span class="mobile-contact-divider" aria-hidden="true"></span>
+    <a class="mobile-contact-action" href="mailto:praxis@christian-lacina.at">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m2 7 10 6 10-6"></path></svg>
+      <span data-i18n="mobileBarMail">E-Mail</span>
+    </a>
+  </div>
+
+  <div class="lightbox-overlay" id="lightbox" role="dialog" aria-modal="true" aria-label="Bildergalerie Praxisraum">
+    <button type="button" class="lightbox-close" id="lightboxClose" aria-label="Schließen">✕</button>
+    <button type="button" class="lightbox-prev" id="lightboxPrev" aria-label="Vorheriges Foto">‹</button>
+    <img id="lightboxImg" src="" alt="" />
+    <button type="button" class="lightbox-next" id="lightboxNext" aria-label="Nächstes Foto">›</button>
+  </div>
+
+  <script>
+    const translations = {
+      de: {
+        brandTitle: "Psychotherapie Wien",
+        brandSubtitle: "Psychotherapie & Gestalttherapie",
+
+        navAbout: "Willkommen",
+        navOffer: "Angebot",
+        navPraxisraum: "Praxisraum",
+        navAnsatz: "Schwerpunkte",
+        navContact: "Kontakt",
+
+        heroEyebrow: "Raum für Begegnung, Klarheit und Entwicklung",
+        heroTitleLine1: "Psychotherapie",
+        heroTitleLine2: "in Wien",
+        heroText: "Ich begleite Menschen in herausfordernden Lebensphasen, bei psychischen Belastungen oder in Zeiten der Neuorientierung.",
+        heroBtnPrimary: "Kostenloses Erstgespräch anfragen",
+
+        aboutLabel: "Willkommen",
+        aboutLead: "Mein Name ist Christian Lacina, ich bin Psychotherapeut in Ausbildung unter Supervision und biete Einzeltherapie in Wien in deutscher und englischer Sprache an.",
+        aboutCard1Title: "Begleitung in herausfordernden Zeiten",
+        aboutCard1Text: "Sie befinden sich in einer herausfordernden Lebensphase, sind psychisch belastet oder suchen nach Neuorientierung. Ich biete Ihnen Begleitung an: Gemeinsam suchen wir nach Lösungen und neuen Perspektiven – ganz gleich, ob sich der Wunsch nach Veränderung schon konkret zeigt oder eher als diffuses Gefühl, dass etwas nicht mehr stimmig ist. Dabei ist mir eine Begegnung auf Augenhöhe wichtig: Ich begegne Ihnen mit Offenheit, Wertschätzung und Interesse an Ihrer Lebensgeschichte.",
+        aboutCard3Title: "Über mich",
+        aboutCard3Text: "Ich bin 1987 in Wien geboren, lebe in Partnerschaft und arbeite in Wien. Was mich zur Psychotherapie geführt hat: eigene Lebenserfahrungen und Herausforderungen und die Erkenntnis, dass Veränderung möglich ist. Diese Erfahrung prägt, wie ich Menschen begleite – mit Verständnis für die Schwierigkeiten und gleichzeitigem Interesse an der Entwicklung. An der Psychotherapie schätze ich den ehrlichen, unmittelbaren Austausch und das Erleben, als Mensch vollständig angenommen zu werden.",
+        aboutQuote: "Bei mir kann alles angesprochen werden. <strong>Muss es aber nicht.</strong> Das Tempo bestimmen Sie.",
+
+        offerLabel: "Angebot",
+        offerLead: "Ich biete Einzeltherapie auf Deutsch und Englisch an. Die therapeutische Arbeit orientiert sich an Ihrer individuellen Situation, Ihrem Tempo und Ihren persönlichen Zielen.",
+        offerWorkTitle: "Wie ich arbeite",
+        offerWorkText: "Ich arbeite auf Basis der Integrativen Gestalttherapie. Wir orientieren uns an dem, was sich im Moment zeigt, gehen in Ihrem Tempo vor und schaffen Raum für neue Erfahrungen. Neben dem Gespräch können auch Körperwahrnehmung, innere Bilder oder kleine Experimente Teil der Arbeit sein. Sprechen Sie etwa über einen ungelösten Konflikt mit einer wichtigen Person, kann ein kleines Experiment darin bestehen, ihr in der Vorstellung noch einmal zu begegnen. Wenn Sie von einer Situation erzählen, die Sie nicht loslässt, kann ein inneres Bild, etwa ein schwerer Rucksack, helfen zu erkunden, was Sie genau belastet.",
+        offerGoalsTitle: "Mögliche Ziele",
+        offerGoalsText: "Psychotherapie kann unterschiedliche Ziele haben: seelische Entlastung und Stabilisierung, ein besseres Verständnis für sich selbst sowie der Umgang mit Gefühlen wie Angst, Trauer oder Wut. Dazu gehören auch das Erkennen und Verändern von Mustern, die Klärung von Beziehungen und Konflikten, die Bewältigung von Krisen oder Übergängen sowie die Stärkung von Selbstwert und Selbstwirksamkeit.",
+        offerConfidentialityQuote: "Vertrauen ist wesentlich für unsere Arbeit. <strong>Was Sie bei mir ansprechen, bleibt vertraulich.</strong>",
+
+        praxisraumLabel: "Praxisraum",
+        praxisraumLead: "Die Gespräche finden in einem geschützten und vertraulichen Rahmen statt. Die Praxis liegt in der Dürergasse 19 im 6. Bezirk – nur wenige Gehminuten von U4 Kettenbrückengasse, U3 Neubaugasse und dem Naschmarkt entfernt.",
+
+        ansatzLabel: "Schwerpunkte & Ansatz",
+        ansatzLead: "Integrative Gestalttherapie als Grundlage – mit einem breiten Spektrum an Themen, die Menschen in die Therapie mitbringen.",
+        ansatzCard1Title: "Psychotherapie",
+        ansatzCard1Text: "Psychotherapie ist ein wissenschaftlich fundiertes Verfahren zur Behandlung psychischen Leids. Sie unterstützt dabei, Belastungen zu verstehen, innere Zusammenhänge zu erkennen und neue Handlungs- und Erlebensmöglichkeiten zu entwickeln. Die Integrative Gestalttherapie ist ein humanistisches, in Österreich anerkanntes Verfahren. Sie versteht den Menschen als Einheit aus Körper, Geist und Seele und richtet den Blick auf das Erleben im Hier und Jetzt – auf das Zusammenspiel von Gedanken, Gefühlen, Körperempfindungen, Beziehungen und Lebensgeschichte.",
+        ansatzCard2Title: "Meine Schwerpunkte",
+        focus1: "Angst und Angststörungen",
+        focus2: "Arbeit und Beruf",
+        focus3: "Beziehung und Partnerschaft",
+        focus4: "Belastungen, Überforderung und Stress",
+        focus5: "Depression",
+        focus6: "Krisen und Neuorientierung",
+        focus7: "Lebensentscheidungen und -veränderungen",
+        focus8: "Konflikte in Beziehungen, Familie und Freundschaften",
+        focus9: "Selbsterfahrung und Persönlichkeitsentwicklung",
+        focus10: "Sinn und Lebensorientierung",
+        focus11: "Trauer, Verlust und Abschied",
+        focus12: "Zwang und Zwangsstörungen",
+        focus13: "Arbeit mit dem inneren Kind",
+
+        contactLabel: "Kontakt & Anfahrt",
+        contactLead: "Wenn Sie sich angesprochen fühlen, können Sie mich gerne kontaktieren. Ich biete ein <strong>kostenloses, unverbindliches Erstgespräch</strong> an, in dem wir Ihr Anliegen besprechen und klären können, ob eine Zusammenarbeit für Sie passend ist.",
+        contactAddressTitle: "Adresse",
+        contactAddressText: "Praxisgemeinschaft Institut Hara<br>Dürergasse 19, 1060 Wien",
+        contactPhoneTitle: "Telefon",
+        contactDirectionsTitle: "Anfahrt",
+        contactDirectionsIntro: "Die Praxis liegt zentral und ist öffentlich (U3, U4, 13A, 14A, 57A) gut erreichbar.",
+        contactTransitU3: "<strong>U3</strong> Neubaugasse · ca. 5 Gehminuten",
+        contactTransitU4: "<strong>U4</strong> Kettenbrückengasse · ca. 4 Gehminuten",
+        contactTransitBus57A: "<span class=\"bus-line-group\">13A<span class=\"bus-line-sep\"></span>14A<span class=\"bus-line-sep\"></span>57A</span> Haus des Meeres · ca. 2 Gehminuten",
+        contactMapsLink: "In Google Maps öffnen ↗",
+        contactMapTitle: "Karte",
+        contactHoursTitle: "Termine",
+        contactHoursText: "Termine nach Vereinbarung. Kontaktaufnahme gerne per E-Mail oder Telefon. Ich freue mich darauf, Sie kennenzulernen.",
+
+        mobileBarCall: "Anrufen",
+        mobileBarMail: "E-Mail",
+
+        footerTitleEn: ""
+      },
+
+      en: {
+        brandTitle: "Psychotherapy Vienna",
+        brandSubtitle: "Psychotherapy & Gestalt Therapy",
+
+        navAbout: "Welcome",
+        navOffer: "Services",
+        navPraxisraum: "Practice space",
+        navAnsatz: "Focus Areas",
+        navContact: "Contact",
+
+        heroEyebrow: "A space for connection, clarity and growth",
+        heroTitleLine1: "Psychotherapy",
+        heroTitleLine2: "in Vienna",
+        heroText: "I support people through challenging phases of life, periods of psychological stress, or times of reorientation.",        heroBtnPrimary: "Request a free initial session",
+
+        aboutLabel: "Welcome",
+        aboutLead: "My name is Christian Lacina, I am a psychotherapist in training under supervision and offer individual therapy in Vienna in German and English.",
+        aboutCard1Title: "Support through challenging times",
+        aboutCard1Text: "You may be going through a challenging phase of life, experiencing psychological distress, or looking for reorientation. I offer you support: together we look for solutions and new perspectives – whether the desire for change is already concrete or more of a diffuse feeling that something is no longer right. A respectful, equal encounter is important to me: I meet you with openness, appreciation and interest in your life story.",
+        aboutCard3Title: "About me",
+        aboutCard3Text: "I was born in Vienna in 1987, live in a relationship and work in Vienna. What led me to psychotherapy: my own life experiences and challenges, and the realisation that change is possible. This shapes how I accompany people – with understanding for the difficulties and an equal interest in growth. What I value about psychotherapy is honest, direct exchange and the experience of being fully accepted as a person.",
+        aboutQuote: "With me, everything can be addressed. <strong>It doesn't have to be, though.</strong> You set the pace.",
+
+        offerLabel: "Services",
+        offerLead: "I offer individual therapy in German and English. The therapeutic work is based on your individual situation, your pace, and your personal goals.",
+        offerWorkTitle: "How I work",
+        offerWorkText: "I work on the basis of Integrative Gestalt Therapy. We follow what shows itself in the moment, proceed at your pace, and create space for new experiences. Alongside conversation, body awareness, inner images or small experiments may also become part of the work. If you talk about an unresolved conflict with someone important to you, one small experiment might be to imagine meeting them again. If you describe a situation that keeps weighing on you, an inner image, such as a heavy backpack, can help explore what exactly is troubling you.",
+        offerGoalsTitle: "Possible goals",
+        offerGoalsText: "Psychotherapy can have many goals: emotional relief and stabilization, a better understanding of yourself, and dealing with feelings such as anxiety, grief or anger. It can also involve recognizing and changing patterns, clarifying relationships and conflicts, coping with crises or transitions, and strengthening self-esteem and self-efficacy.",
+        offerConfidentialityQuote: "Trust is essential to our work together. <strong>Whatever you bring up with me stays confidential.</strong>",
+
+        praxisraumLabel: "Practice space",
+        praxisraumLead: "Sessions take place in a protected and confidential setting. The practice is located at Dürergasse 19 in Vienna's 6th district – just a few minutes' walk from U4 Kettenbrückengasse, U3 Neubaugasse, and the Naschmarkt market.",
+
+        ansatzLabel: "Focus Areas & Approach",
+        ansatzLead: "Integrative Gestalt Therapy as a foundation – covering the broad range of themes people bring to therapy.",
+        ansatzCard1Title: "Psychotherapy",
+        ansatzCard1Text: "Psychotherapy is a scientifically grounded method for treating psychological suffering. It supports people in understanding their burdens, recognising inner connections, and developing new ways of acting and experiencing. Integrative Gestalt Therapy is a humanistic approach recognised in Austria. It understands the person as a unity of body, mind and soul, and focuses on present-moment experience – on the interplay of thoughts, feelings, bodily sensations, relationships and life history.",
+        ansatzCard2Title: "My areas of focus",
+        focus1: "Anxiety",
+        focus2: "Work & career",
+        focus3: "Relationships & partnership",
+        focus4: "Stress, overwhelm & burnout",
+        focus5: "Depression",
+        focus6: "Life crises & transitions",
+        focus7: "Life decisions & change",
+        focus8: "Relationship & family conflicts",
+        focus9: "Self-exploration & personal growth",
+        focus10: "Meaning & life purpose",
+        focus11: "Grief, loss & farewell",
+        focus12: "OCD & intrusive thoughts",
+        focus13: "Inner child work",
+
+        contactLabel: "Contact & Directions",
+        contactLead: "If this resonates with you, please feel free to get in touch. I offer a <strong>free, no-obligation initial consultation</strong> where we can discuss your concerns and explore whether working together is right for you.",
+        contactAddressTitle: "Address",
+        contactAddressText: "Praxisgemeinschaft Institut Hara<br>Dürergasse 19, 1060 Vienna",
+        contactPhoneTitle: "Phone",
+        contactDirectionsTitle: "Directions",
+        contactDirectionsIntro: "The practice is centrally located and easy to reach by public transport (U3, U4, 13A, 14A, 57A).",
+        contactTransitU3: "<strong>U3</strong> Neubaugasse · approx. 5 min. walk",
+        contactTransitU4: "<strong>U4</strong> Kettenbrückengasse · approx. 4 min. walk",
+        contactTransitBus57A: "<span class=\"bus-line-group\">13A<span class=\"bus-line-sep\"></span>14A<span class=\"bus-line-sep\"></span>57A</span> Haus des Meeres · approx. 2 min. walk",
+        contactMapsLink: "Open in Google Maps ↗",
+        contactMapTitle: "Map",
+        contactHoursTitle: "Appointments",
+        contactHoursText: "Appointments by arrangement. Feel free to get in touch by email or phone. I look forward to meeting you.",
+
+        mobileBarCall: "Call",
+        mobileBarMail: "Email",
+
+        footerTitleEn: ""
+      }
+    };
+
+    function setLanguage(lang) {
+      document.documentElement.lang = lang;
+      document.querySelectorAll("[data-i18n]").forEach(function(el) {
+        var key = el.getAttribute("data-i18n");
+        if (translations[lang] && translations[lang][key] !== undefined) {
+          el.innerHTML = translations[lang][key];
+        }
+      });
+      document.querySelectorAll(".lang-btn").forEach(function(btn) {
+        btn.classList.toggle("active", btn.dataset.lang === lang);
+      });
+      applyJobTitle(lang);
+      localStorage.setItem("siteLanguage", lang);
+    }
+
+    document.querySelectorAll(".lang-btn").forEach(function(btn) {
+      btn.addEventListener("click", function() {
+        setLanguage(btn.dataset.lang);
+      });
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Berufsbezeichnung ändert sich zum 01.10.2026 laut Psychotherapiegesetz.
+    var jobTitles = {
+      de: {
+        before: "Psychotherapeut in Ausbildung unter Supervision",
+        after: "Psychotherapeut in Fachausbildung unter Lehrsupervision"
+      },
+      en: {
+        before: "Psychotherapist in training under supervision",
+        after: "Psychotherapist in specialist training under training supervision"
+      }
+    };
+
+    function applyJobTitle(lang) {
+      var trainingStatusCutoff = new Date("2026-10-01T00:00:00");
+      var set = jobTitles[lang] || jobTitles.de;
+      var jobTitle = new Date() >= trainingStatusCutoff ? set.after : set.before;
+      var jobTitleEl = document.getElementById("heroJobTitle");
+      if (jobTitleEl) jobTitleEl.textContent = jobTitle;
+      var heroLogoTitleEl = document.getElementById("heroLogoTitle");
+      if (heroLogoTitleEl) heroLogoTitleEl.textContent = "Christian Lacina, " + jobTitle;
+    }
+
+    applyJobTitle(document.documentElement.lang || "de");
+
+    // On phones the hero logo is crammed into a narrow viewport, so crop the
+    // viewBox to the actual artwork instead of the padded desktop box.
+    (function () {
+      var heroLogo = document.getElementById("heroLogo");
+      if (!heroLogo) return;
+      var desktopViewBox = heroLogo.getAttribute("viewBox");
+      var mq = window.matchMedia("(max-width: 640px)");
+
+      function applyViewBox() {
+        if (!mq.matches) {
+          heroLogo.setAttribute("viewBox", desktopViewBox);
+          return;
+        }
+        var box = heroLogo.getBBox();
+        if (!box || !box.width) return;
+        var pad = 6;
+        heroLogo.setAttribute("viewBox", [
+          box.x - pad, box.y - pad, box.width + pad * 2, box.height + pad * 2
+        ].join(" "));
+      }
+
+      applyViewBox();
+      if (mq.addEventListener) mq.addEventListener("change", applyViewBox);
+      new MutationObserver(applyViewBox).observe(heroLogo, {
+        subtree: true, characterData: true, childList: true
+      });
+    })();
+
+    var saved = localStorage.getItem("siteLanguage");
+    if (saved && translations[saved]) {
+      setLanguage(saved);
+    }
+
+    // Burger menu toggle
+    var burgerBtn = document.getElementById("burgerBtn");
+    var mobileMenu = document.getElementById("mobileMenu");
+
+    burgerBtn.addEventListener("click", function() {
+      var isOpen = mobileMenu.classList.toggle("open");
+      burgerBtn.setAttribute("aria-expanded", isOpen);
+    });
+
+    // Close menu when a link is tapped
+    mobileMenu.querySelectorAll("a").forEach(function(link) {
+      link.addEventListener("click", function() {
+        mobileMenu.classList.remove("open");
+        burgerBtn.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    // Praxisraum gallery lightbox
+    (function () {
+      var galleryLinks = Array.prototype.slice.call(document.querySelectorAll(".praxisraum-photo"));
+      if (!galleryLinks.length) return;
+
+      var lightbox = document.getElementById("lightbox");
+      var lightboxImg = document.getElementById("lightboxImg");
+      var closeBtn = document.getElementById("lightboxClose");
+      var prevBtn = document.getElementById("lightboxPrev");
+      var nextBtn = document.getElementById("lightboxNext");
+      var currentIndex = 0;
+      // Only photos actually rendered (the third one is hidden on mobile)
+      var activeLinks = galleryLinks;
+
+      function showImage(index) {
+        currentIndex = (index + activeLinks.length) % activeLinks.length;
+        var link = activeLinks[currentIndex];
+        lightboxImg.src = link.getAttribute("href");
+        lightboxImg.alt = link.querySelector("img").alt;
+      }
+
+      function openLightbox(link) {
+        activeLinks = galleryLinks.filter(function (item) {
+          return item.offsetParent !== null;
+        });
+        showImage(activeLinks.indexOf(link));
+        lightbox.classList.add("open");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeLightbox() {
+        lightbox.classList.remove("open");
+        document.body.style.overflow = "";
+        lightboxImg.src = "";
+      }
+
+      galleryLinks.forEach(function (link) {
+        link.addEventListener("click", function (e) {
+          e.preventDefault();
+          openLightbox(link);
+        });
+      });
+
+      closeBtn.addEventListener("click", closeLightbox);
+      prevBtn.addEventListener("click", function () { showImage(currentIndex - 1); });
+      nextBtn.addEventListener("click", function () { showImage(currentIndex + 1); });
+
+      lightbox.addEventListener("click", function (e) {
+        if (e.target === lightbox) closeLightbox();
+      });
+
+      // Wischen zum Blättern (nur bei mehr als einem sichtbaren Foto).
+      var touchStartX = 0, touchStartY = 0, touchTracking = false;
+
+      lightbox.addEventListener("touchstart", function (e) {
+        if (e.touches.length !== 1) { touchTracking = false; return; }
+        touchTracking = true;
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+      }, { passive: true });
+
+      lightbox.addEventListener("touchend", function (e) {
+        if (!touchTracking || activeLinks.length < 2) return;
+        touchTracking = false;
+        var touch = e.changedTouches[0];
+        var dx = touch.clientX - touchStartX;
+        var dy = touch.clientY - touchStartY;
+        // Nur waagrechte, deutliche Gesten werten – sonst bleibt es ein Tap.
+        if (Math.abs(dx) < 45 || Math.abs(dx) < Math.abs(dy)) return;
+        showImage(currentIndex + (dx < 0 ? 1 : -1));
+      }, { passive: true });
+
+      document.addEventListener("keydown", function (e) {
+        if (!lightbox.classList.contains("open")) return;
+        if (e.key === "Escape") closeLightbox();
+        if (e.key === "ArrowLeft") showImage(currentIndex - 1);
+        if (e.key === "ArrowRight") showImage(currentIndex + 1);
+      });
+    })();
+  </script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+  <script>
+    (function () {
+      var mapEl = document.getElementById("practice-map");
+      if (!mapEl || typeof L === "undefined") return;
+
+      var coords = [48.1966118, 16.3547960];
+      // Auf Touchgeräten würde ein Finger die Karte statt der Seite bewegen –
+      // dort pannt man mit zwei Fingern (Leaflets eigene Empfehlung).
+      var isTouch = L.Browser.mobile;
+      var map = L.map(mapEl, {
+        scrollWheelZoom: false,
+        dragging: !isTouch
+      }).setView(coords, 16);
+
+      if (isTouch) map.touchZoom.enable();
+
+      L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png", {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+        subdomains: "abcd",
+        maxZoom: 20
+      }).addTo(map);
+
+      var practiceMarker = L.marker(coords).addTo(map)
+        .bindPopup("Institut Hara<br>Dürergasse 19, 1060 Wien");
+
+      var LINE_COLORS = {
+        U1: "#a8443d",
+        U2: "#8b6a99",
+        U3: "#c9884a",
+        U4: "#7f927a",
+        U6: "#9c7a4a"
+      };
+
+      function transitIcon(label, color) {
+        return L.divIcon({
+          className: "transit-map-icon",
+          html: '<span style="background:' + color + '">' + label + "</span>",
+          iconSize: [26, 26],
+          iconAnchor: [13, 13]
+        });
+      }
+
+      function landmarkIcon(line) {
+        return L.divIcon({
+          className: "transit-map-icon landmark",
+          html: '<span style="background:' + LINE_COLORS[line] + '">' + line + "</span>",
+          iconSize: [40, 22],
+          iconAnchor: [20, 11]
+        });
+      }
+
+      function comboIcon(lines) {
+        var halves = lines.map(function (line) {
+          return '<span class="pill-half" style="background:' + LINE_COLORS[line] + '">' + line + "</span>";
+        }).join("");
+        var html = '<span class="pill-group">' + halves + "</span>";
+        var width = 22 + lines.length * 22;
+        return L.divIcon({
+          className: "transit-map-icon combo",
+          html: html,
+          iconSize: [width, 22],
+          iconAnchor: [width / 2, 11]
+        });
+      }
+
+      var subwayStops = [
+        { name: "Neubaugasse", line: "U3", coords: [48.1993161, 16.3526723], color: "#c9884a" },
+        { name: "Kettenbrückengasse", line: "U4", coords: [48.1966267, 16.3580609], color: "#7f927a" },
+        { name: "Pilgramgasse", line: "U4", coords: [48.1921283, 16.3542814], color: "#7f927a" },
+        { name: "Zieglergasse", line: "U3", coords: [48.1971450, 16.3462979], color: "#c9884a" }
+      ];
+
+      var busStops = [
+        { name: "Haus des Meeres", lines: "57A, 13A, 14A", coords: [48.1975278, 16.3539444] }
+      ];
+
+      var landmarkStops = [
+        { name: "Karlsplatz", combo: ["U1", "U2", "U4"], coords: [48.2010, 16.3693] },
+        { name: "Westbahnhof", combo: ["U3", "U6"], coords: [48.1963, 16.3388] },
+        { name: "Längenfeldgasse", combo: ["U4", "U6"], coords: [48.1848644, 16.3350083] },
+        { name: "Volkstheater", combo: ["U2", "U3"], coords: [48.2054, 16.3585] },
+        { name: "Margaretengürtel", line: "U4", coords: [48.1884872, 16.3430331] },
+        { name: "Museumsquartier", line: "U2", coords: [48.2027122, 16.3612175] },
+        { name: "Burggasse-Stadthalle", line: "U6", coords: [48.2032875, 16.3372071] },
+        { name: "Thaliastraße", line: "U6", coords: [48.2078001, 16.3380073] },
+        { name: "Gumpendorfer Straße", line: "U6", coords: [48.1907351, 16.3375473] }
+      ];
+
+      var allMarkers = [practiceMarker];
+
+      subwayStops.forEach(function (stop) {
+        var marker = L.marker(stop.coords, { icon: transitIcon(stop.line, stop.color) })
+          .addTo(map)
+          .bindPopup(stop.line + " " + stop.name);
+        allMarkers.push(marker);
+      });
+
+      busStops.forEach(function (stop) {
+        var marker = L.circleMarker(stop.coords, {
+          radius: 7,
+          color: "#fff",
+          weight: 2,
+          fillColor: "#b25a4a",
+          fillOpacity: 1
+        }).addTo(map).bindPopup("Bus " + stop.lines + "<br>" + stop.name);
+        allMarkers.push(marker);
+      });
+
+      landmarkStops.forEach(function (stop) {
+        var icon = stop.combo ? comboIcon(stop.combo) : landmarkIcon(stop.line);
+        var label = stop.combo ? stop.combo.join("/") : stop.line;
+        var marker = L.marker(stop.coords, { icon: icon })
+          .addTo(map)
+          .bindPopup(label + " " + stop.name);
+        allMarkers.push(marker);
+      });
+
+      var group = L.featureGroup(allMarkers);
+      var overviewZoom = Math.min(map.getBoundsZoom(group.getBounds().pad(0.15)), 17);
+      map.setView(coords, overviewZoom + 2);
+    })();
+  </script>
+</body>
+</html>

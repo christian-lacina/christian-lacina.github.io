@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Impressum – Psychotherapie Wien</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <style>
+    :root {
+      --bg: #f6f3ed;
+      --card: rgba(255,255,255,0.72);
+      --text: #2f2c28;
+      --muted: #6c675f;
+      --line: #d7d0c4;
+      --accent: #9cad97;
+      --accent-dark: #7f927a;
+      --accent-soft: #dfe7dc;
+      --shadow: 0 10px 35px rgba(47, 44, 40, 0.08);
+      --radius: 24px;
+      --max-width: 780px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(156, 173, 151, 0.14), transparent 30%),
+        linear-gradient(180deg, #f8f6f1 0%, #f4f1ea 100%);
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    a { color: var(--accent-dark); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(14px);
+      background: rgba(246, 243, 237, 0.82);
+      border-bottom: 1px solid rgba(215, 208, 196, 0.8);
+    }
+
+    .header-inner {
+      width: min(calc(100% - 2rem), 1180px);
+      margin: 0 auto;
+      min-height: 84px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand-logo {
+      height: 52px;
+      width: auto;
+      border-radius: 10px;
+      object-fit: contain;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.6rem 1rem;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.7);
+      font-size: 0.9rem;
+      color: var(--text);
+      transition: 0.2s ease;
+    }
+
+    .back-link:hover {
+      background: var(--accent-soft);
+      text-decoration: none;
+      transform: translateX(-2px);
+    }
+
+    .page-wrap {
+      width: min(calc(100% - 2rem), var(--max-width));
+      margin: 3rem auto 5rem;
+    }
+
+    .page-label {
+      color: var(--accent-dark);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.78rem;
+      margin-bottom: 0.4rem;
+    }
+
+    h1 {
+      margin: 0 0 0.3rem;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.05;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      margin: 0 0 2.5rem;
+      font-size: 0.95rem;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,0.65);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 2rem 2.2rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .card h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.15rem;
+      margin: 0 0 1rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid var(--line);
+      color: var(--text);
+    }
+
+    .card p, .card li {
+      color: var(--muted);
+      margin: 0 0 0.6rem;
+      font-size: 0.97rem;
+    }
+
+    .card ul {
+      margin: 0 0 0.6rem;
+      padding-left: 1.4rem;
+    }
+
+    .card li { margin-bottom: 0.3rem; }
+
+    .placeholder {
+      background: rgba(156, 173, 151, 0.18);
+      border: 1px dashed var(--accent);
+      border-radius: 6px;
+      padding: 0.1rem 0.45rem;
+      font-style: italic;
+      color: var(--accent-dark);
+      font-size: 0.93em;
+    }
+
+    .notice {
+      background: rgba(156, 173, 151, 0.12);
+      border-left: 3px solid var(--accent);
+      border-radius: 12px;
+      padding: 1rem 1.2rem;
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-bottom: 2rem;
+    }
+
+    .footer {
+      border-top: 1px solid var(--line);
+      padding: 1.5rem 0 3rem;
+      color: var(--muted);
+      font-size: 0.88rem;
+      text-align: center;
+    }
+
+    @media (max-width: 640px) {
+      .header-inner {
+        min-height: 68px;
+        padding: 0.6rem 0;
+      }
+
+      .brand-logo {
+        height: 42px;
+      }
+
+      .back-link {
+        font-size: 0.82rem;
+        padding: 0.5rem 0.8rem;
+      }
+
+      .page-wrap {
+        margin: 1.8rem auto 4rem;
+      }
+
+      h1 {
+        font-size: clamp(1.6rem, 8vw, 2.2rem);
+      }
+
+      .subtitle {
+        font-size: 0.88rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .card {
+        padding: 1.2rem 1rem;
+        border-radius: 16px;
+      }
+
+      .card h2 {
+        font-size: 1.05rem;
+      }
+
+      .card p, .card li {
+        font-size: 0.93rem;
+      }
+
+      .notice {
+        font-size: 0.84rem;
+        padding: 0.8rem 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" aria-label="Zurück zur Startseite">
+        <img src="logo-header.svg" alt="Christian Lacina" class="brand-logo" />
+      </a>
+      <a href="index.html" class="back-link">
+        ← Zurück zur Website
+      </a>
+    </div>
+  </header>
+
+  <main class="page-wrap">
+
+    <div class="page-label">Rechtliches</div>
+    <h1>Impressum</h1>
+    <p class="subtitle">Angaben gemäß § 25 MedienG und § 5 ECG</p>
+
+    <!-- BETREIBER -->
+    <div class="card">
+      <h2>Medieninhaber &amp; Diensteanbieter</h2>
+      <p>
+        <strong>Name:</strong> Christian Lacina<br />
+        <strong>Berufsbezeichnung:</strong> Psychotherapeut in Ausbildung unter Supervision (Integrative Gestalttherapie)<br />
+        <strong>Adresse:</strong> Dürergasse 19, 1060 Wien, Österreich (Praxisgemeinschaft Institut Hara)<br />
+        <strong>Telefon:</strong> <a href="tel:+436643845744">+43 664 3845744</a><br />
+        <strong>E-Mail:</strong> <a href="mailto:praxis@christian-lacina.at">praxis@christian-lacina.at</a><br />
+        <strong>Website:</strong> <a href="https://www.christian-lacina.at">www.christian-lacina.at</a>
+      </p>
+    </div>
+
+    <!-- BERUFSRECHT -->
+    <div class="card">
+      <h2>Berufsrechtliche Angaben</h2>
+      <p>
+        <strong>Berufsrecht:</strong> Psychotherapiegesetz (PthG), BGBl. Nr. 361/1990 i.d.g.F.<br />
+        <strong>Aufsichtsbehörde:</strong> Bundesministerium für Soziales, Gesundheit, Pflege und Konsumentenschutz (BMSGPK)<br />
+        <strong>Ausbildungsinstitut:</strong> IGWien – Institut für Integrative Gestalttherapie Wien<br />
+        <strong>Fachspezifikum:</strong> Integrative Gestalttherapie
+      </p>
+      <p>
+        Die Berufsbezeichnung „Psychotherapeut in Ausbildung unter Supervision" ist gemäß
+        § 2 Abs. 2 PthG gestattet und wird unter Aufsicht einer approbierten Lehrtherapeutin /
+        eines approbierten Lehrtherapeuten ausgeübt.
+      </p>
+    </div>
+
+    <!-- ZWECK -->
+    <div class="card">
+      <h2>Zweck der Website</h2>
+      <p>
+        Diese Website dient der Selbstdarstellung und Information über das psychotherapeutische
+        Angebot von Christian Lacina. Es handelt sich um
+        kein kommerzielles Angebot im Sinne des UGB.
+      </p>
+    </div>
+
+    <!-- HAFTUNG INHALTE -->
+    <div class="card">
+      <h2>Haftungsausschluss – Inhalte</h2>
+      <p>
+        Die Inhalte dieser Website wurden mit größtmöglicher Sorgfalt erstellt. Für die
+        Richtigkeit, Vollständigkeit und Aktualität der Inhalte kann jedoch keine Gewähr
+        übernommen werden. Als Diensteanbieter bin ich gemäß § 7 Abs. 1 ECG für eigene
+        Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich.
+      </p>
+      <p>
+        Die auf dieser Website bereitgestellten Informationen stellen keine medizinische
+        oder psychotherapeutische Beratung dar und ersetzen nicht den persönlichen Kontakt
+        mit einer Fachperson.
+      </p>
+    </div>
+
+    <!-- HAFTUNG LINKS -->
+    <div class="card">
+      <h2>Haftungsausschluss – Links</h2>
+      <p>
+        Diese Website kann Links zu externen Websites enthalten, auf deren Inhalte kein
+        Einfluss besteht. Für die Inhalte verlinkter Seiten ist stets der jeweilige Anbieter
+        verantwortlich. Eine permanente inhaltliche Kontrolle verlinkter Seiten ist ohne
+        konkreten Anhaltspunkt einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von
+        Rechtsverletzungen werden entsprechende Links umgehend entfernt.
+      </p>
+    </div>
+
+    <!-- URHEBERRECHT -->
+    <div class="card">
+      <h2>Urheberrecht</h2>
+      <p>
+        Die durch den Seitenbetreiber erstellten Inhalte und Werke auf dieser Website
+        unterliegen dem österreichischen Urheberrecht (UrhG). Die Vervielfältigung,
+        Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des
+        Urheberrechts bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw.
+        Erstellers.
+      </p>
+    </div>
+
+    <!-- DATENSCHUTZ -->
+    <div class="card">
+      <h2>Datenschutz</h2>
+      <p>
+        Ausführliche Informationen zur Verarbeitung personenbezogener Daten auf dieser
+        Website – einschließlich Ihrer Rechte gemäß DSGVO – finden Sie in der
+        <a href="datenschutz.html">Datenschutzerklärung</a>.
+      </p>
+    </div>
+
+    <!-- STREITIGKEITEN -->
+    <div class="card">
+      <h2>Online-Streitbeilegung</h2>
+      <p>
+        Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS)
+        bereit: <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener">
+        ec.europa.eu/consumers/odr</a>. Zur Teilnahme an einem Streitbeilegungsverfahren
+        vor einer Verbraucherschlichtungsstelle sind wir nicht verpflichtet und nicht bereit.
+      </p>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <div style="width: min(calc(100% - 2rem), var(--max-width)); margin: 0 auto;">
+      © <span id="year"></span> Christian Lacina
+      &nbsp;·&nbsp;<a href="datenschutz.html">Datenschutzerklärung</a>
+      &nbsp;·&nbsp;<a href="index.html">Zurück zur Website</a>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

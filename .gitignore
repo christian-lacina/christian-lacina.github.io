@@ -1,0 +1,13 @@
+# macOS
+.DS_Store
+
+# Tooling
+.claude/
+
+# Design sources — belong in the private workshop repo, not here
+*.psd
+*.ai
+*.sketch
+*.afdesign
+*.afphoto
+*.xcf
