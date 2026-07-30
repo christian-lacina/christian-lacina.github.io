@@ -1008,6 +1008,17 @@
       flex-wrap: wrap;
     }
 
+    /* Rechtstexte rechtsbündig am Ende der Zeile. */
+    .footer-links {
+      margin-left: auto;
+      text-align: right;
+    }
+
+    .footer-links a {
+      color: var(--muted);
+      text-decoration: underline;
+    }
+
     .soft-note {
       font-size: 0.92rem;
       color: var(--muted);
@@ -1126,6 +1137,13 @@
 
       .footer {
         padding-bottom: calc(56px + 1.5rem + env(safe-area-inset-bottom));
+      }
+
+      /* Mobil bricht die Zeile ohnehin um – dann die Rechtstexte
+         linksbündig unter Name und Berufstitel. */
+      .footer-links {
+        margin-left: 0;
+        text-align: left;
       }
 
       /* Größere Trefferflächen, aber DE und EN dicht beieinander – der
@@ -1555,7 +1573,8 @@
 
   <footer class="footer">
     <div class="container footer-box">
-      <div>© <span id="year"></span> Christian Lacina, Psychotherapeut in Ausbildung unter Supervision<span data-i18n="footerTitleEn"></span> &nbsp;·&nbsp; <a href="impressum.html" style="color: var(--muted); text-decoration: underline;">Impressum</a> &nbsp;·&nbsp; <a href="datenschutz.html" style="color: var(--muted); text-decoration: underline;">Datenschutz</a></div>
+      <div>© <span id="year"></span> Christian Lacina, MSc. Psychotherapeut in Ausbildung unter Supervision<span data-i18n="footerTitleEn"></span></div>
+      <div class="footer-links"><a href="impressum.html">Impressum</a> &nbsp;·&nbsp; <a href="datenschutz.html">Datenschutz</a></div>
     </div>
   </footer>
 
