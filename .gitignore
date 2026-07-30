@@ -1,8 +1,9 @@
 # macOS
 .DS_Store
 
-# Tooling
+# Tooling — lokale Arbeitsnotizen, bleiben unveröffentlicht
 .claude/
+CLAUDE.md
 
 # Design sources — belong in the private workshop repo, not here
 *.psd
