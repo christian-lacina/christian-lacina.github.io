@@ -7,6 +7,11 @@
   <meta name="description" content="Psychotherapie in Wien – Christian Lacina, MSc. Psychotherapeut in Ausbildung unter Supervision" />
   <link rel="canonical" href="https://christian-lacina.at/" />
 
+  <!-- Symbol im Browser-Tab und auf dem iOS-Homescreen; erzeugt von tools/favicon.py -->
+  <link rel="icon" href="favicon.ico" sizes="any" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+
   <!-- Vorschau beim Teilen von Links (WhatsApp, Signal, Facebook, LinkedIn ...).
        og-image.jpg wird von tools/og-image.py erzeugt. -->
   <meta property="og:type" content="website" />
@@ -25,6 +30,61 @@
   <meta name="twitter:title" content="Psychotherapie, Christian Lacina" />
   <meta name="twitter:description" content="Psychotherapie in Wien – Christian Lacina, MSc. Psychotherapeut in Ausbildung unter Supervision" />
   <meta name="twitter:image" content="https://christian-lacina.at/og-image.jpg" />
+
+  <!-- Strukturierte Daten: sagt Google explizit Name, Adresse, Telefon und Sprachen,
+       statt sie aus dem Fliesstext raten zu lassen. Bei Adress- oder Kontaktaenderungen
+       hier mitpflegen. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "@id": "https://christian-lacina.at/#praxis",
+    "name": "Psychotherapie Christian Lacina",
+    "description": "Psychotherapie in Wien. Einzeltherapie auf Basis der humanistischen Psychotherapie in deutscher und englischer Sprache. Termine nach Vereinbarung, kostenloses Erstgespräch.",
+    "url": "https://christian-lacina.at/",
+    "image": "https://christian-lacina.at/og-image.jpg",
+    "telephone": "+43 664 3845744",
+    "email": "praxis@christian-lacina.at",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Dürergasse 19",
+      "postalCode": "1060",
+      "addressLocality": "Wien",
+      "addressCountry": "AT"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 48.1966118,
+      "longitude": 16.3547960
+    },
+    "hasMap": "https://maps.app.goo.gl/7yPJN5uzpjuTCEdAA",
+    "areaServed": { "@type": "City", "name": "Wien" },
+    "availableLanguage": [
+      { "@type": "Language", "name": "Deutsch", "alternateName": "de" },
+      { "@type": "Language", "name": "English", "alternateName": "en" }
+    ],
+    "provider": {
+      "@type": "Person",
+      "name": "Christian Lacina",
+      "honorificSuffix": "MSc",
+      "jobTitle": "Psychotherapeut in Ausbildung unter Supervision",
+      "url": "https://christian-lacina.at/",
+      "image": "https://christian-lacina.at/og-image.jpg",
+      "knowsLanguage": ["de", "en"],
+      "workLocation": {
+        "@type": "Place",
+        "name": "Praxisgemeinschaft Institut Hara",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Dürergasse 19",
+          "postalCode": "1060",
+          "addressLocality": "Wien",
+          "addressCountry": "AT"
+        }
+      }
+    }
+  }
+  </script>
 
   <style>
     :root {
