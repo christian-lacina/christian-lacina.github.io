@@ -13,23 +13,26 @@
   <link rel="apple-touch-icon" href="apple-touch-icon.png" />
 
   <!-- Vorschau beim Teilen von Links (WhatsApp, Signal, Facebook, LinkedIn ...).
-       og-image.jpg wird von tools/og-image.py erzeugt. -->
+       og-image.jpg (gross, fuer Google/schema.org) und og-image-square.jpg
+       werden beide von tools/og-image.py erzeugt. -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://christian-lacina.at/" />
   <meta property="og:locale" content="de_AT" />
   <meta property="og:site_name" content="Christian Lacina" />
   <meta property="og:title" content="Psychotherapie, Christian Lacina" />
   <meta property="og:description" content="Psychotherapie in Wien – Christian Lacina, MSc. Psychotherapeut in Ausbildung unter Supervision" />
-  <meta property="og:image" content="https://christian-lacina.at/og-image.jpg" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
+  <!-- kleines quadratisches Bild: WhatsApp & Co. zeigen damit eine schmale
+       Miniatur statt einer bildschirmfuellenden Karte -->
+  <meta property="og:image" content="https://christian-lacina.at/og-image-square.jpg" />
+  <meta property="og:image:width" content="400" />
+  <meta property="og:image:height" content="400" />
   <meta property="og:image:alt" content="Christian Lacina, Psychotherapeut in Ausbildung unter Supervision" />
 
   <!-- gleiche Angaben fuer Dienste, die Twitter-Cards lesen (u. a. Signal, Slack) -->
-  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Psychotherapie, Christian Lacina" />
   <meta name="twitter:description" content="Psychotherapie in Wien – Christian Lacina, MSc. Psychotherapeut in Ausbildung unter Supervision" />
-  <meta name="twitter:image" content="https://christian-lacina.at/og-image.jpg" />
+  <meta name="twitter:image" content="https://christian-lacina.at/og-image-square.jpg" />
 
   <!-- Strukturierte Daten: sagt Google explizit Name, Adresse, Telefon und Sprachen,
        statt sie aus dem Fliesstext raten zu lassen. Bei Adress- oder Kontaktaenderungen
