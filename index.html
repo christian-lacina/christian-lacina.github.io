@@ -833,16 +833,24 @@
       align-items: stretch;
     }
 
+    /* Das Bild wird absolut positioniert, damit es nicht die Zeilenhöhe
+       bestimmt. So gibt immer die Textspalte die Höhe vor und das Foto passt
+       sich an – unabhängig von Sprache und Textlänge (wie bei .offer-img). */
     .about-row-img {
+      position: relative;
       border-radius: 20px;
       overflow: hidden;
     }
 
     .about-row-img img {
+      position: absolute;
+      inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: 50% 30%;
+      /* 61 % verteilt den vertikalen Beschnitt so, dass oben die Oberkante der
+         Bilderrahmen und unten die Schuhe gerade noch im Bild bleiben. */
+      object-position: 50% 61%;
       display: block;
     }
 
@@ -850,6 +858,12 @@
       display: flex;
       flex-direction: column;
       gap: 1.2rem;
+    }
+
+    /* Karten füllen die Spaltenhöhe, damit die Unterkante der letzten Karte
+       mit der Unterkante des Portraitfotos daneben abschließt. */
+    .about-cards > .card {
+      flex: 1;
     }
 
       .offer-grid {
@@ -1143,6 +1157,13 @@
         order: 1;
       }
 
+      /* Einspaltig gibt es keine Textspalte, an der sich das Bild ausrichten
+         könnte – hier wieder im Fluss, damit es seine eigene Höhe mitbringt. */
+      .about-row-img img {
+        position: static;
+        height: auto;
+      }
+
       .about-cards {
         order: 2;
       }
@@ -1407,7 +1428,7 @@
 
         <div class="about-layout">
           <div class="about-row-img">
-            <img src="practice_picture2-cropped.jpg" alt="Portraitfoto in der Praxis" width="805" height="633" loading="lazy" decoding="async" />
+            <img src="christian-lacina-psychotherapeut-wien-praxis.jpg" alt="Christian Lacina, Psychotherapeut in Ausbildung unter Supervision, in seiner Praxis in Wien-Mariahilf" width="1086" height="1448" loading="lazy" decoding="async" />
           </div>
           <div class="about-cards">
             <div class="card">
@@ -1426,9 +1447,12 @@
               <p data-i18n="offerGoalsText">
                 Psychotherapie kann unterschiedliche Ziele haben: psychische Entlastung und
                 Stabilisierung, ein besseres Verständnis für sich selbst sowie der Umgang mit
-                Gefühlen wie Angst, Trauer oder Wut. Dazu gehören auch das Erkennen und
-                Verändern von Mustern, die Klärung von Beziehungen und Konflikten, die Bewältigung
-                von Krisen oder Übergängen sowie die Stärkung von Selbstwert und Selbstwirksamkeit.
+                Gefühlen wie Angst, Trauer oder Wut. Dazu gehören auch das Erkennen von Mustern,
+                die Klärung von Beziehungen und Konflikten, die Bewältigung von Krisen sowie die
+                Stärkung von Selbstwert und Selbstwirksamkeit.
+                Psychotherapie wirkt dabei sowohl bei diagnostizierten psychischen Erkrankungen als
+                auch bei Belastungen, die keinen Namen haben – beides kann ein guter Grund sein,
+                sich Unterstützung zu holen.
               </p>
             </div>
           </div>
@@ -1722,7 +1746,7 @@
         offerWorkTitle: "Wie ich arbeite",
         offerWorkText: "Ich arbeite auf Basis der Humanistischen Therapie bzw. Integrativen Gestalttherapie. Wir orientieren uns an dem, was sich im Moment zeigt, gehen in Ihrem Tempo vor und schaffen Raum für neue Erfahrungen. Neben dem Gespräch können auch Körperwahrnehmung, innere Bilder oder kleine Experimente Teil der Arbeit sein. Sprechen Sie etwa über einen ungelösten Konflikt mit einer wichtigen Person, kann ein kleines Experiment darin bestehen, ihr in der Vorstellung noch einmal zu begegnen. Wenn Sie von einer Situation erzählen, die Sie nicht loslässt, kann ein inneres Bild, etwa ein schwerer Rucksack, helfen zu erkunden, was Sie genau belastet.",
         offerGoalsTitle: "Mögliche Ziele",
-        offerGoalsText: "Psychotherapie kann unterschiedliche Ziele haben: psychische Entlastung und Stabilisierung, ein besseres Verständnis für sich selbst sowie der Umgang mit Gefühlen wie Angst, Trauer oder Wut. Dazu gehören auch das Erkennen und Verändern von Mustern, die Klärung von Beziehungen und Konflikten, die Bewältigung von Krisen oder Übergängen sowie die Stärkung von Selbstwert und Selbstwirksamkeit.",
+        offerGoalsText: "Psychotherapie kann unterschiedliche Ziele haben: psychische Entlastung und Stabilisierung, ein besseres Verständnis für sich selbst sowie der Umgang mit Gefühlen wie Angst, Trauer oder Wut. Dazu gehören auch das Erkennen von Mustern, die Klärung von Beziehungen und Konflikten, die Bewältigung von Krisen sowie die Stärkung von Selbstwert und Selbstwirksamkeit. Psychotherapie wirkt dabei sowohl bei diagnostizierten psychischen Erkrankungen als auch bei Belastungen, die keinen Namen haben – beides kann ein guter Grund sein, sich Unterstützung zu holen.",
         offerConfidentialityQuote: "Vertrauen ist wesentlich für unsere Arbeit. <strong>Was Sie bei mir ansprechen, bleibt vertraulich.</strong>",
 
         praxisraumLabel: "Praxisraum",
@@ -1796,7 +1820,7 @@
         offerWorkTitle: "How I work",
         offerWorkText: "I work on the basis of humanistic therapy and integrative Gestalt therapy. We follow what shows itself in the moment, proceed at your pace, and create space for new experiences. Alongside conversation, body awareness, inner images or small experiments may also become part of the work. If you talk about an unresolved conflict with someone important to you, one small experiment might be to imagine meeting them again. If you describe a situation that keeps weighing on you, an inner image, such as a heavy backpack, can help explore what exactly is troubling you.",
         offerGoalsTitle: "Possible goals",
-        offerGoalsText: "Psychotherapy can have many goals: emotional relief and stabilization, a better understanding of yourself, and dealing with feelings such as anxiety, grief or anger. It can also involve recognizing and changing patterns, clarifying relationships and conflicts, coping with crises or transitions, and strengthening self-esteem and self-efficacy.",
+        offerGoalsText: "Psychotherapy can have many goals: emotional relief and stabilization, a better understanding of yourself, and dealing with feelings such as anxiety, grief or anger. It can also involve recognizing and changing patterns, clarifying relationships and conflicts, coping with crises or transitions, and strengthening self-esteem and self-efficacy. Psychotherapy helps both with diagnosed mental health conditions and with difficulties that have no name – either can be a good reason to seek support.",
         offerConfidentialityQuote: "Trust is essential to our work together. <strong>Whatever you bring up with me stays confidential.</strong>",
 
         praxisraumLabel: "Practice space",
