@@ -4,4 +4,15 @@
 User-agent: *
 Allow: /
 
+# Ausnahme: Das Hero-Bild ist ein 3,85:1-Streifen, der nur zusammen mit dem
+# Verlaufs-Overlay der Startseite funktioniert. In der Bildersuche steht es
+# ohne diesen Kontext und wirkt als Thumbnail unvorteilhaft. Die Sperre gilt
+# nur fuer die Bild-Crawler — der normale Googlebot laedt die Datei weiterhin
+# beim Rendern der Seite (sie ist das LCP-Element).
+User-agent: Googlebot-Image
+Disallow: /new5-hero-superwide-improved.jpg
+
+User-agent: Bingbot
+Disallow: /new5-hero-superwide-improved.jpg
+
 Sitemap: https://christian-lacina.at/sitemap.xml
