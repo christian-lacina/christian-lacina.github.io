@@ -27,11 +27,12 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # war sichtbar matschig. Diese Vorlage zeigt dasselbe Motiv mit 1672x941.
 HERO = os.path.expanduser(
     '~/Library/CloudStorage/OneDrive-Personal/Docs/Psychotherapieausbildung/Praxis/'
-    'Website/pictures/new-hero-picture-improved.png')
+    'Website/pictures/2026-07 Hero bearbeitet/new-hero-picture-improved.png')
 # Quellfoto fuer die quadratische Variante liegt ausserhalb des Repos im OneDrive
 SRC = os.path.expanduser(
     '~/Library/CloudStorage/OneDrive-Personal/Docs/Psychotherapieausbildung/Praxis/'
-    'Website/pictures/Fotos Conny/Chris/nachbearbeitet/Portrait_Visitenkarte2.png')
+    'Website/pictures/2026-07 Portrait bearbeitet/'
+    'für Visitenkarte/Portrait_Visitenkarte2.png')
 OUT = os.path.join(ROOT, 'og-image.jpg')
 OUT_SQ = os.path.join(ROOT, 'og-image-square.jpg')
 
