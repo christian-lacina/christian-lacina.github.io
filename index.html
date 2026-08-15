@@ -136,6 +136,23 @@
       text-decoration: none;
     }
 
+    /* Blendet Text optisch aus, laesst ihn aber fuer Screenreader und
+       Suchmaschinen bestehen. Genutzt fuer die H1 im Hero: die sichtbare
+       Ueberschrift dort ist ein SVG-Logo, dessen Text Google nicht als
+       Ueberschrift liest. display:none waere hier falsch — das wuerde den
+       Text auch fuer Screenreader entfernen. */
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      padding: 0;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+      border: 0;
+    }
+
     .container {
       width: min(calc(100% - 2rem), var(--max-width));
       margin: 0 auto;
@@ -1390,6 +1407,10 @@
     <section class="hero">
       <div class="container">
         <div class="hero-copy">
+          <!-- Optisch verborgen, inhaltlich die Hauptueberschrift der Seite.
+               Sichtbar steht hier das SVG-Logo; dessen <text> zaehlt fuer
+               Suchmaschinen aber nicht als Ueberschrift. -->
+          <h1 class="visually-hidden" data-i18n="heroH1">Psychotherapie in Wien – Christian Lacina, MSc</h1>
           <svg id="heroLogo" viewBox="45 0 680 185" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="heroLogoTitle">
             <title id="heroLogoTitle">Christian Lacina, Psychotherapeut in Ausbildung unter Supervision</title>
             <path d="M179 20 H48 V150 H179" fill="none" stroke="#7f927a" stroke-width="6" stroke-linecap="butt" stroke-linejoin="miter"/>
@@ -1417,7 +1438,7 @@
       <div class="container">
         <div class="section-header">
           <div>
-            <div class="section-label" data-i18n="aboutLabel">Willkommen</div>
+            <h2 class="section-label" data-i18n="aboutLabel">Willkommen</h2>
             <p class="lead" data-i18n="aboutLead">
               Mein Name ist Christian Lacina, ich bin Psychotherapeut in Ausbildung unter
               Supervision und biete Einzeltherapie in Wien in deutscher und englischer
@@ -1470,7 +1491,7 @@
       <div class="container">
         <div class="section-header">
           <div>
-            <div class="section-label" data-i18n="offerLabel">Angebot</div>
+            <h2 class="section-label" data-i18n="offerLabel">Angebot</h2>
             <p class="lead" data-i18n="offerLead">
               Ich biete Einzeltherapie auf Deutsch und Englisch an. Die therapeutische
               Arbeit orientiert sich an Ihrer individuellen Situation, Ihrem Tempo und
@@ -1534,7 +1555,7 @@
       <div class="container">
         <div class="section-header">
           <div>
-            <div class="section-label" data-i18n="praxisraumLabel">Praxisraum</div>
+            <h2 class="section-label" data-i18n="praxisraumLabel">Praxisraum</h2>
             <p class="lead" data-i18n="praxisraumLead">
               Die Gespräche finden in einem geschützten und vertraulichen Rahmen statt. Ein
               sicherer Raum ist eine zentrale Voraussetzung dafür, dass persönliche Themen in
@@ -1564,7 +1585,7 @@
       <div class="container">
         <div class="section-header">
           <div>
-            <div class="section-label" data-i18n="ansatzLabel">Schwerpunkte &amp; Ansatz</div>
+            <h2 class="section-label" data-i18n="ansatzLabel">Schwerpunkte &amp; Ansatz</h2>
             <p class="lead" data-i18n="ansatzLead">
               Humanistische Therapie bzw. Integrative Gestalttherapie als Grundlage – mit einem
               breiten Spektrum an Themen, die Menschen in die Therapie mitbringen.
@@ -1618,7 +1639,7 @@
       <div class="container">
         <div class="section-header">
           <div>
-            <div class="section-label" data-i18n="contactLabel">Kontakt &amp; Anfahrt</div>
+            <h2 class="section-label" data-i18n="contactLabel">Kontakt &amp; Anfahrt</h2>
             <p class="lead" data-i18n="contactLead">
               Wenn Sie sich angesprochen fühlen, können Sie mich gerne kontaktieren.
               Ich biete ein <strong>kostenloses, unverbindliches Erstgespräch</strong> an, in dem wir Ihr Anliegen besprechen
@@ -1730,6 +1751,7 @@
         heroEyebrow: "Raum für Begegnung, Klarheit und Entwicklung",
         heroTitleLine1: "Psychotherapie",
         heroTitleLine2: "in Wien",
+        heroH1: "Psychotherapie in Wien – Christian Lacina, MSc",
         heroText: "Ich begleite Menschen in herausfordernden Lebensphasen, bei psychischen Belastungen oder in Zeiten der Neuorientierung.",
         heroBtnPrimary: "Kostenloses Erstgespräch anfragen",
 
@@ -1805,7 +1827,9 @@
         heroEyebrow: "A space for connection, clarity and growth",
         heroTitleLine1: "Psychotherapy",
         heroTitleLine2: "in Vienna",
-        heroText: "I support people through challenging phases of life, periods of psychological stress, or times of reorientation.",        heroBtnPrimary: "Request a free initial session",
+        heroH1: "Psychotherapy in Vienna – Christian Lacina, MSc",
+        heroText: "I support people through challenging phases of life, periods of psychological stress, or times of reorientation.",
+        heroBtnPrimary: "Request a free initial session",
 
         aboutLabel: "Welcome",
         aboutLead: "My name is Christian Lacina, I am a psychotherapist in training under supervision and offer individual therapy in Vienna in German and English.",
