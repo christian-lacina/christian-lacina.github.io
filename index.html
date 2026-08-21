@@ -89,6 +89,57 @@
   }
   </script>
 
+  <!-- Fragen und Antworten aus der FAQ-Sektion, maschinenlesbar. Google spielt
+       FAQ-Rich-Results seit 2023 nur noch fuer Behoerden und grosse
+       Gesundheitsseiten aus — hier geht es also nicht um ein schoeneres
+       Suchergebnis, sondern um die inhaltliche Einordnung, auch fuer
+       KI-Antworten. Bei Textaenderungen in der Sektion hier mitpflegen. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "@id": "https://christian-lacina.at/#faq",
+    "inLanguage": "de-AT",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie läuft das kostenlose Erstgespräch ab?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Für das Erstgespräch haben wir 50 Minuten Zeit, es ist kostenlos und unverbindlich. Sie erzählen mir, was Sie beschäftigt. Ich stelle Fragen, um Ihr Anliegen zu verstehen, und erkläre Ihnen, wie ich arbeite. Am Ende klären wir gemeinsam, ob eine Zusammenarbeit für Sie passend erscheint. Sie gehen keine Verpflichtung ein und müssen sich nicht sofort entscheiden." }
+      },
+      {
+        "@type": "Question",
+        "name": "Woran merke ich, ob Psychotherapie das Richtige für mich ist?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Sie brauchen keine Diagnose und keinen bestimmten Anlass, um zu kommen. Manche Menschen suchen Psychotherapie bei einer klaren Belastung, andere, weil etwas seit Längerem nicht stimmt. Beides ist ein guter Grund. Ob es passt, lässt sich schwer im Voraus entscheiden – genau dafür gibt es das kostenlose Erstgespräch." }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie ist das mit den Kosten und der Krankenkasse?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Bei Psychotherapeutinnen und Psychotherapeuten in Ausbildung unter Supervision ist eine Verrechnung mit den gesetzlichen Krankenkassen derzeit nicht möglich. Das Honorar liegt in diesem Ausbildungsabschnitt entsprechend niedriger als bei fertig ausgebildeten Kolleginnen und Kollegen; die konkrete Höhe wird im kostenlosen Erstgespräch besprochen. Manche private Zusatzversicherungen refundieren bei Krankheitswertigkeit einen Teil; das klären Sie bitte vorab direkt mit Ihrer Versicherung. Nach jeder Einheit erhalten Sie eine Rechnung, die Bezahlung erfolgt per Banküberweisung. Psychotherapie ist umsatzsteuerfrei." }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie lange dauert eine Einheit und wie oft finden Termine statt?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Eine Einheit dauert 50 Minuten und beginnt zum vereinbarten Zeitpunkt. Wie häufig wir uns sehen, richtet sich nach Ihrem Anliegen und vereinbaren wir gemeinsam. Üblich ist ein wöchentlicher oder vierzehntägiger Rhythmus. Termine finden nach Vereinbarung statt." }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie lange dauert eine Psychotherapie insgesamt?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Das hängt von Ihrer Ausgangslage und Ihren Zielen ab und lässt sich zu Beginn nicht seriös vorhersagen. Manche Anliegen klären sich in wenigen Monaten, andere brauchen länger. Sie binden sich an keine Mindestdauer und können die Therapie jederzeit beenden." }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist der Unterschied zwischen Psychotherapie, klinischer Psychologie und psychiatrischer Behandlung?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Psychotherapeutinnen und Psychotherapeuten behandeln psychisches Leid mit wissenschaftlich anerkannten psychotherapeutischen Verfahren; sie stellen im Rahmen ihrer Befugnisse Diagnosen, verschreiben aber keine Medikamente. Klinische Psychologinnen und Psychologen haben Psychologie studiert; ihr Schwerpunkt liegt auf psychologischer Diagnostik mit standardisierten Testverfahren und klinisch-psychologischer Behandlung, ebenfalls ohne Medikamente. Psychiaterinnen und Psychiater sind Ärztinnen und Ärzte mit Facharztausbildung und können körperliche Ursachen abklären, Medikamente verschreiben und Krankenstände ausstellen." }
+      },
+      {
+        "@type": "Question",
+        "name": "Ist Online-Therapie möglich?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Ja. Wenn Sie beruflich unterwegs sind, gerade nicht in Wien sind oder ein Termin sonst entfallen müsste, kann die Einheit online per Video-Chat stattfinden – auch über mehrere Sitzungen hinweg, wenn Ihre Situation das für eine Weile erfordert. Was im Einzelfall passt, wird gemeinsam besprochen." }
+      }
+    ]
+  }
+  </script>
+
   <style>
     :root {
       --bg: #f6f3ed;
@@ -778,6 +829,20 @@
       gap: 1.2rem;
     }
 
+    /* Die Karten des Rasters strecken sich auf die Hoehe der hoechsten. Damit
+       unter der Landkarte keine leere Flaeche stehenbleibt, waechst sie mit
+       statt auf festen 260px zu bleiben. */
+    .contact-map-card {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .contact-map-card .practice-map {
+      flex: 1;
+      height: auto;
+      min-height: 260px;
+    }
+
     .practice-map {
       margin-top: 0.6rem;
       height: 260px;
@@ -1139,6 +1204,83 @@
       color: var(--muted);
     }
 
+    /* Haeufige Fragen: Akkordeon aus <details>/<summary>. Bewusst ohne
+       JavaScript — Tastaturbedienung und Screenreader-Ausgabe bringen die
+       Elemente von Haus aus mit. Zugeklappter Text steht vollstaendig im
+       HTML und wird von Suchmaschinen gelesen. */
+    .faq-list {
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    .faq-item {
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,0.65);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 0 1.4rem;
+    }
+
+    .faq-item summary {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1.1rem 0;
+      cursor: pointer;
+      list-style: none;
+    }
+
+    /* Das voreingestellte Dreieck weg — wir zeichnen unten ein eigenes Chevron. */
+    .faq-item summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-item summary h3 {
+      margin: 0;
+      font-size: 1.05rem;
+    }
+
+    .faq-item summary::after {
+      content: "";
+      flex: none;
+      width: 9px;
+      height: 9px;
+      margin-top: 0.4rem;
+      border-right: 2px solid var(--accent-dark);
+      border-bottom: 2px solid var(--accent-dark);
+      transform: rotate(45deg);
+      transition: transform 0.2s ease;
+    }
+
+    .faq-item[open] summary::after {
+      transform: rotate(225deg);
+    }
+
+    .faq-item summary:focus-visible {
+      outline: 2px solid var(--accent-dark);
+      outline-offset: 3px;
+      border-radius: 6px;
+    }
+
+    .faq-answer {
+      padding-bottom: 1.2rem;
+      color: var(--muted);
+    }
+
+    .faq-answer p {
+      margin: 0 0 0.7rem;
+      text-align: justify;
+    }
+
+    .faq-answer p:last-child {
+      margin-bottom: 0;
+    }
+
+    .faq-answer strong {
+      color: var(--text);
+    }
+
     @media (max-width: 980px) {
       .nav {
         display: none;
@@ -1244,6 +1386,20 @@
     @media (max-width: 640px) {
       .container {
         width: min(calc(100% - 1.2rem), var(--max-width));
+      }
+
+      /* Schmalere Karten und linksbuendiger Fliesstext: Blocksatz reisst auf
+         kleinen Displays zu grosse Luecken. */
+      .faq-item {
+        padding: 0 1.15rem;
+      }
+
+      .faq-item summary h3 {
+        font-size: 1rem;
+      }
+
+      .faq-answer p {
+        text-align: left;
       }
 
       .brand-logo {
@@ -1377,6 +1533,7 @@
           <a href="#angebot" data-i18n="navOffer">Angebot</a>
           <a href="#praxisraum" data-i18n="navPraxisraum">Praxisraum</a>
           <a href="#ansatz" data-i18n="navAnsatz">Schwerpunkte</a>
+          <a href="#faq" data-i18n="navFaq">FAQ</a>
           <a href="#contact" data-i18n="navContact">Kontakt</a>
         </nav>
 
@@ -1399,6 +1556,7 @@
       <a href="#angebot" data-i18n="navOffer">Angebot</a>
       <a href="#praxisraum" data-i18n="navPraxisraum">Praxisraum</a>
       <a href="#ansatz" data-i18n="navAnsatz">Schwerpunkte</a>
+      <a href="#faq" data-i18n="navFaq">FAQ</a>
       <a href="#contact" data-i18n="navContact">Kontakt</a>
     </nav>
   </header>
@@ -1635,6 +1793,70 @@
     </section>
 
     <!-- KONTAKT -->
+    <!-- HÄUFIGE FRAGEN -->
+    <section id="faq">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2 class="section-label" data-i18n="faqLabel">Häufige Fragen</h2>
+            <p class="lead" data-i18n="faqLead">
+              Antworten auf das, was Menschen vor einer Psychotherapie am häufigsten
+              beschäftigt. Wenn Ihre Frage nicht dabei ist, fragen Sie mich gerne direkt.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary><h3 data-i18n="faq1Q">Wie läuft das kostenlose Erstgespräch ab?</h3></summary>
+            <div class="faq-answer" data-i18n="faq1A">
+              <p>Für das Erstgespräch haben wir 50 Minuten Zeit, es ist kostenlos und unverbindlich. Sie erzählen mir, was Sie beschäftigt — so ausführlich oder knapp, wie es Ihnen möglich ist. Ich stelle Fragen, um Ihr Anliegen zu verstehen, und erkläre Ihnen, wie ich arbeite. Am Ende klären wir gemeinsam, ob eine Zusammenarbeit für Sie passend erscheint. Sie gehen keine Verpflichtung ein und müssen sich nicht sofort entscheiden. Wenn ich den Eindruck habe, dass Ihnen anderswo besser geholfen ist, sage ich Ihnen das offen und gebe Ihnen gerne Empfehlungen.</p>
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary><h3 data-i18n="faq2Q">Woran merke ich, ob Psychotherapie das Richtige für mich ist?</h3></summary>
+            <div class="faq-answer" data-i18n="faq2A">
+              <p>Sie brauchen keine Diagnose und keinen bestimmten Anlass, um zu kommen. Manche Menschen suchen Psychotherapie bei einer klaren Belastung, andere, weil etwas seit Längerem nicht stimmt, ohne dass sie es benennen könnten. Beides ist ein guter Grund. Ob es passt, lässt sich schwer im Voraus entscheiden — genau dafür gibt es das kostenlose Erstgespräch. Sie können unverbindlich ausprobieren, wie es sich anfühlt, mit mir zu sprechen.</p>
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary><h3 data-i18n="faq5Q">Wie ist das mit den Kosten und der Krankenkasse?</h3></summary>
+            <div class="faq-answer" data-i18n="faq5A">
+              <p>Bei Psychotherapeut:innen in Ausbildung unter Supervision ist eine Verrechnung mit den gesetzlichen Krankenkassen derzeit nicht möglich. Das Honorar liegt in diesem Ausbildungsabschnitt entsprechend niedriger als bei fertig ausgebildeten Kolleg:innen — die konkrete Höhe besprechen wir im kostenlosen Erstgespräch. Manche private Zusatzversicherungen refundieren bei Krankheitswertigkeit einen Teil. Da ich dafür keine Verantwortung übernehmen kann, klären Sie das bitte vorab direkt mit Ihrer Versicherung und besprechen die Anforderungen mit mir. Nach jeder Einheit erhalten Sie eine Rechnung, die Bezahlung erfolgt per Banküberweisung. Psychotherapie ist umsatzsteuerfrei.</p>
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary><h3 data-i18n="faq3Q">Wie lange dauert eine Einheit und wie oft finden Termine statt?</h3></summary>
+            <div class="faq-answer" data-i18n="faq3A">
+              <p>Eine Einheit dauert 50 Minuten und beginnt zum vereinbarten Zeitpunkt. Wie häufig wir uns sehen, richtet sich nach Ihrem Anliegen und vereinbaren wir gemeinsam. Üblich ist ein wöchentlicher oder vierzehntägiger Rhythmus. Termine finden nach Vereinbarung statt.</p>
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary><h3 data-i18n="faq4Q">Wie lange dauert eine Psychotherapie insgesamt?</h3></summary>
+            <div class="faq-answer" data-i18n="faq4A">
+              <p>Das hängt von Ihrer Ausgangslage und Ihren Zielen ab und lässt sich zu Beginn nicht seriös vorhersagen. Manche Anliegen klären sich in wenigen Monaten, andere brauchen länger. Sie binden sich an keine Mindestdauer und können die Therapie jederzeit beenden. Ich bitte Sie nur, eine Beendigung nach Möglichkeit vorher anzusprechen, damit wir sie gemeinsam gestalten können — ein Abschlussgespräch ist ein wertvoller Teil der Arbeit.</p>
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary><h3 data-i18n="faq8Q">Was ist der Unterschied zwischen Psychotherapie, klinischer Psychologie und psychiatrischer Behandlung?</h3></summary>
+            <div class="faq-answer" data-i18n="faq8A">
+              <p><strong>Psychotherapeut:innen</strong> behandeln psychisches Leid mit wissenschaftlich anerkannten psychotherapeutischen Verfahren. Die Ausbildung ist mehrjährig und im Psychotherapiegesetz geregelt; sie umfasst neben der Theorie auch eigene Selbsterfahrung. Psychotherapeut:innen stellen im Rahmen ihrer Befugnisse Diagnosen, verschreiben aber keine Medikamente.</p>
+              <p><strong>Klinische Psycholog:innen</strong> haben Psychologie studiert und eine postgraduelle Ausbildung absolviert. Ihr Schwerpunkt liegt auf psychologischer Diagnostik mit standardisierten Testverfahren und auf klinisch-psychologischer Behandlung — ebenfalls ohne Medikamente.</p>
+              <p><strong>Psychiater:innen</strong> sind Ärzt:innen mit abgeschlossener Facharztausbildung. Sie können körperliche Ursachen abklären, Medikamente verschreiben und Krankenstände ausstellen.</p>
+              <p>Die Bereiche schließen einander nicht aus und ergänzen sich oft; manche Personen haben mehrere Qualifikationen. Wenn mir im Lauf unserer Arbeit eine zusätzliche Abklärung sinnvoll erscheint, spreche ich das an und gebe Ihnen gerne Empfehlungen.</p>
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary><h3 data-i18n="faq11Q">Ist Online-Therapie möglich?</h3></summary>
+            <div class="faq-answer" data-i18n="faq11A">
+              <p>Ja, das ist möglich. Wenn Sie beruflich unterwegs sind, gerade nicht in Wien sind oder ein Termin sonst entfallen müsste, halten wir die Einheit gerne online per Video-Chat ab — auch über mehrere Sitzungen hinweg, wenn Ihre Situation das für eine Weile erfordert. Was im Einzelfall passt, besprechen wir gemeinsam.</p>
+            </div>
+          </details>
+
+        </div>
+      </div>
+    </section>
+
     <section id="contact">
       <div class="container">
         <div class="section-header">
@@ -1672,21 +1894,26 @@
                 </div>
               </div>
               <div>
-                <strong data-i18n="contactAddressTitle">Adresse</strong>
-                <span data-i18n="contactAddressText">Praxisgemeinschaft Institut Hara<br>Dürergasse 19, 1060 Wien</span>
-              </div>
-              <div>
                 <strong data-i18n="contactHoursTitle">Termine</strong>
                 <span data-i18n="contactHoursText">
                   Termine nach Vereinbarung. Kontaktaufnahme gerne per Telefon, SMS oder E-Mail.
-                  Ich freue mich darauf, Sie kennenzulernen.
                 </span>
+              </div>
+              <!-- Kurzfassung; die ausfuehrliche Antwort samt Sozialtarif steht in der FAQ. -->
+              <div>
+                <strong data-i18n="contactFeeTitle">Honorar</strong>
+                <span data-i18n="contactFeeText">Nach Vereinbarung. Das Erstgespräch ist kostenlos.</span>
               </div>
             </div>
           </div>
 
           <div class="card contact-card">
             <div class="contact-lines">
+              <!-- Adresse steht ueber der Anfahrt: erst wohin, dann wie hin. -->
+              <div>
+                <strong data-i18n="contactAddressTitle">Adresse</strong>
+                <span data-i18n="contactAddressText">Praxisgemeinschaft Institut Hara<br>Dürergasse 19, 1060 Wien</span>
+              </div>
               <div>
                 <strong data-i18n="contactDirectionsTitle">Anfahrt</strong>
                 <span class="transit-intro" data-i18n="contactDirectionsIntro">Die Praxis liegt zentral und ist öffentlich (U3, U4, 13A, 14A, 57A) gut erreichbar.</span>
@@ -1700,7 +1927,7 @@
             </div>
           </div>
 
-          <div class="card contact-card">
+          <div class="card contact-card contact-map-card">
             <strong data-i18n="contactMapTitle">Karte</strong>
             <div id="practice-map" class="practice-map"></div>
           </div>
@@ -1746,6 +1973,7 @@
         navOffer: "Angebot",
         navPraxisraum: "Praxisraum",
         navAnsatz: "Schwerpunkte",
+        navFaq: "FAQ",
         navContact: "Kontakt",
 
         heroEyebrow: "Raum für Begegnung, Klarheit und Entwicklung",
@@ -1806,7 +2034,26 @@
         contactMapsLink: "In Google Maps öffnen ↗",
         contactMapTitle: "Karte",
         contactHoursTitle: "Termine",
-        contactHoursText: "Termine nach Vereinbarung. Kontaktaufnahme gerne per Telefon, SMS oder E-Mail. Ich freue mich darauf, Sie kennenzulernen.",
+        contactHoursText: "Termine nach Vereinbarung. Kontaktaufnahme gerne per Telefon, SMS oder E-Mail.",
+        contactFeeTitle: "Honorar",
+        contactFeeText: "Nach Vereinbarung. Das Erstgespräch ist kostenlos.",
+
+        faqLabel: "Häufige Fragen",
+        faqLead: "Antworten auf das, was Menschen vor einer Psychotherapie am häufigsten beschäftigt. Wenn Ihre Frage nicht dabei ist, fragen Sie mich gerne direkt.",
+        faq1Q: "Wie läuft das kostenlose Erstgespräch ab?",
+        faq1A: "<p>Für das Erstgespräch haben wir 50 Minuten Zeit, es ist kostenlos und unverbindlich. Sie erzählen mir, was Sie beschäftigt — so ausführlich oder knapp, wie es Ihnen möglich ist. Ich stelle Fragen, um Ihr Anliegen zu verstehen, und erkläre Ihnen, wie ich arbeite. Am Ende klären wir gemeinsam, ob eine Zusammenarbeit für Sie passend erscheint. Sie gehen keine Verpflichtung ein und müssen sich nicht sofort entscheiden. Wenn ich den Eindruck habe, dass Ihnen anderswo besser geholfen ist, sage ich Ihnen das offen und gebe Ihnen gerne Empfehlungen.</p>",
+        faq2Q: "Woran merke ich, ob Psychotherapie das Richtige für mich ist?",
+        faq2A: "<p>Sie brauchen keine Diagnose und keinen bestimmten Anlass, um zu kommen. Manche Menschen suchen Psychotherapie bei einer klaren Belastung, andere, weil etwas seit Längerem nicht stimmt, ohne dass sie es benennen könnten. Beides ist ein guter Grund. Ob es passt, lässt sich schwer im Voraus entscheiden — genau dafür gibt es das kostenlose Erstgespräch. Sie können unverbindlich ausprobieren, wie es sich anfühlt, mit mir zu sprechen.</p>",
+        faq3Q: "Wie lange dauert eine Einheit und wie oft finden Termine statt?",
+        faq3A: "<p>Eine Einheit dauert 50 Minuten und beginnt zum vereinbarten Zeitpunkt. Wie häufig wir uns sehen, richtet sich nach Ihrem Anliegen und vereinbaren wir gemeinsam. Üblich ist ein wöchentlicher oder vierzehntägiger Rhythmus. Termine finden nach Vereinbarung statt.</p>",
+        faq4Q: "Wie lange dauert eine Psychotherapie insgesamt?",
+        faq4A: "<p>Das hängt von Ihrer Ausgangslage und Ihren Zielen ab und lässt sich zu Beginn nicht seriös vorhersagen. Manche Anliegen klären sich in wenigen Monaten, andere brauchen länger. Sie binden sich an keine Mindestdauer und können die Therapie jederzeit beenden. Ich bitte Sie nur, eine Beendigung nach Möglichkeit vorher anzusprechen, damit wir sie gemeinsam gestalten können — ein Abschlussgespräch ist ein wertvoller Teil der Arbeit.</p>",
+        faq5Q: "Wie ist das mit den Kosten und der Krankenkasse?",
+        faq5A: "<p>Bei Psychotherapeut:innen in Ausbildung unter Supervision ist eine Verrechnung mit den gesetzlichen Krankenkassen derzeit nicht möglich. Das Honorar liegt in diesem Ausbildungsabschnitt entsprechend niedriger als bei fertig ausgebildeten Kolleg:innen — die konkrete Höhe besprechen wir im kostenlosen Erstgespräch. Manche private Zusatzversicherungen refundieren bei Krankheitswertigkeit einen Teil. Da ich dafür keine Verantwortung übernehmen kann, klären Sie das bitte vorab direkt mit Ihrer Versicherung und besprechen die Anforderungen mit mir. Nach jeder Einheit erhalten Sie eine Rechnung, die Bezahlung erfolgt per Banküberweisung. Psychotherapie ist umsatzsteuerfrei.</p>",
+        faq8Q: "Was ist der Unterschied zwischen Psychotherapie, klinischer Psychologie und psychiatrischer Behandlung?",
+        faq8A: "<p><strong>Psychotherapeut:innen</strong> behandeln psychisches Leid mit wissenschaftlich anerkannten psychotherapeutischen Verfahren. Die Ausbildung ist mehrjährig und im Psychotherapiegesetz geregelt; sie umfasst neben der Theorie auch eigene Selbsterfahrung. Psychotherapeut:innen stellen im Rahmen ihrer Befugnisse Diagnosen, verschreiben aber keine Medikamente.</p><p><strong>Klinische Psycholog:innen</strong> haben Psychologie studiert und eine postgraduelle Ausbildung absolviert. Ihr Schwerpunkt liegt auf psychologischer Diagnostik mit standardisierten Testverfahren und auf klinisch-psychologischer Behandlung — ebenfalls ohne Medikamente.</p><p><strong>Psychiater:innen</strong> sind Ärzt:innen mit abgeschlossener Facharztausbildung. Sie können körperliche Ursachen abklären, Medikamente verschreiben und Krankenstände ausstellen.</p><p>Die Bereiche schließen einander nicht aus und ergänzen sich oft; manche Personen haben mehrere Qualifikationen. Wenn mir im Lauf unserer Arbeit eine zusätzliche Abklärung sinnvoll erscheint, spreche ich das an und gebe Ihnen gerne Empfehlungen.</p>",
+        faq11Q: "Ist Online-Therapie möglich?",
+        faq11A: "<p>Ja, das ist möglich. Wenn Sie beruflich unterwegs sind, gerade nicht in Wien sind oder ein Termin sonst entfallen müsste, halten wir die Einheit gerne online per Video-Chat ab — auch über mehrere Sitzungen hinweg, wenn Ihre Situation das für eine Weile erfordert. Was im Einzelfall passt, besprechen wir gemeinsam.</p>",
 
         mobileBarCall: "Anrufen",
         mobileBarMail: "E-Mail",
@@ -1822,6 +2069,7 @@
         navOffer: "Services",
         navPraxisraum: "Practice space",
         navAnsatz: "Focus Areas",
+        navFaq: "FAQ",
         navContact: "Contact",
 
         heroEyebrow: "A space for connection, clarity and growth",
@@ -1882,7 +2130,26 @@
         contactMapsLink: "Open in Google Maps ↗",
         contactMapTitle: "Map",
         contactHoursTitle: "Appointments",
-        contactHoursText: "Appointments by arrangement. Feel free to get in touch by phone, text message or email. I look forward to meeting you.",
+        contactHoursText: "Appointments by arrangement. Feel free to get in touch by phone, text message or email.",
+        contactFeeTitle: "Fee",
+        contactFeeText: "By arrangement. The initial consultation is free.",
+
+        faqLabel: "Frequently Asked Questions",
+        faqLead: "Answers to what people most often wonder about before starting psychotherapy. If your question isn't here, please just ask me directly.",
+        faq1Q: "How does the free initial consultation work?",
+        faq1A: "<p>We have 50 minutes for the initial consultation, and it is free and without obligation. You tell me what is on your mind — in as much or as little detail as feels possible for you. I ask questions to understand your concern and explain how I work. At the end we consider together whether working with me seems right for you. You take on no commitment and do not have to decide straight away. If I have the impression that you would be better helped elsewhere, I will say so openly and gladly point you towards other options.</p>",
+        faq2Q: "How do I know whether psychotherapy is right for me?",
+        faq2A: "<p>You need neither a diagnosis nor a particular reason to come. Some people seek psychotherapy because of a clearly defined difficulty, others because something has felt wrong for a long time without their being able to name it. Both are good reasons. Whether it fits is hard to decide in advance — which is exactly what the free initial consultation is for. You can find out, without obligation, how it feels to talk with me.</p>",
+        faq3Q: "How long is a session, and how often do appointments take place?",
+        faq3A: "<p>A session lasts 50 minutes and begins at the agreed time. How often we meet depends on your concern and is something we agree together. A weekly or fortnightly rhythm is common. Appointments are by arrangement.</p>",
+        faq4Q: "How long does psychotherapy take overall?",
+        faq4A: "<p>That depends on your starting point and your goals, and cannot be predicted responsibly at the outset. Some concerns resolve within a few months, others take longer. You commit to no minimum duration and can end the therapy at any time. I only ask that you raise the ending beforehand where possible, so that we can shape it together — a closing session is a valuable part of the work.</p>",
+        faq5Q: "How do costs and health insurance work?",
+        faq5A: "<p>With psychotherapists in training under supervision, billing through the statutory health insurance funds is currently not possible. The fee during this stage of training is accordingly lower than with fully qualified colleagues — we discuss the exact amount in the free initial consultation. Some private supplementary insurers refund part of the cost where there is clinical significance. As I cannot take responsibility for this, please clarify it directly with your insurer in advance and discuss the requirements with me. You receive an invoice after each session; payment is by bank transfer. Psychotherapy is exempt from VAT.</p>",
+        faq8Q: "What is the difference between a psychotherapist, a psychologist and a psychiatrist?",
+        faq8A: "<p><strong>Psychotherapists</strong> treat psychological suffering using scientifically recognised psychotherapeutic methods. The training takes several years and is regulated by the Austrian Psychotherapy Act; alongside theory it includes personal therapy. Psychotherapists make diagnoses within their remit but do not prescribe medication.</p><p><strong>Clinical psychologists</strong> have studied psychology and completed postgraduate training. Their focus is on psychological assessment using standardised testing and on clinical psychological treatment — likewise without medication.</p><p><strong>Psychiatrists</strong> are medical doctors who have completed specialist training. They can investigate physical causes, prescribe medication and issue sick notes.</p><p>These fields do not exclude one another and often complement each other; some practitioners hold more than one qualification. If further assessment seems useful in the course of our work, I will raise it and gladly point you towards other options.</p>",
+        faq11Q: "Is online therapy possible?",
+        faq11A: "<p>Yes, that is possible. If you are travelling for work, are away from Vienna, or an appointment would otherwise have to be dropped, we can gladly hold the session online by video call — including across several sessions, if your circumstances require it for a while. What suits in a given case is something we discuss together.</p>",
 
         mobileBarCall: "Call",
         mobileBarMail: "Email",
@@ -2189,7 +2456,7 @@
 
       var group = L.featureGroup(allMarkers);
       var overviewZoom = Math.min(map.getBoundsZoom(group.getBounds().pad(0.15)), 17);
-      map.setView(coords, overviewZoom + 2);
+      map.setView(coords, overviewZoom + 1);
     })();
   </script>
 </body>
