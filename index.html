@@ -1389,8 +1389,16 @@
 
       .hero-actions {
         order: 4;
-        padding: 1.3rem 1.3rem 2rem;
+        padding: 1.3rem 1.3rem 0;
         margin-top: 0;
+      }
+
+      /* Ohne eigene order landet die Zeile ueber .hero p bei order 3, also
+         oberhalb des Buttons. */
+      p.hero-modality {
+        order: 5;
+        padding: 1.1rem 1.3rem 2rem;
+        margin: 0;
       }
 
       .hero-bg::after {
