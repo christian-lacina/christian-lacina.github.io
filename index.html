@@ -576,6 +576,16 @@
     margin-top: 0.6rem;
     }
 
+    /* Fachrichtung unter dem Hero-Button. Der Abstand ist so gewaehlt, dass die
+       Zeile mittig zwischen Button-Unterkante und Unterkante des Hero-Bildes
+       sitzt. p.hero-modality statt .hero-modality, sonst gewinnt die spaetere
+       Regel .hero p und ueberschreibt Abstand, Groesse und Breite. */
+    p.hero-modality {
+      margin: 2.6rem 0 0;
+      font-size: 1rem;
+      color: var(--text);
+    }
+
     /* Second call to action, only shown on phones (see 640px breakpoint). */
     .section-cta {
       display: none;
@@ -1308,6 +1318,10 @@
       .hero-actions {
         justify-content: center;
       }
+
+      p.hero-modality {
+        text-align: center;
+      }
       
       .about-layout {
         grid-template-columns: 1fr;
@@ -1584,6 +1598,9 @@
           <div class="hero-actions">
             <a href="#contact" class="btn btn-primary" data-i18n="heroBtnPrimary">Kostenloses Erstgespräch anfragen</a>
           </div>
+          <!-- Fachrichtung: bewusst keine Ueberschrift, damit die H1/H2-Hierarchie
+               unberuehrt bleibt. -->
+          <p class="hero-modality" data-i18n="heroModality">Humanistische Therapie · Integrative Gestalttherapie</p>
         </div>
       </div>
 
@@ -1652,7 +1669,7 @@
           <div>
             <h2 class="section-label" data-i18n="offerLabel">Angebot</h2>
             <p class="lead" data-i18n="offerLead">
-              Ich biete Einzeltherapie auf Deutsch und Englisch an. Die therapeutische
+              Ich biete Einzeltherapie für Erwachsene jeden Alters auf Deutsch und Englisch an. Die therapeutische
               Arbeit orientiert sich an Ihrer individuellen Situation, Ihrem Tempo und
               Ihren persönlichen Zielen.
             </p>
@@ -1865,7 +1882,8 @@
           <div>
             <h2 class="section-label" data-i18n="contactLabel">Kontakt &amp; Anfahrt</h2>
             <p class="lead" data-i18n="contactLead">
-              Wenn Sie sich angesprochen fühlen, können Sie mich gerne kontaktieren.
+              Sie können mich gerne kontaktieren — auch dann, wenn Sie noch nicht sicher sind,
+              ob Psychotherapie das Richtige für Sie ist.
               Ich biete ein <strong>kostenloses, unverbindliches Erstgespräch</strong> an, in dem wir Ihr Anliegen besprechen
               und klären können, ob eine Zusammenarbeit für Sie passend ist.
             </p>
@@ -1984,6 +2002,7 @@
         heroH1: "Psychotherapie in Wien – Christian Lacina, MSc",
         heroText: "Ich begleite Menschen in herausfordernden Lebensphasen, bei psychischen Belastungen oder in Zeiten der Neuorientierung.",
         heroBtnPrimary: "Kostenloses Erstgespräch anfragen",
+        heroModality: "Humanistische Therapie · Integrative Gestalttherapie",
 
         aboutLabel: "Willkommen",
         aboutLead: "Mein Name ist Christian Lacina, ich bin Psychotherapeut in Ausbildung unter Supervision und biete Einzeltherapie in Wien in deutscher und englischer Sprache an.",
@@ -1994,7 +2013,7 @@
         aboutQuote: "Bei mir kann alles angesprochen werden. <strong>Muss es aber nicht.</strong> Das Tempo bestimmen Sie.",
 
         offerLabel: "Angebot",
-        offerLead: "Ich biete Einzeltherapie auf Deutsch und Englisch an. Die therapeutische Arbeit orientiert sich an Ihrer individuellen Situation, Ihrem Tempo und Ihren persönlichen Zielen.",
+        offerLead: "Ich biete Einzeltherapie für Erwachsene jeden Alters auf Deutsch und Englisch an. Die therapeutische Arbeit orientiert sich an Ihrer individuellen Situation, Ihrem Tempo und Ihren persönlichen Zielen.",
         offerWorkTitle: "Wie ich arbeite",
         offerWorkText: "Ich arbeite auf Basis der Humanistischen Therapie bzw. Integrativen Gestalttherapie. Wir orientieren uns an dem, was sich im Moment zeigt, gehen in Ihrem Tempo vor und schaffen Raum für neue Erfahrungen. Neben dem Gespräch können auch Körperwahrnehmung, innere Bilder oder kleine Experimente Teil der Arbeit sein. Sprechen Sie etwa über einen ungelösten Konflikt mit einer wichtigen Person, kann ein kleines Experiment darin bestehen, ihr in der Vorstellung noch einmal zu begegnen. Wenn Sie von einer Situation erzählen, die Sie nicht loslässt, kann ein inneres Bild, etwa ein schwerer Rucksack, helfen zu erkunden, was Sie genau belastet.",
         offerGoalsTitle: "Mögliche Ziele von Psychotherapie",
@@ -2024,7 +2043,7 @@
         focus13: "Arbeit mit dem inneren Kind",
 
         contactLabel: "Kontakt & Anfahrt",
-        contactLead: "Wenn Sie sich angesprochen fühlen, können Sie mich gerne kontaktieren. Ich biete ein <strong>kostenloses, unverbindliches Erstgespräch</strong> an, in dem wir Ihr Anliegen besprechen und klären können, ob eine Zusammenarbeit für Sie passend ist.",
+        contactLead: "Sie können mich gerne kontaktieren — auch dann, wenn Sie noch nicht sicher sind, ob Psychotherapie das Richtige für Sie ist. Ich biete ein <strong>kostenloses, unverbindliches Erstgespräch</strong> an, in dem wir Ihr Anliegen besprechen und klären können, ob eine Zusammenarbeit für Sie passend ist.",
         contactAddressTitle: "Adresse",
         contactAddressText: "Praxisgemeinschaft Institut Hara<br>Dürergasse 19, 1060 Wien",
         contactPhoneTitle: "Telefon",
@@ -2080,6 +2099,7 @@
         heroH1: "Psychotherapy in Vienna – Christian Lacina, MSc",
         heroText: "I support people through challenging phases of life, periods of psychological stress, or times of reorientation.",
         heroBtnPrimary: "Request a free initial session",
+        heroModality: "Humanistic Therapy · Integrative Gestalt Therapy",
 
         aboutLabel: "Welcome",
         aboutLead: "My name is Christian Lacina, I am a psychotherapist in training under supervision and offer individual therapy in Vienna in German and English.",
@@ -2090,7 +2110,7 @@
         aboutQuote: "With me, everything can be addressed. <strong>It doesn't have to be, though.</strong> You set the pace.",
 
         offerLabel: "Services",
-        offerLead: "I offer individual therapy in German and English. The therapeutic work is based on your individual situation, your pace, and your personal goals.",
+        offerLead: "I offer individual therapy for adults of all ages in German and English. The therapeutic work is based on your individual situation, your pace, and your personal goals.",
         offerWorkTitle: "How I work",
         offerWorkText: "I work on the basis of humanistic therapy and integrative Gestalt therapy. We follow what shows itself in the moment, proceed at your pace, and create space for new experiences. Alongside conversation, body awareness, inner images or small experiments may also become part of the work. If you talk about an unresolved conflict with someone important to you, one small experiment might be to imagine meeting them again. If you describe a situation that keeps weighing on you, an inner image, such as a heavy backpack, can help explore what exactly is troubling you.",
         offerGoalsTitle: "Possible goals of psychotherapy",
@@ -2120,7 +2140,7 @@
         focus13: "Inner child work",
 
         contactLabel: "Contact & Directions",
-        contactLead: "If this resonates with you, please feel free to get in touch. I offer a <strong>free, no-obligation initial consultation</strong> where we can discuss your concerns and explore whether working together is right for you.",
+        contactLead: "Please feel free to get in touch — even if you are not yet sure whether psychotherapy is right for you. I offer a <strong>free, no-obligation initial consultation</strong> where we can discuss your concerns and explore whether working together is right for you.",
         contactAddressTitle: "Address",
         contactAddressText: "Praxisgemeinschaft Institut Hara<br>Dürergasse 19, 1060 Vienna",
         contactPhoneTitle: "Phone",
