@@ -2200,7 +2200,10 @@
         btn.classList.toggle("active", btn.dataset.lang === lang);
       });
       applyJobTitle(lang);
-      localStorage.setItem("siteLanguage", lang);
+      // Speichern darf fehlschlagen (blockierte Website-Daten) — nicht abbrechen
+      try {
+        localStorage.setItem("siteLanguage", lang);
+      } catch (e) {}
     }
 
     document.querySelectorAll(".lang-btn").forEach(function(btn) {
@@ -2263,9 +2266,25 @@
       });
     })();
 
-    var saved = localStorage.getItem("siteLanguage");
-    if (saved && translations[saved]) {
-      setLanguage(saved);
+    // Sprache festlegen: ?lang= aus der URL hat Vorrang vor der gemerkten
+    // Wahl, damit Links (z. B. aus Anzeigen oder Verzeichnissen) direkt auf
+    // Englisch landen. Ohne Parameter gilt weiterhin die letzte Wahl.
+    var vonUrl = null;
+    try {
+      vonUrl = new URLSearchParams(window.location.search).get("lang");
+    } catch (e) {
+      vonUrl = null;
+    }
+    var gemerkt = null;
+    try {
+      gemerkt = localStorage.getItem("siteLanguage");
+    } catch (e) {
+      gemerkt = null;
+    }
+    if (vonUrl && translations[vonUrl]) {
+      setLanguage(vonUrl);
+    } else if (gemerkt && translations[gemerkt]) {
+      setLanguage(gemerkt);
     }
 
     // Burger menu toggle
