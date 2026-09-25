@@ -2407,10 +2407,9 @@
 
       if (isTouch) map.touchZoom.enable();
 
-      L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png", {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-        subdomains: "abcd",
-        maxZoom: 20
+      L.tileLayer("https://mapsneu.wien.gv.at/basemap/geolandbasemap/normal/google3857/{z}/{y}/{x}.png", {
+        attribution: 'Datenquelle: <a href="https://www.basemap.at">basemap.at</a>',
+        maxZoom: 19
       }).addTo(map);
 
       var practiceMarker = L.marker(coords).addTo(map)
