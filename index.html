@@ -1137,11 +1137,11 @@
     }
 
     .transit-u3 strong {
-      background: #c9884a;
+      background: #e07b1a;
     }
 
     .transit-u4 strong {
-      background: var(--accent-dark);
+      background: #45a150;
     }
 
     .bus-line-group {
@@ -1151,7 +1151,7 @@
       height: 1.7rem;
       padding: 0 0.65rem;
       border-radius: 999px;
-      background: #b25a4a;
+      background: #be3128;
       color: #fff;
       font-size: 0.78rem;
       font-weight: 700;
@@ -2416,10 +2416,10 @@
         .bindPopup("Institut Hara<br>Dürergasse 19, 1060 Wien");
 
       var LINE_COLORS = {
-        U1: "#a8443d",
+        U1: "#d2372c",
         U2: "#8b6a99",
-        U3: "#c9884a",
-        U4: "#7f927a",
+        U3: "#e07b1a",
+        U4: "#45a150",
         U6: "#9c7a4a"
       };
 
@@ -2456,10 +2456,10 @@
       }
 
       var subwayStops = [
-        { name: "Neubaugasse", line: "U3", coords: [48.1993161, 16.3526723], color: "#c9884a" },
-        { name: "Kettenbrückengasse", line: "U4", coords: [48.1966267, 16.3580609], color: "#7f927a" },
-        { name: "Pilgramgasse", line: "U4", coords: [48.1921283, 16.3542814], color: "#7f927a" },
-        { name: "Zieglergasse", line: "U3", coords: [48.1971450, 16.3462979], color: "#c9884a" }
+        { name: "Neubaugasse", line: "U3", coords: [48.1993161, 16.3526723], color: "#e07b1a" },
+        { name: "Kettenbrückengasse", line: "U4", coords: [48.1966267, 16.3580609], color: "#45a150" },
+        { name: "Pilgramgasse", line: "U4", coords: [48.1921283, 16.3542814], color: "#45a150" },
+        { name: "Zieglergasse", line: "U3", coords: [48.1971450, 16.3462979], color: "#e07b1a" }
       ];
 
       var busStops = [
@@ -2493,7 +2493,7 @@
           radius: 7,
           color: "#fff",
           weight: 2,
-          fillColor: "#b25a4a",
+          fillColor: "#be3128",
           fillOpacity: 1
         }).addTo(map).bindPopup("Bus " + stop.lines + "<br>" + stop.name);
         allMarkers.push(marker);
