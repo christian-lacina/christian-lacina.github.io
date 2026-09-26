@@ -1752,7 +1752,7 @@
               <article class="card">
                 <h3 data-i18n="aboutCard3Title">Über mich</h3>
                 <p data-i18n="aboutCard3Text">
-                  Ich bin 1987 in Wien geboren, lebe in Partnerschaft und arbeite in Wien.
+                  Ich bin <span class="age">39</span> Jahre alt, in Wien geboren, lebe in Partnerschaft und arbeite hier.
                   Was mich zur Psychotherapie geführt hat: eigene Lebenserfahrungen und
                   Herausforderungen und die Erkenntnis, dass Veränderung möglich ist. Diese Erfahrung
                   prägt, wie ich Menschen begleite – mit Verständnis für die Schwierigkeiten und
@@ -2062,7 +2062,7 @@
         aboutCard1Title: "Begleitung in herausfordernden Zeiten",
         aboutCard1Text: "Sie befinden sich in einer herausfordernden Lebensphase, sind psychisch belastet oder suchen nach Neuorientierung. Ich biete Ihnen Begleitung an: Gemeinsam suchen wir nach Lösungen und neuen Perspektiven – ganz gleich, ob sich der Wunsch nach Veränderung schon konkret zeigt oder eher als diffuses Gefühl, dass etwas nicht mehr stimmig ist. Dabei ist mir eine Begegnung auf Augenhöhe wichtig: Ich begegne Ihnen mit Offenheit, Wertschätzung und Interesse an Ihrer Lebens&shy;geschichte.",
         aboutCard3Title: "Über mich",
-        aboutCard3Text: "Ich bin 1987 in Wien geboren, lebe in Partnerschaft und arbeite in Wien. Was mich zur Psychotherapie geführt hat: eigene Lebenserfahrungen und Herausforderungen und die Erkenntnis, dass Veränderung möglich ist. Diese Erfahrung prägt, wie ich Menschen begleite – mit Verständnis für die Schwierigkeiten und gleichzeitigem Interesse an der Entwicklung. An der Psychotherapie schätze ich den ehrlichen, unmittelbaren Austausch und das Erleben, als Mensch vollständig angenommen zu werden.",
+        aboutCard3Text: "Ich bin <span class=\"age\">39</span> Jahre alt, in Wien geboren, lebe in Partnerschaft und arbeite hier. Was mich zur Psychotherapie geführt hat: eigene Lebenserfahrungen und Herausforderungen und die Erkenntnis, dass Veränderung möglich ist. Diese Erfahrung prägt, wie ich Menschen begleite – mit Verständnis für die Schwierigkeiten und gleichzeitigem Interesse an der Entwicklung. An der Psychotherapie schätze ich den ehrlichen, unmittelbaren Austausch und das Erleben, als Mensch vollständig angenommen zu werden.",
         aboutQuote: "Bei mir kann alles angesprochen werden. <strong>Muss es aber nicht.</strong> Das Tempo bestimmen Sie.",
 
         offerLabel: "Angebot",
@@ -2157,7 +2157,7 @@
         aboutCard1Title: "Support through challenging times",
         aboutCard1Text: "You may be going through a challenging phase of life, experiencing psychological distress, or looking for reorientation. I offer you support: together we look for solutions and new perspectives – whether the desire for change is already concrete or more of a diffuse feeling that something is no longer right. A respectful, equal encounter is important to me: I meet you with openness, appreciation and interest in your life story.",
         aboutCard3Title: "About me",
-        aboutCard3Text: "I was born in Vienna in 1987, live in a relationship and work in Vienna. What led me to psychotherapy: my own life experiences and challenges, and the realisation that change is possible. This shapes how I accompany people – with understanding for the difficulties and an equal interest in growth. What I value about psychotherapy is honest, direct exchange and the experience of being fully accepted as a person.",
+        aboutCard3Text: "I am <span class=\"age\">39</span> years old, born in Vienna, live in a relationship and work here. What led me to psychotherapy: my own life experiences and challenges, and the realisation that change is possible. This shapes how I accompany people – with understanding for the difficulties and an equal interest in growth. What I value about psychotherapy is honest, direct exchange and the experience of being fully accepted as a person.",
         aboutQuote: "With me, everything can be addressed. <strong>It doesn't have to be, though.</strong> You set the pace.",
 
         offerLabel: "Services",
@@ -2229,6 +2229,16 @@
       }
     };
 
+    // Alter aus dem Geburtsdatum (28.05.1987) berechnen, wechselt jährlich am Geburtstag
+    function updateAge() {
+      var heute = new Date();
+      var alter = heute.getFullYear() - 1987;
+      if (heute.getMonth() < 4 || (heute.getMonth() === 4 && heute.getDate() < 28)) alter--;
+      document.querySelectorAll(".age").forEach(function(el) {
+        el.textContent = alter;
+      });
+    }
+
     function setLanguage(lang) {
       document.documentElement.lang = lang;
       document.querySelectorAll("[data-i18n]").forEach(function(el) {
@@ -2241,6 +2251,7 @@
         btn.classList.toggle("active", btn.dataset.lang === lang);
       });
       applyJobTitle(lang);
+      updateAge();
       // Speichern darf fehlschlagen (blockierte Website-Daten) — nicht abbrechen
       try {
         localStorage.setItem("siteLanguage", lang);
@@ -2327,6 +2338,8 @@
     } else if (gemerkt && translations[gemerkt]) {
       setLanguage(gemerkt);
     }
+    // Auch ohne Sprachwechsel das aktuelle Alter setzen
+    updateAge();
 
     // Burger menu toggle
     var burgerBtn = document.getElementById("burgerBtn");
