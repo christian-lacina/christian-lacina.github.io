@@ -1391,7 +1391,7 @@
         order: 2;
       }
 
-      /* Stack the hero as: logo → photo → text → button.
+      /* Stack the hero as: logo → photo → text → modality → button.
          display:contents flattens the wrappers so all four can be ordered. */
       .hero {
         display: flex;
@@ -1428,18 +1428,18 @@
         text-wrap: balance;
       }
 
-      .hero-actions {
+      /* Mobil steht die Fachrichtung zwischen Text und Button. Eigene order
+         noetig, sonst greift die von .hero p (order 3). */
+      p.hero-modality {
         order: 4;
-        padding: 1.3rem 1.3rem 0;
-        margin-top: 0;
+        padding: 1.1rem 1.3rem 0;
+        margin: 0;
       }
 
-      /* Ohne eigene order landet die Zeile ueber .hero p bei order 3, also
-         oberhalb des Buttons. */
-      p.hero-modality {
+      .hero-actions {
         order: 5;
-        padding: 1.1rem 1.3rem 2rem;
-        margin: 0;
+        padding: 1.3rem 1.3rem 2rem;
+        margin-top: 0;
       }
 
       .hero-bg::after {
