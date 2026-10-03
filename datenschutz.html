@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Datenschutzerklärung – Psychotherapie Wien</title>
+  <meta name="robots" content="noindex, nofollow" />
+
+  <!-- Symbol im Browser-Tab und auf dem iOS-Homescreen; erzeugt von tools/favicon.py -->
+  <link rel="icon" href="favicon.ico" sizes="any" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+
+  <style>
+    :root {
+      --bg: #f6f3ed;
+      --card: rgba(255,255,255,0.72);
+      --text: #2f2c28;
+      --muted: #6c675f;
+      --line: #d7d0c4;
+      --accent: #9cad97;
+      --accent-dark: #7f927a;
+      --accent-soft: #dfe7dc;
+      --shadow: 0 10px 35px rgba(47, 44, 40, 0.08);
+      --radius: 24px;
+      --max-width: 780px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(156, 173, 151, 0.14), transparent 30%),
+        linear-gradient(180deg, #f8f6f1 0%, #f4f1ea 100%);
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    a { color: var(--accent-dark); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(14px);
+      background: rgba(246, 243, 237, 0.82);
+      border-bottom: 1px solid rgba(215, 208, 196, 0.8);
+    }
+
+    .header-inner {
+      width: min(calc(100% - 2rem), 1180px);
+      margin: 0 auto;
+      min-height: 84px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand-logo {
+      height: 52px;
+      width: auto;
+      border-radius: 10px;
+      object-fit: contain;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.6rem 1rem;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.7);
+      font-size: 0.9rem;
+      color: var(--text);
+      transition: 0.2s ease;
+    }
+
+    .back-link:hover {
+      background: var(--accent-soft);
+      text-decoration: none;
+      transform: translateX(-2px);
+    }
+
+    .page-wrap {
+      width: min(calc(100% - 2rem), var(--max-width));
+      margin: 3rem auto 5rem;
+    }
+
+    .page-label {
+      color: var(--accent-dark);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.78rem;
+      margin-bottom: 0.4rem;
+    }
+
+    h1 {
+      margin: 0 0 0.3rem;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.05;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      margin: 0 0 2.5rem;
+      font-size: 0.95rem;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,0.65);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 2rem 2.2rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .card h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.15rem;
+      margin: 0 0 1rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid var(--line);
+      color: var(--text);
+    }
+
+    .card h3 {
+      font-size: 0.98rem;
+      margin: 1.2rem 0 0.5rem;
+      color: var(--text);
+    }
+
+    .card p, .card li {
+      color: var(--muted);
+      margin: 0 0 0.6rem;
+      font-size: 0.97rem;
+    }
+
+    .card ul {
+      margin: 0 0 0.6rem;
+      padding-left: 1.4rem;
+    }
+
+    .card li { margin-bottom: 0.3rem; }
+
+    .placeholder {
+      background: rgba(156, 173, 151, 0.18);
+      border: 1px dashed var(--accent);
+      border-radius: 6px;
+      padding: 0.1rem 0.45rem;
+      font-style: italic;
+      color: var(--accent-dark);
+      font-size: 0.93em;
+    }
+
+    .notice {
+      background: rgba(156, 173, 151, 0.12);
+      border-left: 3px solid var(--accent);
+      border-radius: 12px;
+      padding: 1rem 1.2rem;
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-bottom: 2rem;
+    }
+
+    .footer {
+      border-top: 1px solid var(--line);
+      padding: 1.5rem 0 3rem;
+      color: var(--muted);
+      font-size: 0.88rem;
+      text-align: center;
+    }
+
+    @media (max-width: 640px) {
+      .header-inner {
+        min-height: 68px;
+        padding: 0.6rem 0;
+      }
+
+      .brand-logo {
+        height: 42px;
+      }
+
+      .back-link {
+        font-size: 0.82rem;
+        padding: 0.5rem 0.8rem;
+      }
+
+      .page-wrap {
+        margin: 1.8rem auto 4rem;
+      }
+
+      h1 {
+        font-size: clamp(1.6rem, 8vw, 2.2rem);
+      }
+
+      .subtitle {
+        font-size: 0.88rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .card {
+        padding: 1.2rem 1rem;
+        border-radius: 16px;
+      }
+
+      .card h2 {
+        font-size: 1.05rem;
+      }
+
+      .card p, .card li {
+        font-size: 0.93rem;
+      }
+
+      .notice {
+        font-size: 0.84rem;
+        padding: 0.8rem 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" aria-label="Zurück zur Startseite">
+        <img src="logo-header.svg" alt="Christian Lacina" class="brand-logo" />
+      </a>
+      <a href="index.html" class="back-link">
+        ← Zurück zur Website
+      </a>
+    </div>
+  </header>
+
+  <main class="page-wrap">
+
+    <div class="page-label">Rechtliches</div>
+    <h1>Datenschutzerklärung</h1>
+    <p class="subtitle">Informationen zur Verarbeitung personenbezogener Daten gemäß Art. 13 DSGVO</p>
+
+    <!-- VERANTWORTLICHER -->
+    <div class="card">
+      <h2>1. Verantwortlicher für die Datenverarbeitung</h2>
+      <p>
+        Verantwortlicher gemäß Art. 4 Z 7 Datenschutz-Grundverordnung (DSGVO) für die
+        Datenverarbeitung auf dieser Website ist:
+      </p>
+      <p>
+        <strong>Name:</strong> Christian Lacina<br />
+        <strong>Adresse:</strong> Dürergasse 19, 1060 Wien, Österreich (Praxisgemeinschaft Institut Hara)<br />
+        <strong>Telefon:</strong> <a href="tel:+436643845744">+43 664 3845744</a><br />
+        <strong>E-Mail:</strong> <a href="mailto:praxis@christian-lacina.at">praxis@christian-lacina.at</a>
+      </p>
+      <p>
+        Nähere Angaben finden Sie im <a href="impressum.html">Impressum</a>.
+      </p>
+    </div>
+
+    <!-- DATENSCHUTZBEAUFTRAGTER -->
+    <div class="card">
+      <h2>2. Datenschutzbeauftragte:r</h2>
+      <p>
+        Als Einzelpraxis besteht keine gesetzliche Pflicht zur Bestellung einer/eines
+        Datenschutzbeauftragten gemäß Art. 37 DSGVO. Anfragen zum Datenschutz richten Sie
+        bitte direkt an die oben genannte verantwortliche Person.
+      </p>
+    </div>
+
+    <!-- ZWECK UND RECHTSGRUNDLAGE -->
+    <div class="card">
+      <h2>3. Zweck und Rechtsgrundlage der Datenverarbeitung</h2>
+      <p>
+        Personenbezogene Daten werden im Zusammenhang mit dem Betrieb dieser Website
+        ausschließlich zu folgenden Zwecken verarbeitet:
+      </p>
+      <ul>
+        <li>Bereitstellung und technisch einwandfreie Auslieferung der Website – also damit die Website überhaupt funktioniert und sicher bleibt (Art. 6 Abs. 1 lit. f DSGVO – berechtigtes Interesse)</li>
+        <li>Beantwortung von Kontaktanfragen per E-Mail oder Telefon – also zur Bearbeitung Ihres Anliegens (Art. 6 Abs. 1 lit. b DSGVO – vorvertragliche Maßnahmen, d. h. die Anbahnung eines möglichen Behandlungsverhältnisses)</li>
+        <li>Bereitstellung von Online-Übungswerkzeugen für Klient:innen im Rahmen einer laufenden Behandlung, wobei Ihre Eingaben ausschließlich auf Ihrem Gerät verbleiben (Art. 6 Abs. 1 lit. b DSGVO; Näheres in Punkt 8)</li>
+        <li>Statistische Auswertung der Nutzung der Startseite in zusammengefasster Form – also um zu erkennen, wie die Website gefunden und genutzt wird (Art. 6 Abs. 1 lit. f DSGVO – berechtigtes Interesse; Näheres in Punkt 7)</li>
+      </ul>
+      <p>
+        Eine über diese Zwecke hinausgehende Verwendung findet nicht statt.
+      </p>
+      <p>
+        Diese Erklärung deckt die Nutzung dieser Website ab; für die Verarbeitung von
+        Klient:innendaten im Rahmen der Behandlung (z. B. Dokumentation, Terminvereinbarung)
+        gelten die berufsrechtlichen Verschwiegenheits- und Dokumentationspflichten nach dem
+        Psychotherapiegesetz.
+      </p>
+      <p>
+        Im Rahmen eines späteren psychotherapeutischen Behandlungsverhältnisses können
+        Gesundheitsdaten gemäß Art. 9 DSGVO verarbeitet werden. Diese Verarbeitung erfolgt
+        ausschließlich im gesetzlich zulässigen Umfang sowie unter Beachtung der
+        berufsrechtlichen Verschwiegenheits- und Dokumentationspflichten. Über die Einzelheiten
+        werden Sie zu Beginn einer Behandlung gesondert informiert.
+      </p>
+    </div>
+
+    <!-- HOSTING / SERVER-LOGFILES -->
+    <div class="card">
+      <h2>4. Bereitstellung der Website und Server-Logfiles</h2>
+      <p>
+        Diese Website wird als statische Website über den Dienst <strong>GitHub Pages</strong>
+        bereitgestellt. Anbieter ist die <strong>GitHub, Inc.</strong>,
+        88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA, ein Unternehmen der
+        Microsoft-Unternehmensgruppe.
+      </p>
+      <p>
+        Beim Aufruf der Website erhebt der Hosting-Anbieter automatisch technische
+        Verbindungsdaten – sogenannte Server-Logfiles, also Protokolldateien, die jeder
+        Webserver beim Abruf einer Seite anlegt. Dazu zählen
+        insbesondere IP-Adresse, Datum und Uhrzeit des Zugriffs, aufgerufene Seite,
+        verwendeter Browser und Betriebssystem sowie die zuvor besuchte Seite (Referrer-URL).
+        Diese Daten sind technisch notwendig, um die Website auszuliefern und die
+        Betriebssicherheit zu gewährleisten (Art. 6 Abs. 1 lit. f DSGVO), und werden von mir
+        nicht mit anderen Datenquellen zusammengeführt. Ich werte diese Server-Logfiles nicht
+        aus und führe sie nicht mit anderen Daten zusammen; die Verarbeitung erfolgt durch
+        GitHub im Rahmen der technischen Bereitstellung.
+      </p>
+      <p>
+        <strong>Datenübermittlung in ein Drittland:</strong> Die Auslieferung der Website
+        erfolgt über ein weltweites Servernetz (Content Delivery Network). Dabei kann es zu
+        einer Übermittlung personenbezogener Daten – insbesondere Ihrer IP-Adresse – in die
+        USA und andere Drittstaaten kommen. Grundlage der Übermittlung sind die von GitHub
+        verwendeten Standardvertragsklauseln der Europäischen Kommission gemäß
+        Art. 46 Abs. 2 lit. c DSGVO – das sind von der EU vorgegebene Vertragstexte, mit denen
+        sich ein Anbieter außerhalb Europas zur Einhaltung europäischer Datenschutzstandards
+        verpflichtet. GitHub gibt darüber hinaus an, ergänzende technische und
+        organisatorische Maßnahmen zum Schutz personenbezogener Daten einzusetzen. Trotz dieser
+        Garantien kann nicht vollständig ausgeschlossen werden, dass US-Behörden auf
+        diese Daten zugreifen.
+      </p>
+      <p>
+        GitHub verarbeitet personenbezogene Daten im Zusammenhang mit der technischen
+        Bereitstellung dieser Website nach seinen eigenen Datenschutzbestimmungen. Soweit
+        GitHub dabei als Auftragsverarbeiter tätig wird – also Daten weisungsgebunden für mich
+        verarbeitet –, erfolgt die Verarbeitung auf Grundlage
+        der hierfür vorgesehenen vertraglichen Regelungen gemäß Art. 28 DSGVO. Nähere
+        Informationen zur Datenverarbeitung durch GitHub finden Sie in der Datenschutzerklärung
+        von GitHub unter
+        <a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement" rel="noopener noreferrer" target="_blank">docs.github.com</a>
+        sowie in den Hinweisen zu GitHub Pages unter
+        <a href="https://docs.github.com/pages/getting-started-with-github-pages/what-is-github-pages#data-collection" rel="noopener noreferrer" target="_blank">docs.github.com/pages</a>.
+      </p>
+      <p>
+        <strong>Speicherdauer der Server-Logfiles:</strong> GitHub veröffentlicht keine
+        konkrete Speicherdauer für Server-Logfiles. Nach den Datenschutzinformationen des
+        Anbieters werden personenbezogene Daten grundsätzlich nur so lange gespeichert, wie
+        dies für den jeweiligen Verarbeitungszweck erforderlich ist.
+      </p>
+    </div>
+
+    <!-- KONTAKTAUFNAHME -->
+    <div class="card">
+      <h2>5. Kontaktaufnahme per E-Mail oder Telefon</h2>
+      <p>
+        Wenn Sie per E-Mail oder Telefon mit mir Kontakt aufnehmen, werden die von Ihnen
+        mitgeteilten Daten (z. B. Name, Kontaktdaten, Inhalt Ihrer Anfrage) ausschließlich
+        zur Bearbeitung Ihres Anliegens gespeichert und verarbeitet. Diese Daten gebe ich
+        ohne Ihre Einwilligung nicht an Dritte weiter. Selbstverständlich unterliegen alle
+        Inhalte Ihrer Anfrage der psychotherapeutischen Verschwiegenheitspflicht.
+      </p>
+      <p>
+        <strong>Hinweis zu sensiblen Daten:</strong> Bitte übermitteln Sie per unverschlüsselter
+        E-Mail möglichst keine ausführlichen Angaben zu Ihrem Gesundheitszustand oder anderen
+        besonders sensiblen personenbezogenen Daten (Art. 9 DSGVO). Für eine erste
+        Kontaktaufnahme genügen Ihr Name, Ihre Kontaktdaten und ein kurzer Hinweis auf Ihr
+        Anliegen. Sollten für Ihre Anfrage nähere Angaben erforderlich sein, bespreche ich
+        mit Ihnen einen geeigneten, sicheren Kommunikationsweg.
+      </p>
+    </div>
+
+    <!-- COOKIES / LOCAL STORAGE -->
+    <div class="card">
+      <h2>6. Cookies und lokale Speicherung</h2>
+      <p>
+        Diese Website verwendet keine Cookies zu Tracking-, Analyse- oder Marketingzwecken.
+        Lokal in Ihrem Browser gespeichert werden lediglich Ihre Sprachauswahl sowie, bei
+        Nutzung der Übungswerkzeuge, eine vorübergehende Markierung über den bereits
+        eingegebenen Zugangscode.
+      </p>
+      <p>
+        Ihre gewählte Sprachpräferenz wird über die sogenannte <em>lokale Speicherung</em>
+        (Local Storage) direkt in Ihrem Browser gespeichert, damit die Website bei einem
+        erneuten Besuch in der zuletzt gewählten Sprache angezeigt wird. Diese Information
+        verbleibt ausschließlich auf Ihrem Endgerät und wird nicht an mich oder Dritte
+        übertragen. Sie können diese Daten jederzeit über die Einstellungen Ihres Browsers
+        löschen.
+      </p>
+      <p>
+        Bei Nutzung der Online-Übungswerkzeuge wird im <em>Session Storage</em> Ihres Browsers
+        vermerkt, dass der Zugangscode eingegeben wurde (siehe Punkt 8). Diese Information wird
+        beim Schließen des Browser-Tabs automatisch gelöscht und nicht übertragen.
+      </p>
+    </div>
+
+    <!-- TRACKING / DRITTANBIETER -->
+    <div class="card">
+      <h2>7. Analyse-Tools, Tracking und eingebundene Drittanbieter-Inhalte</h2>
+      <p>
+        Auf dieser Website werden <strong>keine</strong> Social-Media-Plugins, keine
+        Werbenetzwerke, keine eingebetteten Videodienste und keine von fremden Servern
+        geladenen Schriftarten (z. B. Google Fonts) verwendet.
+      </p>
+      <p>
+        <strong>Reichweitenmessung mit GoatCounter:</strong> Zur statistischen Auswertung
+        der Websitenutzung setze ich auf der <strong>Startseite</strong> den Dienst
+        GoatCounter ein, betrieben von Martin Tournoij, Republik Irland. Die übrigen Seiten
+        – darunter auch diese Datenschutzerklärung – werden nicht ausgewertet. GoatCounter
+        arbeitet ohne Cookies und ohne Wiedererkennung über einzelne Besuche hinaus. Erfasst
+        werden die aufgerufene Seite, die zuvor besuchte Seite (Referrer), Browser,
+        Betriebssystem, Bildschirmgröße sowie ein aus der IP-Adresse abgeleitetes Herkunftsland.
+      </p>
+      <p>
+        Ihre IP-Adresse und Ihre Browserkennung werden dabei ausschließlich kurzzeitig
+        verarbeitet und <strong>nicht gespeichert</strong>. Aus diesen Angaben wird ein
+        nicht rückrechenbarer Zufallswert gebildet, der lediglich für maximal acht Stunden
+        im Arbeitsspeicher gehalten und nicht in die Datenbank übernommen wird; er dient
+        allein dazu, wiederholte Aufrufe innerhalb eines Besuchs nicht mehrfach zu zählen.
+        Gespeichert werden ausschließlich zusammengefasste Zahlenwerte, aus denen sich weder
+        einzelne Personen noch Besuchsverläufe ableiten lassen.
+      </p>
+      <p>
+        Die Verarbeitung erfolgt auf Servern der Hetzner Online GmbH in Deutschland und
+        Finnland und damit innerhalb der EU; eine Übermittlung in Drittländer findet nicht
+        statt. Die Daten werden nach 365 Tagen gelöscht, in Sicherungskopien können sie für
+        bis zu 30 Tage darüber hinaus erhalten bleiben. Rechtsgrundlage ist mein berechtigtes
+        Interesse an einer bedarfsgerechten Gestaltung dieser Website (Art. 6 Abs. 1 lit. f
+        DSGVO). Sie haben das Recht, dieser Verarbeitung jederzeit zu widersprechen
+        (Art. 21 DSGVO); dafür genügt eine formlose Nachricht an die in Punkt 1 genannte
+        Adresse. Nähere Informationen zum Dienst finden Sie unter
+        <a href="https://www.goatcounter.com/help/privacy" rel="noopener noreferrer" target="_blank">goatcounter.com/help/privacy</a>.
+      </p>
+      <p>
+        <strong>Eingebettete Karte (Anfahrt):</strong> Im Bereich „Anfahrt“ ist eine
+        interaktive Karte eingebettet. Die dafür nötige Kartensoftware (Leaflet) wird gemeinsam mit
+        dieser Website ausgeliefert, es werden dabei keine Daten an Dritte übertragen.
+        Die Kartenausschnitte selbst (sogenannte Kartenkacheln, also die Bildausschnitte mit
+        Straßen und Gebäuden) werden jedoch von <strong>basemap.at</strong>
+        (<a href="https://www.basemap.at" rel="noopener noreferrer" target="_blank">basemap.at</a>)
+        geladen, der Verwaltungsgrundkarte Österreichs, die von den österreichischen
+        Bundesländern gemeinsam mit weiteren Partnern der Verwaltung betrieben wird.
+        Die Kartenkacheln werden von Servern der Stadt Wien (mapsneu.wien.gv.at) ausgeliefert.
+      </p>
+      <p>
+        Beim Aufruf der Startseite baut Ihr Browser daher automatisch eine Verbindung zu den
+        Servern von basemap.at auf. Dabei wird Ihre IP-Adresse an den Betreiber übermittelt; technisch ist
+        das erforderlich, damit die Kartenausschnitte an Ihren Browser ausgeliefert werden
+        können. Die Server befinden sich in Österreich; eine Übermittlung in Länder außerhalb
+        der EU/des EWR findet dabei nicht statt. Rechtsgrundlage ist mein berechtigtes
+        Interesse an einer verständlichen Darstellung des Praxisstandorts
+        (Art. 6 Abs. 1 lit. f DSGVO). Auf den Umfang der Datenverarbeitung durch den Betreiber
+        habe ich keinen Einfluss; Näheres entnehmen Sie bitte den Datenschutzinformationen
+        von basemap.at.
+      </p>
+      <p>
+        Wenn Sie diese Verbindung vermeiden möchten, können Sie den Praxisstandort auch über
+        die im Kontaktbereich angegebene Adresse oder über einen von Ihnen selbst gewählten
+        Kartendienst aufrufen. Die Karte setzt keine Cookies und dient ausschließlich der
+        Standortdarstellung – es findet keine Auswertung Ihres Nutzungsverhaltens statt.
+      </p>
+      <p>
+        Sollten künftig weitere Dienste eingebunden werden, wird diese Datenschutzerklärung
+        entsprechend aktualisiert und – soweit erforderlich – vorab Ihre Einwilligung eingeholt.
+      </p>
+    </div>
+
+    <!-- ÜBUNGSWERKZEUGE -->
+    <div class="card">
+      <h2>8. Online-Übungswerkzeuge für Klient:innen</h2>
+      <p>
+        Im Rahmen einer laufenden Behandlung stelle ich auf dieser Website einzelne
+        Übungswerkzeuge zur Verfügung, etwa geführte Übungen zur Selbstwahrnehmung oder zur
+        Nachbereitung einer Sitzung. Diese Seiten sind nicht öffentlich verlinkt, werden nur
+        Klient:innen persönlich zugänglich gemacht und sind durch einen Zugangscode geschützt.
+      </p>
+      <p>
+        <strong>Ihre Eingaben verlassen Ihr Gerät nicht.</strong> Alles, was Sie in diese
+        Übungen eingeben, wird ausschließlich im Arbeitsspeicher Ihres Browsers verarbeitet.
+        Die Eingaben werden weder an mich noch an Dritte übertragen, nicht auf einem Server
+        gespeichert und auch nicht dauerhaft auf Ihrem Gerät abgelegt. Beim Neuladen oder
+        Schließen der Seite werden sie vollständig gelöscht. Ich erhalte von Ihren Eingaben
+        keine Kenntnis; eine Verarbeitung dieser Inhalte durch mich – einschließlich
+        Gesundheitsdaten im Sinne von Art. 9 DSGVO – findet daher nicht statt.
+      </p>
+      <p>
+        <strong>PDF-Zusammenfassung:</strong> Einige Übungen bieten an, die eigenen Eingaben
+        als PDF-Datei herunterzuladen. Die Datei wird direkt in Ihrem Browser erzeugt; dabei
+        wird nichts übertragen. Ob Sie die Datei speichern, ausdrucken oder weitergeben,
+        entscheiden Sie selbst. Wenn Sie die Zusammenfassung zu einer Sitzung mitbringen oder
+        mir zusenden möchten, beachten Sie bitte den Hinweis zu unverschlüsselten E-Mails in
+        Punkt 5. Die Mitnahme in ausgedruckter Form oder auf Ihrem eigenen Gerät ist die
+        sicherste Variante.
+      </p>
+      <p>
+        <strong>Zugangscode:</strong> Der Zugangscode dient als Sichtschutz, damit die Übungen
+        nicht zufällig aufgerufen werden. Nach der Eingabe wird für die Dauer des geöffneten
+        Browser-Tabs im sogenannten <em>Session Storage</em> vermerkt, dass der Code bereits
+        eingegeben wurde, damit Sie ihn beim Wechsel zwischen den Übungen nicht erneut eingeben
+        müssen. Gespeichert wird dabei nur diese Markierung – weder Ihre Eingaben noch sonstige
+        Angaben zu Ihrer Person. Die Markierung wird beim Schließen des Tabs automatisch gelöscht.
+      </p>
+      <p>
+        <strong>Bereitstellung und Reichweitenmessung:</strong> Die Übungswerkzeuge werden wie
+        die übrige Website über GitHub Pages ausgeliefert; beim Aufruf fallen daher die in
+        Punkt 4 beschriebenen Server-Logfiles an. Eine Reichweitenmessung (GoatCounter oder ein
+        anderer Analysedienst) findet auf diesen Seiten nicht statt, und es werden keine Inhalte
+        von fremden Servern geladen.
+      </p>
+      <p>
+        <strong>Rechtsgrundlage:</strong> Die Bereitstellung der Übungswerkzeuge erfolgt im
+        Rahmen des Behandlungsverhältnisses (Art. 6 Abs. 1 lit. b DSGVO), die technische
+        Auslieferung auf Grundlage meines berechtigten Interesses an einem sicheren Betrieb
+        (Art. 6 Abs. 1 lit. f DSGVO).
+      </p>
+      <p>
+        <strong>Hinweis für gemeinsam genutzte Geräte:</strong> Wenn andere Personen Zugang zu
+        Ihrem Gerät haben, empfehle ich, den Browser-Tab nach der Übung zu schließen und
+        heruntergeladene PDF-Dateien an einem geschützten Ort abzulegen.
+      </p>
+    </div>
+
+    <!-- EMPFÄNGER -->
+    <div class="card">
+      <h2>9. Empfänger der Daten</h2>
+      <p>
+        Zugriff auf die im Rahmen des Website-Betriebs anfallenden Daten haben im technisch
+        notwendigen Ausmaß der in Punkt 4 genannte Hosting-Anbieter, der in Punkt 7 genannte
+        Anbieter der Reichweitenmessung sowie – beim Laden der eingebetteten Karte – der
+        ebenfalls in Punkt 7 genannte Kartenanbieter. Eine Weitergabe an weitere Dritte
+        erfolgt nicht, es sei denn, ich bin gesetzlich dazu verpflichtet. Ihre Eingaben in den
+        Online-Übungswerkzeugen werden an niemanden übermittelt, auch nicht an mich
+        (siehe Punkt 8).
+      </p>
+    </div>
+
+    <!-- SPEICHERDAUER -->
+    <div class="card">
+      <h2>10. Speicherdauer</h2>
+      <p>
+        Server-Logfiles werden vom Hosting-Anbieter nach dessen Vorgaben gelöscht bzw.
+        rotiert (siehe Punkt 4). Die Daten der Reichweitenmessung werden nach 365 Tagen
+        gelöscht (siehe Punkt 7). Daten aus
+        Kontaktanfragen werden gelöscht, sobald sie für die Bearbeitung Ihres Anliegens nicht
+        mehr erforderlich sind, spätestens jedoch nach Abschluss der damit verbundenen
+        Korrespondenz, sofern keine gesetzlichen Aufbewahrungspflichten entgegenstehen.
+        Eingaben in den Online-Übungswerkzeugen werden nicht gespeichert; sie bestehen nur,
+        solange die Seite in Ihrem Browser geöffnet ist.
+      </p>
+    </div>
+
+    <!-- BETROFFENENRECHTE -->
+    <div class="card">
+      <h2>11. Ihre Rechte als betroffene Person</h2>
+      <p>Ihnen stehen hinsichtlich Ihrer personenbezogenen Daten folgende Rechte zu:</p>
+      <ul>
+        <li>Recht auf Auskunft (Art. 15 DSGVO)</li>
+        <li>Recht auf Berichtigung (Art. 16 DSGVO)</li>
+        <li>Recht auf Löschung (Art. 17 DSGVO)</li>
+        <li>Recht auf Einschränkung der Verarbeitung (Art. 18 DSGVO)</li>
+        <li>Recht auf Datenübertragbarkeit (Art. 20 DSGVO)</li>
+        <li>Recht auf Widerspruch gegen die Verarbeitung (Art. 21 DSGVO)</li>
+        <li>Recht auf Widerruf einer erteilten Einwilligung mit Wirkung für die Zukunft</li>
+      </ul>
+      <p>
+        Zur Ausübung dieser Rechte genügt eine formlose Mitteilung an:
+        <a href="mailto:praxis@christian-lacina.at">praxis@christian-lacina.at</a>
+      </p>
+    </div>
+
+    <!-- BESCHWERDERECHT -->
+    <div class="card">
+      <h2>12. Beschwerderecht bei der Aufsichtsbehörde</h2>
+      <p>
+        Sie haben unbeschadet anderweitiger verwaltungsrechtlicher oder gerichtlicher
+        Rechtsbehelfe das Recht auf Beschwerde bei einer Aufsichtsbehörde, insbesondere in
+        dem Mitgliedstaat Ihres Aufenthaltsorts, wenn Sie der Ansicht sind, dass die
+        Verarbeitung Sie betreffender personenbezogener Daten gegen die DSGVO verstößt.
+        In Österreich zuständig ist:
+      </p>
+      <p>
+        <strong>Österreichische Datenschutzbehörde</strong><br />
+        Barichgasse 40–42, 1030 Wien<br />
+        Telefon: +43 1 52 152-0<br />
+        E-Mail: dsb@dsb.gv.at<br />
+        Web: <a href="https://www.dsb.gv.at" target="_blank" rel="noopener">www.dsb.gv.at</a>
+      </p>
+    </div>
+
+    <!-- SICHERHEIT -->
+    <div class="card">
+      <h2>13. Datensicherheit</h2>
+      <p>
+        Diese Website nutzt aus Sicherheitsgründen und zum Schutz der Übertragung
+        vertraulicher Inhalte eine SSL/TLS-Verschlüsselung. Dennoch weise ich darauf hin,
+        dass die Datenübertragung im Internet (z. B. bei der Kommunikation per E-Mail)
+        Sicherheitslücken aufweisen kann; ein lückenloser Schutz der Daten vor dem Zugriff
+        durch Dritte ist nicht möglich.
+      </p>
+    </div>
+
+    <!-- AKTUALITÄT -->
+    <div class="card">
+      <h2>14. Aktualität und Änderung dieser Datenschutzerklärung</h2>
+      <p>
+        Diese Datenschutzerklärung ist aktuell gültig (Stand: September 2026).
+        Durch die Weiterentwicklung der Website oder Änderungen der rechtlichen bzw.
+        behördlichen Vorgaben kann es notwendig werden, diese Datenschutzerklärung zu ändern.
+      </p>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <div style="width: min(calc(100% - 2rem), var(--max-width)); margin: 0 auto;">
+      © <span id="year"></span> Christian Lacina, MSc · Psychotherapeut in Fachausbildung unter Lehrsupervision
+      · <a href="impressum.html">Impressum</a>
+      · <a href="index.html">Zurück zur Website</a>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
