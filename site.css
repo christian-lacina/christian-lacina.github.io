@@ -1,0 +1,2068 @@
+/* Gelasio (SIL OFL 1.1, fonts/OFL.txt): Ersatz fuer Georgia, wo sie fehlt
+   (Android, Linux). Steht in jeder Liste hinter Georgia; der Browser laedt die
+   Datei nur, wenn Georgia nicht installiert ist. */
+@font-face {
+  font-family: "Gelasio";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/gelasio-latin-400-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Gelasio";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/gelasio-latin-400-italic.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Gelasio";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/gelasio-latin-700-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root {
+  --bg: #f6f3ed;
+  --bg-soft: #f1eee7;
+  --card: rgba(255,255,255,0.72);
+  --text: #2f2c28;
+  --muted: #6c675f;
+  --line: #d7d0c4;
+  --accent: #9cad97;
+  --accent-dark: #7f927a;
+  --accent-soft: #dfe7dc;
+  --hero-tint: #ebede3;
+  --shadow: 0 10px 35px rgba(47, 44, 40, 0.08);
+  --radius: 24px;
+  --max-width: 1180px;
+  --header-height: 84px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at top left, rgba(156, 173, 151, 0.14), transparent 30%),
+    radial-gradient(circle at bottom right, rgba(156, 173, 151, 0.10), transparent 25%),
+    linear-gradient(180deg, #f8f6f1 0%, #f4f1ea 100%);
+  line-height: 1.6;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Blendet Text optisch aus, laesst ihn aber fuer Screenreader und
+   Suchmaschinen bestehen. Genutzt fuer die H1 im Hero: die sichtbare
+   Ueberschrift dort ist ein SVG-Logo, dessen Text Google nicht als
+   Ueberschrift liest. display:none waere hier falsch — das wuerde den
+   Text auch fuer Screenreader entfernen. */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.container {
+  width: min(calc(100% - 2rem), var(--max-width));
+  margin: 0 auto;
+}
+
+.topbar {
+  background: var(--accent-soft);
+  border-bottom: 1px solid rgba(215, 208, 196, 0.8);
+}
+
+.topbar-inner {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1.4rem;
+  min-height: 2.6rem;
+  font-size: 0.88rem;
+}
+
+.topbar-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--text);
+  font-weight: 600;
+  transition: 0.2s ease;
+}
+
+.topbar-link:hover,
+.topbar-link:focus-visible {
+  color: var(--accent-dark);
+  outline: none;
+}
+
+.topbar-link svg {
+  flex-shrink: 0;
+  color: var(--accent-dark);
+}
+
+@media (max-width: 640px) {
+  /* Anrufen ist am Handy der wichtigste Weg: Nummer und Symbole größer,
+     Trefferflächen auf ~44px – die Leiste wird dadurch etwas höher. */
+  .topbar-inner {
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.2rem 0.4rem;
+    min-height: 3.1rem;
+    padding: 0.35rem 0;
+    font-size: 1rem;
+  }
+
+  .topbar-link {
+    min-height: 44px;
+    padding: 0 0.25rem;
+  }
+
+  .topbar-link svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  /* E-Mail links, Telefon rechts. */
+  .topbar-mail {
+    order: 1;
+    /* Basis = min-content (die Domain), damit die Adresse neben der
+       Nummer bleibt und dort zweizeilig umbricht statt umzuklappen.
+       Schmäler als die Domain wird sie nie – auf sehr engen Geräten
+       rutscht deshalb die Nummer in eine zweite Zeile. */
+    flex: 1 1 min-content;
+  }
+
+  .topbar-phone {
+    order: 2;
+    /* Nummer bleibt in voller Größe auf einer Zeile */
+    flex: 0 0 auto;
+    margin-left: auto;
+    white-space: nowrap;
+  }
+
+  /* Umbruch genau nach dem @: die Domain selbst bleibt zusammen,
+     sonst bräche der Browser lieber am Bindestrich um. */
+  .topbar-mail .mail-domain {
+    white-space: nowrap;
+  }
+
+  .topbar-mail span {
+    white-space: normal;
+    line-height: 1.2;
+    /* etwas kleiner, damit "christian-lacina.at" in eine Zeile passt
+       und die Adresse bei zwei Zeilen bleibt */
+    font-size: 0.82rem;
+  }
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  backdrop-filter: blur(14px);
+  background: rgba(246, 243, 237, 0.82);
+  border-bottom: 1px solid rgba(215, 208, 196, 0.8);
+}
+
+.header-inner {
+  min-height: var(--header-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  min-width: 0;
+}
+
+.brand-logo {
+  width: auto;
+  height: 66px;
+  border-radius: 10px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.brand-text {
+  min-width: 0;
+}
+
+.brand-title {
+  margin: 0;
+  font-family: Georgia, Gelasio, "Times New Roman", serif;
+  font-size: 1.25rem;
+  line-height: 1;
+  letter-spacing: 0.02em;
+}
+
+.brand-subtitle {
+  margin: 0.2rem 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.nav-wrap {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.nav a {
+  padding: 0.7rem 0.9rem;
+  border-radius: 999px;
+  color: var(--text);
+  font-size: 0.95rem;
+  transition: 0.25s ease;
+}
+
+.nav a:hover,
+.nav a:focus-visible {
+  background: var(--accent-soft);
+  color: var(--text);
+  outline: none;
+}
+
+.lang-switch {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-left: 0.3rem;
+}
+
+.lang-sep {
+  color: var(--line);
+  font-size: 0.85rem;
+}
+
+.lang-btn {
+  border: none;
+  background: none;
+  color: var(--muted);
+  padding: 0.4rem 0.15rem;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 400;
+  text-decoration: none;
+  transition: 0.2s ease;
+}
+
+.lang-btn:hover,
+.lang-btn:focus-visible {
+  color: var(--text);
+  outline: none;
+}
+
+.lang-btn.active {
+  color: var(--text);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ── Burger button (hidden on desktop) ── */
+.burger-btn {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: rgba(255,255,255,0.7);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 0.5rem 0.6rem;
+  /* Tippflaeche mindestens 44 x 44 px */
+  min-width: 44px;
+  min-height: 44px;
+  align-items: center;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.burger-btn:hover,
+.burger-btn:focus-visible {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  outline: none;
+}
+
+.burger-line {
+  width: 20px;
+  height: 2px;
+  background: var(--text);
+  border-radius: 1px;
+  transition: 0.25s ease;
+  display: block;
+}
+
+.burger-btn[aria-expanded="true"] .burger-line:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.burger-btn[aria-expanded="true"] .burger-line:nth-child(2) {
+  opacity: 0;
+}
+.burger-btn[aria-expanded="true"] .burger-line:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ── Mobile dropdown menu ── */
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  background: rgba(246, 243, 237, 0.98);
+  border-top: 1px solid rgba(215, 208, 196, 0.6);
+  padding: 0.4rem 0 0.6rem;
+}
+
+.mobile-menu.open {
+  display: flex;
+}
+
+.mobile-menu a {
+  padding: 0.8rem 1.2rem;
+  font-size: 1rem;
+  color: var(--text);
+  border-bottom: 1px solid rgba(215, 208, 196, 0.4);
+  transition: background 0.2s ease;
+}
+
+.mobile-menu a:last-child {
+  border-bottom: none;
+}
+
+.mobile-menu a:hover,
+.mobile-menu a:focus-visible {
+  background: var(--accent-soft);
+  outline: none;
+}
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  background: var(--hero-tint);
+  min-height: clamp(360px, 38vw, 460px);
+  display: flex;
+  align-items: center;
+}
+
+.hero .container {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 0% 22%;
+  display: block;
+}
+
+.hero-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(to right,
+    transparent 0%,
+    transparent 25%,
+    rgba(235,237,227,0.017) 30%,
+    rgba(235,237,227,0.064) 35%,
+    rgba(235,237,227,0.135) 40%,
+    rgba(235,237,227,0.226) 45%,
+    rgba(235,237,227,0.330) 50%,
+    rgba(235,237,227,0.442) 55%,
+    rgba(235,237,227,0.558) 60%,
+    rgba(235,237,227,0.670) 65%,
+    rgba(235,237,227,0.775) 70%,
+    rgba(235,237,227,0.865) 75%,
+    rgba(235,237,227,0.936) 80%,
+    rgba(235,237,227,0.983) 85%,
+    var(--hero-tint) 90%);
+}
+
+.hero-copy {
+  padding: 1rem 0;
+  max-width: 560px;
+  margin-left: auto;
+}
+
+
+#heroLogo {
+  width: 680px;
+  max-width: 100%;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.hero h1 {
+  margin: 0;
+  font-family: Georgia, Gelasio, "Times New Roman", serif;
+  font-size: clamp(2.4rem, 5vw, 4.8rem);
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+}
+
+.hero h1 span {
+  display: block;
+  color: var(--accent-dark);
+}
+
+.hero p {
+  font-size: 1.08rem;
+  color: var(--text);
+  max-width: 60ch;
+  margin: 1.2rem 0 1.6rem;
+}
+
+.hero-actions {
+display: flex;
+margin-top: 0.6rem;
+}
+
+/* Fachrichtung unter dem Hero-Button. Der Abstand ist so gewaehlt, dass die
+   Zeile mittig zwischen Button-Unterkante und Unterkante des Hero-Bildes
+   sitzt. p.hero-modality statt .hero-modality, sonst gewinnt die spaetere
+   Regel .hero p und ueberschreibt Abstand, Groesse und Breite. */
+p.hero-modality {
+  margin: 2.6rem 0 0;
+  font-family: Georgia, Gelasio, "Times New Roman", serif;
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--text);
+}
+
+/* Second call to action, only shown on phones (see 640px breakpoint). */
+.section-cta {
+  display: none;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.9rem 1.4rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  transition: 0.25s ease;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+  text-wrap: balance;
+  line-height: 1.35;
+}
+
+.btn-primary {
+background: rgba(255,255,255,0.7);
+color: var(--text);
+border-color: var(--line);
+box-shadow: none;
+}
+
+.btn-primary:hover,
+.btn-primary:focus-visible {
+background: var(--accent-soft);
+border-color: var(--accent);
+outline: none;
+transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background: rgba(255,255,255,0.7);
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus-visible {
+  background: var(--accent-soft);
+  outline: none;
+  transform: translateY(-2px);
+}
+
+section {
+  scroll-margin-top: calc(var(--header-height) + 20px);
+  padding: 2rem 0 1.6rem;
+}
+
+.section-header {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.section-header > div {
+  flex: 1;
+}
+
+.section-label {
+  color: var(--text);
+  font-family: Georgia, Gelasio, "Times New Roman", serif;
+  font-size: clamp(1.9rem, 3vw, 3rem);
+  line-height: 1.05;
+  margin-bottom: 0.75rem;
+}
+
+h2 {
+  margin: 0;
+  font-family: Georgia, Gelasio, "Times New Roman", serif;
+  font-size: clamp(1.9rem, 3vw, 3rem);
+  line-height: 1.05;
+}
+
+.lead {
+  color: var(--muted);
+  margin: 0.6rem 0 0;
+}
+
+/* Einleitungen über die volle Breite; balance verteilt den Text gleichmäßig
+   auf die nötigen Zeilen, statt einen kurzen Rest in die letzte zu setzen.
+   Am Handy nicht, dort bleibt der normale Umbruch. */
+@media (min-width: 641px) {
+  .lead {
+    text-wrap: balance;
+  }
+}
+
+/* Gezielter Umbruch in einer Einleitung, nur am Desktop; darunter bricht der
+   Browser selbst um. */
+@media (max-width: 980px) {
+  br.nur-breit {
+    display: none;
+  }
+}
+
+/* Wendungen, die nicht über zwei Zeilen getrennt werden sollen (am Handy
+   frei, damit nichts über den Rand ragt). */
+@media (min-width: 641px) {
+  .zusammen {
+    white-space: nowrap;
+  }
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid rgba(255,255,255,0.65);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.4rem;
+}
+
+.praxisraum-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.2rem;
+  margin-top: 1.2rem;
+}
+
+.praxisraum-photo {
+  display: block;
+  margin: 0;
+  background: var(--card);
+  border: 1px solid rgba(255,255,255,0.65);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.praxisraum-photo:hover,
+.praxisraum-photo:focus-visible {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.16);
+}
+
+.praxisraum-photo img {
+  width: 100%;
+  /* beats the height="" attribute so aspect-ratio stays in control */
+  height: auto;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  display: block;
+}
+
+/* ── Mobile Kontaktleiste (nur ≤640px sichtbar, siehe Media Query) ── */
+.mobile-contact-bar {
+  display: none;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 900;
+  align-items: stretch;
+  background: rgba(255,255,255,0.94);
+  backdrop-filter: blur(8px);
+  border-top: 1px solid var(--line);
+  box-shadow: 0 -2px 12px rgba(20, 18, 15, 0.08);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.mobile-contact-action {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 56px;
+  color: var(--text);
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+}
+
+.mobile-contact-action svg {
+  color: var(--accent-dark);
+  flex-shrink: 0;
+}
+
+.mobile-contact-action:active {
+  background: var(--accent-soft);
+}
+
+.mobile-contact-divider {
+  width: 1px;
+  margin: 0.7rem 0;
+  background: var(--line);
+}
+
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1.5rem;
+  background: rgba(20, 18, 15, 0.92);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease;
+}
+
+.lightbox-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.lightbox-overlay img {
+  display: block;
+  max-width: 100%;
+  max-height: 85vh;
+  border-radius: var(--radius);
+  box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+}
+
+.lightbox-close,
+.lightbox-prev,
+.lightbox-next {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.12);
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: background 0.2s ease;
+}
+
+.lightbox-close:hover,
+.lightbox-prev:hover,
+.lightbox-next:hover {
+  background: rgba(255,255,255,0.24);
+}
+
+.lightbox-close {
+  top: 1.2rem;
+  right: 1.2rem;
+  width: 2.6rem;
+  height: 2.6rem;
+  font-size: 1.4rem;
+}
+
+.lightbox-prev,
+.lightbox-next {
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3rem;
+  height: 3rem;
+  font-size: 1.6rem;
+}
+
+.lightbox-prev {
+  left: 1rem;
+}
+
+.lightbox-next {
+  right: 1rem;
+}
+
+@media (max-width: 640px) {
+  .lightbox-prev,
+  .lightbox-next {
+    width: 2.4rem;
+    height: 2.4rem;
+    font-size: 1.3rem;
+  }
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.2rem;
+}
+
+/* Die Karten des Rasters strecken sich auf die Hoehe der hoechsten. Damit
+   unter der Landkarte keine leere Flaeche stehenbleibt, waechst sie mit
+   statt auf festen 260px zu bleiben. */
+.contact-map-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-map-card .practice-map {
+  flex: 1;
+  height: auto;
+  min-height: 260px;
+}
+
+.practice-map {
+  margin-top: 0.6rem;
+  height: 260px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--bg-soft);
+}
+
+.practice-map .leaflet-control-attribution {
+  font-size: 0.68rem;
+}
+
+.transit-map-icon {
+  background: transparent;
+  border: none;
+}
+
+.transit-map-icon > span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 999px;
+  color: #fff;
+  font-size: 0.66rem;
+  font-weight: 700;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 6px rgba(47, 44, 40, 0.3);
+}
+
+.transit-map-icon.landmark > span {
+  width: auto;
+  min-width: 26px;
+  height: 22px;
+  padding: 0 0.4rem;
+  border-radius: 999px;
+  font-size: 0.6rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.transit-map-icon.combo > span.pill-group {
+  display: flex;
+  width: auto;
+  height: 22px;
+  border-radius: 999px;
+  overflow: hidden;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 6px rgba(47, 44, 40, 0.3);
+}
+
+.transit-map-icon.combo .pill-half {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 0 0.35rem;
+  color: #fff;
+  font-size: 0.58rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.about-layout {
+  display: grid;
+  grid-template-columns: 0.5fr 1fr;
+  gap: 2rem;
+  align-items: stretch;
+}
+
+/* Das Bild wird absolut positioniert, damit es nicht die Zeilenhöhe
+   bestimmt. So gibt immer die Textspalte die Höhe vor und das Foto passt
+   sich an – unabhängig von Sprache und Textlänge (wie bei .offer-img). */
+.about-row-img {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.about-row-img img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* 61 % verteilt den vertikalen Beschnitt so, dass oben die Oberkante der
+     Bilderrahmen und unten die Schuhe gerade noch im Bild bleiben. */
+  object-position: 50% 61%;
+  display: block;
+}
+
+.about-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+/* Karten füllen die Spaltenhöhe, damit die Unterkante der letzten Karte
+   mit der Unterkante des Portraitfotos daneben abschließt. */
+.about-cards > .card {
+  flex: 1;
+}
+
+  .offer-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.2rem;
+}
+
+.offer-top {
+  display: grid;
+  grid-template-columns: 1fr 0.5fr;
+  gap: 2rem;
+  align-items: stretch;
+}
+
+.offer-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.offer-img {
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.offer-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+
+.card h3 {
+  margin-top: 0;
+  margin-bottom: 0.65rem;
+  font-size: 1.1rem;
+}
+
+    .card p {
+  margin: 0;
+  color: var(--muted);
+  text-align: justify;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  hyphens: auto;
+}
+
+.quote {
+  padding: 1.4rem 1.6rem;
+  border-left: 4px solid var(--accent);
+  background: rgba(156, 173, 151, 0.09);
+  border-radius: 18px;
+  margin-top: 1rem;
+  color: var(--text);
+  font-family: Georgia, Gelasio, "Times New Roman", serif;
+  font-size: clamp(1.15rem, 1rem + 0.6vw, 1.35rem);
+  line-height: 1.55;
+}
+
+.quote strong {
+  font-weight: 700;
+}
+
+.schwerpunkte-cols {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 1.5rem;
+}
+
+.schwerpunkte-list {
+  margin: 0;
+  padding-left: 1.2rem;
+  color: var(--muted);
+}
+
+.schwerpunkte-list li {
+  margin: 0;
+}
+
+.ansatz-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.2rem;
+}
+
+.contact-card strong {
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.contact-lines {
+  display: grid;
+  gap: 1rem;
+}
+
+.contact-highlight {
+  display: grid;
+  gap: 0.9rem;
+  margin-left: -1rem;
+  border-left: 3px solid var(--accent);
+  padding-left: calc(1rem - 3px);
+}
+
+.contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--text);
+  font-weight: 600;
+  font-size: 1.08rem;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--line);
+  transition: 0.2s ease;
+}
+
+.contact-link svg {
+  flex-shrink: 0;
+  color: var(--accent-dark);
+}
+
+.contact-link:hover,
+.contact-link:focus-visible {
+  color: var(--accent-dark);
+  text-decoration-color: var(--accent);
+  outline: none;
+}
+
+/* Betrag in der Honorarzeile: fett und etwas groesser als der Text. */
+.contact-key {
+  font-weight: 700;
+  font-size: 1.15rem;
+}
+
+/* Textlink in der Honorarzeile: unterstrichen wie .contact-link, aber
+   in Groesse und Staerke des umgebenden Textes. */
+.contact-more {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--line);
+  transition: 0.2s ease;
+}
+
+.contact-more:hover,
+.contact-more:focus-visible {
+  color: var(--accent-dark);
+  text-decoration-color: var(--accent);
+  outline: none;
+}
+
+/* ----- Kontaktformular (Karte über den drei Kontaktkarten) -----
+   Die Spalten der Karte folgen per Subgrid dem Raster der Kontaktkarten:
+   links die Einleitung (Breite von Karte 1), rechts das Formular (Karte 2
+   und 3). Felder und Checkbox in zartem Grün (--field-bg). */
+.callback-card {
+  --field-bg: #f5f8f3;
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: subgrid;
+  align-items: start;
+}
+
+.callback-intro p {
+  margin: 0.4rem 0 0;
+  color: var(--muted);
+}
+
+/* align-items: start, sonst wird das Namensfeld neben der höheren
+   E-Mail/Telefon-Gruppe gestreckt. */
+.callback-form {
+  grid-column: 2 / -1;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem 1.2rem;
+  align-items: start;
+}
+
+.callback-field {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.callback-field.full {
+  grid-column: 1 / -1;
+}
+
+.callback-field label {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.callback-field input,
+.callback-field textarea {
+  font: inherit;
+  padding: 0.75rem 1rem;
+  border: 1px solid #c9d3c5;
+  border-radius: 14px;
+  background: var(--field-bg);
+  color: var(--text);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.callback-field input:focus,
+.callback-field textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.callback-field textarea {
+  resize: vertical;
+  min-height: 5.5rem;
+}
+
+.callback-field textarea::placeholder {
+  color: var(--muted);
+  opacity: 0.8;
+}
+
+.callback-optional {
+  font-weight: 400;
+  color: var(--muted);
+}
+
+/* E-Mail und Telefon als Gruppe über zwei Spalten, darunter mittig der
+   grüne Hinweis, dass eines von beiden genügt (doppelte Klasse, weil sonst
+   der Blocksatz aus .card p gewinnt). */
+.callback-pair {
+  grid-column: 2 / -1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.45rem 1.2rem;
+}
+
+.callback-pair .callback-either {
+  grid-column: 1 / -1;
+  margin: 0;
+  font-size: 0.82rem;
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: center;
+  color: var(--accent-dark);
+}
+
+/* Am Handy stehen die Felder untereinander; dort nennt der Hinweis beide,
+   damit er sich nicht nur auf das Telefon direkt darüber zu beziehen scheint. */
+.callback-either-narrow {
+  display: none;
+}
+
+.callback-footer {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+/* Einwilligung in kleiner Schrift, Kästchen auf Höhe der ersten Zeile. */
+.callback-consent {
+  flex: 1;
+  display: flex;
+  gap: 0.55rem;
+  align-items: flex-start;
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+/* Eigene Checkbox statt der Browser-Darstellung, damit ihr Hintergrund der
+   Feldfarbe folgt. */
+.callback-consent input {
+  appearance: none;
+  -webkit-appearance: none;
+  flex-shrink: 0;
+  display: grid;
+  place-content: center;
+  width: 1.05rem;
+  height: 1.05rem;
+  margin: 0.1rem 0 0;
+  border: 1px solid var(--muted);
+  border-radius: 4px;
+  background: var(--field-bg);
+  cursor: pointer;
+}
+
+.callback-consent input::after {
+  content: "";
+  width: 0.55rem;
+  height: 0.3rem;
+  border: 2px solid #fff;
+  border-top: 0;
+  border-right: 0;
+  transform: rotate(-45deg) translate(1px, -1px);
+  opacity: 0;
+}
+
+.callback-consent input:checked {
+  background: var(--accent-dark);
+  border-color: var(--accent-dark);
+}
+
+.callback-consent input:checked::after {
+  opacity: 1;
+}
+
+.callback-consent input:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.callback-consent a,
+.callback-done a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--line);
+}
+
+.callback-submit {
+  flex-shrink: 0;
+}
+
+/* Fehlerhinweis im Formular; die Eingaben bleiben stehen. */
+.callback-error {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: 0.7rem 1rem;
+  border-radius: 14px;
+  font-size: 0.9rem;
+  background: #f6e4df;
+  color: #7a2e22;
+}
+
+.callback-error a {
+  color: inherit;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* Bestätigung: ersetzt nach dem Absenden die Formularspalte. Mit
+   JavaScript über die Klasse is-sent, ohne JavaScript über die Sprungmarke
+   #nachricht-gesendet, auf die Formward zurückleitet. */
+.callback-done {
+  display: none;
+  grid-column: 2 / -1;
+  align-self: center;
+  padding: 1.4rem 1.5rem;
+  border-radius: 18px;
+  background: var(--accent-soft);
+}
+
+.callback-done:focus {
+  outline: none;
+}
+
+.callback-done strong {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 1.15rem;
+  margin-bottom: 0.45rem;
+}
+
+.callback-done svg {
+  flex-shrink: 0;
+  color: var(--accent-dark);
+}
+
+.callback-done p {
+  margin: 0;
+  color: var(--text);
+}
+
+.callback-done p + p {
+  margin-top: 0.5rem;
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+
+.callback-anchor {
+  position: absolute;
+  scroll-margin-top: calc(var(--header-height) + 20px);
+}
+
+.callback-card.is-sent .callback-form,
+.callback-anchor:target ~ .callback-form {
+  display: none;
+}
+
+.callback-card.is-sent .callback-done,
+.callback-anchor:target ~ .callback-done {
+  display: block;
+}
+
+/* Honeypot gegen Spam-Bots: unsichtbar, aber nicht display:none. */
+.callback-hp {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* Einspaltige Kontaktkarten: Einleitung über dem Formular. */
+@media (max-width: 980px) {
+  .callback-card {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+
+  .callback-form,
+  .callback-done {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 640px) {
+  .callback-either-wide {
+    display: none;
+  }
+
+  .callback-either-narrow {
+    display: inline;
+  }
+
+  .callback-form {
+    grid-template-columns: 1fr;
+  }
+
+  .callback-pair {
+    grid-column: 1;
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .callback-footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  /* Der Platzhalter braucht am Handy vier Zeilen. */
+  .callback-field textarea {
+    min-height: 8.5rem;
+  }
+}
+
+.transit-intro {
+  display: block;
+  margin: 0.35rem 0 0.15rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+/* Untereinander und alle gleich breit, auch wenn der Text kurz ist. */
+.transit-badges {
+  display: grid;
+  gap: 0.5rem;
+  margin: 0.5rem 0 0.6rem;
+}
+
+.transit-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.85rem 0.4rem 0.4rem;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.75);
+  border: 1px solid var(--line);
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.transit-badge strong {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.9rem;
+  height: 1.7rem;
+  padding: 0 0.4rem;
+  border-radius: 999px;
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.transit-u3 strong,
+.transit-u4 strong {
+  min-width: 2.15rem;
+  height: 1.95rem;
+  font-size: 0.86rem;
+}
+
+.transit-u3 strong {
+  background: #e07b1a;
+}
+
+.transit-u4 strong {
+  background: #45a150;
+}
+
+.bus-line-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  height: 1.7rem;
+  padding: 0 0.65rem;
+  border-radius: 999px;
+  background: #be3128;
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.bus-line-sep {
+  width: 4px;
+  height: 4px;
+  border-radius: 999px;
+  background: #fff;
+  flex-shrink: 0;
+}
+
+.transit-maps-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-top: 0.1rem;
+  color: var(--accent-dark);
+  font-weight: 600;
+  font-size: 0.92rem;
+  text-decoration: underline;
+}
+
+.transit-maps-link:hover,
+.transit-maps-link:focus-visible {
+  color: var(--text);
+}
+
+.footer {
+  padding: 2rem 0 3rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.footer-box {
+  border-top: 1px solid var(--line);
+  padding-top: 1.4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Rechtstexte rechtsbündig am Ende der Zeile. */
+.footer-links {
+  margin-left: auto;
+  text-align: right;
+}
+
+.footer-links a {
+  color: var(--muted);
+  text-decoration: underline;
+}
+
+.soft-note {
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+
+/* Haeufige Fragen: Akkordeon aus <details>/<summary>. Bewusst ohne
+   JavaScript — Tastaturbedienung und Screenreader-Ausgabe bringen die
+   Elemente von Haus aus mit. Zugeklappter Text steht vollstaendig im
+   HTML und wird von Suchmaschinen gelesen. */
+.faq-list {
+  display: grid;
+  gap: 0.75rem;
+}
+
+/* Sprungziel des Links in der Honorarzeile. */
+#faq-kosten {
+  scroll-margin-top: calc(var(--header-height) + 20px);
+}
+
+.faq-item {
+  background: var(--card);
+  border: 1px solid rgba(255,255,255,0.65);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 0 1.4rem;
+}
+
+.faq-item summary {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.1rem 0;
+  cursor: pointer;
+  list-style: none;
+}
+
+/* Das voreingestellte Dreieck weg — wir zeichnen unten ein eigenes Chevron. */
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item summary h3 {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.faq-item summary::after {
+  content: "";
+  flex: none;
+  width: 9px;
+  height: 9px;
+  margin-top: 0.4rem;
+  border-right: 2px solid var(--accent-dark);
+  border-bottom: 2px solid var(--accent-dark);
+  transform: rotate(45deg);
+  transition: transform 0.2s ease;
+}
+
+.faq-item[open] summary::after {
+  transform: rotate(225deg);
+}
+
+.faq-item summary:focus-visible {
+  outline: 2px solid var(--accent-dark);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.faq-answer {
+  padding-bottom: 1.2rem;
+  color: var(--muted);
+}
+
+.faq-answer p {
+  margin: 0 0 0.7rem;
+  text-align: justify;
+}
+
+.faq-answer p:last-child {
+  margin-bottom: 0;
+}
+
+.faq-answer strong {
+  color: var(--text);
+}
+
+@media (max-width: 980px) {
+  .nav {
+    display: none;
+  }
+
+  .burger-btn {
+    display: flex;
+  }
+
+  /* DE/EN enger zusammen, aber deutlich weiter weg vom Burger-Icon:
+     ein Fehlgriff auf EN statt Menü soll nicht passieren. */
+  .lang-switch {
+    gap: 0.15rem;
+    margin-right: 1.1rem;
+  }
+
+  .contact-grid,
+  .offer-grid,
+  .offer-top,
+  .ansatz-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .hero-actions {
+    justify-content: center;
+  }
+
+  p.hero-modality {
+    text-align: center;
+  }
+  
+  .about-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .about-row-img {
+    order: 1;
+  }
+
+  /* Einspaltig gibt es keine Textspalte, an der sich das Bild ausrichten
+     könnte – hier wieder im Fluss, damit es seine eigene Höhe mitbringt. */
+  .about-row-img img {
+    position: static;
+    height: auto;
+  }
+
+  .about-cards {
+    order: 2;
+  }
+
+  .offer-img {
+    order: 1;
+  }
+
+  .offer-cards {
+    order: 2;
+  }
+
+  /* Stack the hero as: logo → photo → text → modality → button.
+     display:contents flattens the wrappers so all four can be ordered. */
+  .hero {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  .hero > .container,
+  .hero-copy {
+    display: contents;
+  }
+
+  #heroLogo {
+    order: 1;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 1.8rem 1.1rem 1.3rem;
+    margin: 0;
+  }
+
+  .hero-bg {
+    order: 2;
+    position: relative;
+    inset: auto;
+    width: 100%;
+    aspect-ratio: 3 / 2;
+  }
+
+  .hero p {
+    order: 3;
+    max-width: none;
+    margin: 0;
+    padding: 1.5rem 1.3rem 0;
+    text-wrap: balance;
+  }
+
+  /* Mobil steht die Fachrichtung zwischen Text und Button. Eigene order
+     noetig, sonst greift die von .hero p (order 3). */
+  p.hero-modality {
+    order: 4;
+    padding: 1.1rem 1.3rem 0;
+    margin: 0;
+  }
+
+  .hero-actions {
+    order: 5;
+    padding: 1.3rem 1.3rem 2rem;
+    margin-top: 0;
+  }
+
+  .hero-bg::after {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    width: min(calc(100% - 1.2rem), var(--max-width));
+  }
+
+  /* Zweizeiliges Hero-Logo ist hoeher; weniger Innenabstand haelt die
+     Gesamthoehe wie beim einzeiligen Logo. */
+  #heroLogo {
+    padding: 1.1rem 1.1rem 0.6rem;
+  }
+
+  /* Schmalere Karten und linksbuendiger Fliesstext: Blocksatz reisst auf
+     kleinen Displays zu grosse Luecken. */
+  .faq-item {
+    padding: 0 1.15rem;
+  }
+
+  .faq-item summary h3 {
+    font-size: 1rem;
+  }
+
+  .faq-answer p {
+    text-align: left;
+  }
+
+  .brand-logo {
+    width: auto;
+    height: 36px;
+  }
+
+  /* Kopfzeile am Handy niedriger: Logo und Burger brauchen keine 84px */
+  :root {
+    --header-height: 64px;
+  }
+
+  /* Kontaktleiste einblenden und unten Platz schaffen, damit sie
+     Footer bzw. Karte nicht dauerhaft verdeckt. */
+  .mobile-contact-bar {
+    display: flex;
+  }
+
+  .footer {
+    padding-bottom: calc(56px + 1.5rem + env(safe-area-inset-bottom));
+  }
+
+  /* Mobil bricht die Zeile ohnehin um – dann die Rechtstexte
+     zentriert in eigener Zeile unter Name und Berufstitel. */
+  .footer-links {
+    margin-left: 0;
+    flex-basis: 100%;
+    text-align: center;
+  }
+
+  /* Größere Trefferflächen, aber DE und EN dicht beieinander – der
+     nötige Abstand liegt zwischen Sprachwahl und Burger-Icon. */
+  .lang-switch {
+    gap: 0.15rem;
+    margin-right: 1.1rem;
+  }
+
+  .lang-btn {
+    min-height: 44px;
+    padding: 0.4rem 0.35rem;
+  }
+
+  /* Telefon- und E-Mail-Link im Kontaktblock bequem antippbar machen. */
+  .contact-link {
+    min-height: 44px;
+    padding: 0.3rem 0;
+  }
+
+  .brand-title {
+    font-size: 1.05rem;
+  }
+
+  .brand-subtitle {
+    font-size: 0.84rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(2rem, 10vw, 3rem);
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+
+  .card {
+    padding: 1.15rem;
+  }
+
+  /* Justified text tears open rivers of whitespace in a ~30-character
+     column, so phones get plain left-aligned copy. */
+  .card p {
+    text-align: left;
+    -webkit-hyphens: manual;
+    -moz-hyphens: manual;
+    hyphens: manual;
+  }
+
+  .section-cta {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5rem;
+  }
+
+  .schwerpunkte-cols {
+    grid-template-columns: 1fr;
+  }
+
+  .praxisraum-gallery {
+    grid-template-columns: 1fr;
+  }
+
+  /* Portrait crops eat a whole phone screen each – show a landscape
+     window onto the seating area instead. Tap still opens the full photo. */
+  .praxisraum-photo img {
+    aspect-ratio: 4 / 3;
+    object-position: center 62%;
+  }
+
+  /* Praxisfoto1 ist seit der Retusche enger geschnitten: etwas höher
+     ansetzen, damit Körbe und Bild an der Wand im Ausschnitt bleiben. */
+  .praxisraum-photo:nth-child(2) img {
+    object-position: center 54%;
+  }
+
+  .praxisraum-photo:nth-child(3) {
+    display: none;
+  }
+}
+
+/* ===== Themenseiten (/adhs/ usw.) =====
+   Alles Übrige (Kopfzeile, Karten, Foto-Raster, Kontaktbereich) übernehmen
+   die Themenseiten unverändert von der Startseite. Diese Regeln greifen nur
+   dort: Auf der Startseite kommt keine der Klassen vor. */
+
+/* Sichtbare H1 der Themenseite, gesetzt wie die Abschnittstitel. */
+h1.section-label {
+  margin-top: 0;
+}
+
+/* Rücklink über dem Titel, gestaltet wie in Impressum und Datenschutz. */
+.topic-back-wrap {
+  margin: 0 0 1.3rem;
+}
+
+.topic-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,0.7);
+  font-size: 0.9rem;
+  color: var(--text);
+  transition: 0.2s ease;
+}
+
+.topic-back:hover,
+.topic-back:focus-visible {
+  background: var(--accent-soft);
+  transform: translateX(-2px);
+  outline: none;
+}
+
+/* Kartenüberschriften sind hier H2 (unter der H1 der Seite), sehen aber aus
+   wie die H3 in den Karten der Startseite. */
+.topic-card h2 {
+  margin: 0 0 0.65rem;
+  font-family: inherit;
+  font-size: 1.1rem;
+  line-height: inherit;
+}
+
+/* Themenkarten haben mehrere Absätze. */
+.topic-card p + p {
+  margin-top: 0.8rem;
+}
+
+/* Links im Fließtext (Themenkarten, FAQ-Antworten, Sektionseinleitungen): grün und unterstrichen,
+   damit sie als Link erkennbar sind (17.10.2026). Dunkler als --accent-dark,
+   das als Textfarbe zu wenig Kontrast hätte. */
+.topic-card p a,
+.faq-answer a,
+.section-header .lead a {
+  color: #56694f;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--accent);
+  transition: 0.2s ease;
+}
+
+.topic-card p a:hover,
+.topic-card p a:focus-visible,
+.faq-answer a:hover,
+.faq-answer a:focus-visible,
+.section-header .lead a:hover,
+.section-header .lead a:focus-visible {
+  color: var(--text);
+  text-decoration-color: var(--accent-dark);
+}
+
+/* Praxisfoto neben den Karten (.about-row-img): Ausschnitt so, dass die
+   Sitzgruppe im Bild bleibt. */
+.topic-photo img {
+  object-position: 50% 60%;
+}
+
+/* Praxisfoto 3: Die Sitzgruppe liegt links im Bild; mittig zeigt der
+   schmale Streifen am Laptop nur Lampe und Tisch. Gleiche Gewichtung wie
+   oben, damit am Handy die Regel darunter gilt. */
+.topic-photo-links img {
+  object-position: 15% 60%;
+}
+
+@media (max-width: 980px) {
+  /* Einspaltig wie in der Praxisraum-Galerie am Handy: Querformat-Fenster
+     auf die Sitzgruppe statt eines bildschirmhohen Hochformats. */
+  .topic-photo img {
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    object-position: center 62%;
+  }
+}
+
+@media (max-width: 640px) {
+  .topic-back {
+    font-size: 0.82rem;
+    padding: 0.5rem 0.8rem;
+  }
+}
+
+/* ----- Themenseiten: Aufbau der Seite -----
+   Themenseiten tragen <body class="topic-page">. Regeln, die gemeinsame
+   Klassen der Startseite veraendern, haengen deshalb an .topic-page. */
+
+/* Band unter der Kopfzeile: rundes Portrait links, daneben das Logo mit
+   Berufsbezeichnung (kommt per Abgleich-Skript vom Hero der Startseite) und
+   die Fachrichtung. Wer aus der Suche kommt, sieht so zuerst, wer hier
+   schreibt; am Handy zeigt die Kopfzeile selbst nur den Namen. */
+.topic-band {
+  background: var(--hero-tint);
+  border-bottom: 1px solid var(--line);
+  padding: 1.1rem 0 0.9rem;
+}
+
+.topic-band-inner {
+  display: flex;
+  align-items: center;
+  gap: 2.2rem;
+}
+
+.topic-portrait {
+  width: 168px;
+  height: 168px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  box-shadow: var(--shadow);
+}
+
+.topic-band-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.topic-band-info svg {
+  display: block;
+  width: min(100%, 430px);
+  height: auto;
+}
+
+.topic-modality {
+  margin: 0.9rem 0 0;
+  font-family: Georgia, Gelasio, "Times New Roman", serif;
+  font-style: italic;
+  font-size: 1.13rem;
+  color: var(--text);
+}
+
+/* Kopfzeilen-Logo auf Themenseiten nur mit Namen (logo-header.svg, vom
+   Abgleich-Skript eingesetzt): Die Berufsbezeichnung steht im Band darunter. */
+@media (min-width: 641px) {
+  .topic-page .brand-logo {
+    height: 48px;
+  }
+}
+
+/* Seitentitel: Obergrenze 2.75rem statt 3rem. Bei 3rem (ab etwa 1600 px
+   Fensterbreite) passt ein Titel von rund 45 Zeichen nicht mehr in eine
+   Zeile. balance verteilt die Zeilen gleichmaessig, wo er umbricht. */
+.topic-page h1.section-label {
+  font-size: clamp(1.9rem, 3vw, 2.75rem);
+  text-wrap: balance;
+}
+
+/* Die lange Einleitung unter dem Titel ohne Ausgleich: Sie läuft über die
+   ganze Breite, bündig mit Karten und Foto darunter. */
+.topic-page h1.section-label + .lead {
+  text-wrap: wrap;
+}
+
+/* Kontaktknopf direkt unter der Einleitung. */
+.topic-cta {
+  margin: 1.1rem 0 0;
+}
+
+/* Sprung zum Kontaktbereich: Oberkante des Abschnitts buendig unter der
+   Kopfzeile (1px ist deren Unterkante). Die Startseite laesst 20px Abstand. */
+.topic-page #contact {
+  scroll-margin-top: calc(var(--header-height) + 1px);
+}
+
+/* Foto rechts neben den ersten zwei Karten, die dritte Karte darunter ueber
+   die volle Breite. Raster mit sechs Spalten: Karten neben dem Foto belegen
+   vier, das Foto zwei. Unter 981px gilt die einspaltige Anordnung von
+   .about-layout (Foto zwischen Einleitung und Karten). */
+@media (min-width: 981px) {
+  .topic-layout {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    column-gap: 2rem;
+    row-gap: 1.2rem;
+  }
+
+  .topic-layout .about-cards {
+    display: contents;
+  }
+
+  .topic-layout .about-row-img {
+    grid-column: 5 / span 2;
+    grid-row: 1 / span 2;
+  }
+
+  .topic-layout .about-cards > .card {
+    grid-column: 1 / span 4;
+  }
+
+  .topic-layout .about-cards > .card:nth-of-type(3) {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Zweites Praxisfoto nur am Handy, zwischen Arbeitsweise und erste
+   Sitzungen; je Seite ein anderes als oben. Breiter ausgeblendet. Die
+   dritte Karte zählt deshalb oben mit nth-of-type statt nth-child. */
+.topic-photo-mobil {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  .topic-photo-mobil {
+    display: block;
+    border-radius: 20px;
+    overflow: hidden;
+  }
+
+  .topic-photo-mobil img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    object-position: center 62%;
+  }
+}
+
+@media (max-width: 640px) {
+  .topic-band {
+    padding: 0.9rem 0 0.75rem;
+  }
+
+  .topic-band-inner {
+    gap: 0.9rem;
+  }
+
+  .topic-portrait {
+    width: 78px;
+    height: 78px;
+  }
+
+  .topic-modality {
+    font-size: 0.99rem;
+    margin-top: 0.6rem;
+  }
+}
+
+/* ----- Startseite: Link aus der Schwerpunkte-Liste auf eine Themenseite ----- */
+.focus-link {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--line);
+  transition: 0.2s ease;
+}
+
+.focus-link:hover,
+.focus-link:focus-visible {
+  color: var(--accent-dark);
+  text-decoration-color: var(--accent);
+  font-weight: 600;
+  outline: none;
+}
+
+/* Hinweis unter der Schwerpunkte-Liste; nur deutsch (englisch ohne Links,
+   dort ist der Text leer) */
+.card .focus-hint {
+  margin: 12px 0 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--accent-dark);
+}
+
+.card .focus-hint:empty {
+  display: none;
+}

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Bei inhaltlichen Aenderungen das jeweilige lastmod-Datum aktualisieren.
+     Impressum, Datenschutz und 404 stehen bewusst nicht hier: Sie tragen
+     noindex. In der Sitemap waeren sie ein widerspruechliches Signal und
+     landeten in der Search Console unter "Discovered - currently not
+     indexed". Verlinkt sind sie ueber den Footer. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://christian-lacina.at/</loc>
+    <lastmod>2026-10-17</lastmod>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://christian-lacina.at/en/</loc>
+    <lastmod>2026-10-17</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://christian-lacina.at/angst/</loc>
+    <lastmod>2026-10-17</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://christian-lacina.at/en/anxiety/</loc>
+    <lastmod>2026-10-17</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://christian-lacina.at/burnout/</loc>
+    <lastmod>2026-10-17</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://christian-lacina.at/en/burnout/</loc>
+    <lastmod>2026-10-17</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://christian-lacina.at/beziehung/</loc>
+    <lastmod>2026-10-17</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://christian-lacina.at/en/relationship-issues/</loc>
+    <lastmod>2026-10-17</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://christian-lacina.at/trauer-und-verlust/</loc>
+    <lastmod>2026-10-17</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://christian-lacina.at/en/grief-and-loss/</loc>
+    <lastmod>2026-10-17</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://christian-lacina.at/en/internationals/</loc>
+    <lastmod>2026-10-17</lastmod>
+    <priority>0.8</priority>
+  </url>
+</urlset>
